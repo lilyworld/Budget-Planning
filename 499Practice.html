@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> My Practice</title>
+		<link rel="stylesheet" type="text/css" href="style2.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!--link for icon stuff, if no link, then I have to download it in my pc-->
+		<script src="https://kit.fontawesome.com/3a572cd8d6.js" crossorigin="anonymous"></script>
+
+	</head>
+	<body>
+		<ul id = "navigation_bar">
+			<li class= "navigation_item">
+				
+				<a href=""><i class = "fa fa-home"></i>Home</a><!--place the icon inside the hyper text link so they link together-->
+			</li>
+			<li class= "navigation_item">
+				<a href=""><i class="fas fa-info-circle"></i>Service information</a>
+			</li>
+			<li class= "navigation_item">
+				<i class="fas fa-cloud"></i>
+				<a href="">Contact us</a>
+			</li>
+		</ul>
+
+		
+		<div><h1 style="text-align: center; color:white">Total Budget: $3000 </h1></div>
+		<!--the wants list-->
+
+
+	
+		<div id="WantList">
+			<h3>Wants List:(currently 30%) </h3>
+			<div id = "Remaining_Budget">*Remaining Budget: $0</div>
+			<ul style="list-style: none;"><!--the property list-style with value none will hide the bullpoint of ul and ol-->
+				<li><input type="checkbox" id="Travel"> <lable for = "Travel">Travel: $2000</lable>
+				</li>
+				<li><input type="checkbox" id="PS5"><lable for = "PS5"> PS5: $400</lable></li>
+				<li><input type="checkbox" id="Entertainment"><lable for = "Entertainment"> Entertainment: $400</lable></li>
+				<li><input type="checkbox" id="Dior bag"><lable for = "Dior bag"> Dior bag: $1400</lable></li>
+				<li><input type="checkbox" id="MackBook Air"><lable for = "MacBook Air"> MacBook Air: $1350</lable></li>
+				...
+				<br>
+				...
+				<br>
+				...<br>
+				<button style="margin-left:-25px;margin-top:80px">Add Item</button>
+				
+				<button style= "margin-left:5px;" name= "delete_button" type = "submit" value = "submite">Delete</button>
+
+				<button style = "margin-left:5px" name= "reset_button" type = "reset" value = "Reset">Reset</button>
+
+			</ul>
+		</div>
+		
+
+		<div id="NeedList">
+			<h3>Needs List:(currently 50%) </h3>
+			<div id = "Remaining_Budget">*Remaining Budget: $0</div>
+			<ul style="list-style: none;">
+				<li><input type="checkbox" id="Rent"> <lable for = "Rent">Rent: $2000</lable>
+				</li>
+				<li><input type="checkbox" id="Eletricity"> <lable for = "Eletricity">Eletricity: $300</lable>
+				</li>
+				<li><input type="checkbox" id="Food"> <lable for = "Food">Food Expense: $500</lable>
+				</li>
+				<li><input type="checkbox" id="Transportation"> <lable for = "Transportation">Transportation: $100</lable>
+				</li>
+				<li><input type="checkbox" id="Clothes"> <lable for = "Clothes">Clothes: $300</lable>
+				</li>
+				...
+				<br>
+				...
+				<br>
+				...
+				<br>
+				<button style="margin-left:-25px;margin-top:100px">Add Item</button>
+				
+				<button style= "margin-left:5px;" name= "delete_button" type = "submit" value = "submite">Delete</button>
+
+				<button style = "margin-left:5px" name= "reset_button" type = "reset" value = "Reset">Reset</button>
+
+
+			</ul>
+		</div>
+	
+		<div id = "SavingList">
+			<h3> Your saving(currenly 20%)</h3>
+			<ul style="list-style-type: star;">
+				<li>Previous Saving: $0</li>
+				<li>New saving: $0</li>
+			</ul>
+		</div>
+
+
+
+	</body>
+</html>

@@ -1,0 +1,109 @@
+html{
+	/*background: linear-gradient(#F2B3EF,#F2DCF1);*/
+	/*this will only extend to where the content are*/
+	background-image: url(Genshin.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+
+
+#navigation_bar{
+	list-style-type: none;
+	background-color:#57D2ED;
+	overflow: hidden;/*for some reason, if the overflow is not hidden, then back ground color will not display*/
+	padding: 0px;
+	margin: 0px;
+}
+
+li.navigation_item{
+	float: left;
+	padding: 10px;
+	margin: 0px;
+	display: block;
+	text-align: center;
+	font-size: 20px;
+	color: white;
+	text-decoration:none;/*this will get rid of the underline brought by the <a> tag*/
+	border-style: solid;
+	border-size: 1px;
+	border-color: #57EDAA;
+	min-width: 200px;
+
+}
+
+li a{
+	text-decoration: none;/*above text-decoration didn't work
+	i guess only the most close tag can apply the css propery effect*/
+}
+
+li:hover{
+/*remember always carefull about parent and child relationship.
+	if it is li a hover, then only what is surrounded by <a> tag will get effected.
+	that is only the texts, not the borders and others in above*/
+	background-color: green;
+}
+
+#price{
+	text-align: center;
+
+}
+
+span{
+	position: absolute;
+	left: 250px;
+}
+
+#WantList{
+	margin-left: 50px;
+	margin-top: 80px;
+
+	border-style: outset;
+	/*width, height property set the width height of the html element, and it do not include margin, paddling, border.*/
+	width: 220px;
+	height: 400px;
+	border-radius: 25px;
+	background-color: #5ADFFA;
+	border-size: 5px;
+	float: left;
+
+}
+
+#NeedList{
+	margin-left: 100px;
+	margin-top: 80px;
+
+	border-style: outset;
+	width: 220px;
+	height: 400px;
+	border-radius: 25px;
+	background-color: #E8C7E2;
+	border-size: 5px;
+	float: left;
+	/*it make the div line together horizontaliy*/
+}
+
+#SavingList{
+	width: 200px;
+	height: 150px;
+
+	float: left;
+	border-style: outset;
+	border-radius: 25px;
+	background-color: #8EE8BB;
+	
+	margin-top: 80px;
+	margin-left: 100px;
+}
+
+h3, h4{
+	text-align: center;
+
+}
+
+#Remaining_Budget{
+	text-align: center;
+	color: red;
+}

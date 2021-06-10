@@ -1,0 +1,99 @@
+body{
+    /*background-image: linear-gradient(blue,rgb(28, 203, 209));*/
+    background-image: url("animebg.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+#head{
+    text-align: center;
+    position: relative;
+    border:1px solid;
+    width: 900px;
+    height: 600px;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    background-image: url("color.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /*background-color: aqua;*/
+}
+#bhead{
+    color: white;
+    text-shadow: 1px 1px 2px black,0 0 25px yellow, 0 0 5px darkorange;
+    font-size: 30px;
+
+}
+#bhead1{
+    font-size: 30px;
+    border: 1px solid black;
+    background-color: white;
+    padding: 1px 30px;
+}
+.budget-button1,.budget-button2,.clear-button{
+  border: none;
+  border-radius: 40px;
+  color:black;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  margin: 12px 40px;
+  cursor: pointer;
+  background-color:cornflowerblue;  
+}
+.budget-button1:hover,.budget-button2:hover,.clear-button:hover{
+    background-color:darkturquoise;
+    color: white;
+    text-shadow: yellow;
+
+}
+#p1,#p2,#p3{
+    float: left;
+    height: 180px;
+    width:180px
+}
+#p1{
+    border:2px solid;
+    background-color: white;
+    margin-left: 80px;
+    border-radius: 20px;
+}
+#p2{
+    border:2px solid ;
+    background-color: white;
+    margin-left: 80px;
+    border-radius: 20px;
+}
+#p3{
+    border:2px solid;
+    background-color: white;
+    margin-left: 80px;
+    border-radius: 20px;
+}
+
+#b1{
+    border: none;
+    border-radius: 40px;
+    color:white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin: 12px 40px;
+    cursor: pointer;
+    background-color:cornflowerblue;     
+}
+#b1:hover{
+    background-color:darkturquoise;
+    color: white;
+    text-shadow: yellow;  
+}
+

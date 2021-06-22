@@ -1,0 +1,206 @@
+html{
+	/*background: linear-gradient(#F2B3EF,#F2DCF1);*/
+	/*this will only extend to where the content are*/
+	background-image: url(Genshin.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+
+
+#navigation_bar{
+	list-style-type: none;
+	background-color:#57D2ED;
+	overflow: hidden;/*for some reason, if the overflow is not hidden, then back ground color will not display*/
+	padding: 0px;
+	margin: 0px;
+}
+
+li.navigation_item{
+	float: left;
+	padding: 10px;
+	margin: 0px;
+	display: block;
+	text-align: center;
+	font-size: 20px;
+	color: white;
+	text-decoration:none;/*this will get rid of the underline brought by the <a> tag*/
+	border-style: solid;
+	border-width: 0px;
+	border-color: #b1c7bd;
+	min-width: 200px;
+
+}
+
+li a{
+	text-decoration: none;/*above text-decoration didn't work
+	i guess only the most close tag can apply the css propery effect*/
+}
+
+li:hover{
+/*remember always carefull about parent and child relationship.
+	if it is li a hover, then only what is surrounded by <a> tag will get effected.
+	that is only the texts, not the borders and others in above*/
+	background-color: #EFE7AB;
+}
+
+#price{
+	text-align: center;
+
+}
+
+#WantList_Container{
+	margin-left: 50px;
+	margin-top: 80px;
+
+	border-style: outset;
+	/*width, height property set the width height of the html element, and it do not include margin, paddling, border.*/
+	width: 220px;
+	height: 400px;
+	border-radius: 25px;
+	background-color: #5ADFFA;
+	border-width: 0px;
+	float: left;/*float do not conflict with position, even a element is float it still can have position property*/
+	
+	position: relative;
+	/*left: 50px;// even when float property is applied, left property is still effective*/
+}
+
+#Want_List{
+	
+	position:absolute;
+	top: 85px;
+	width: 180px;
+	height: 200px;
+	overflow: auto;
+	
+}
+
+#WantList_Delete{
+	position: absolute;
+	left: 25px;
+	top: 350px;
+	padding: 5px;
+
+}
+
+#WantList_Reset{
+	position: absolute;
+	left: 125px;
+	top: 350px;
+	padding:5px;
+	
+}
+
+#NeedList_Container{
+	margin-left: 80px;
+	margin-top: 80px;
+
+	border-style: outset;
+	width: 220px;
+	height: 400px;
+	border-radius: 25px;
+	background-color: #E8C7E2;
+	border-width: 0px;
+	float: left;
+	/*it make the div line together horizontaliy*/
+	overflow: auto;
+	position: relative;
+}
+
+#Need_List{
+	
+	position:absolute;
+	top:85px;
+	width: 180px;
+	height: 200px;
+	overflow: auto;
+	
+}
+
+#NeedList_Delete{
+	position: absolute;
+	left: 25px;
+	top: 350px;
+	padding: 5px;
+
+}
+
+#NeedList_Reset{
+	position: absolute;
+	left: 125px;
+	top: 350px;
+	padding:5px;
+	
+}
+
+
+#SavingList{
+	width: 220px;
+	height: 130px;
+
+	float: left;
+	border-style: outset;
+	border-radius: 25px;
+	background-color: #8EE8BB;
+	
+	margin-top: 80px;
+	margin-left: 80px;
+	overflow: auto;
+}
+
+h3, h4{
+	text-align: center;
+
+}
+
+#Want_Remaining_Budget{
+	position:absolute;
+	top:75px;
+	left:30px;
+
+	text-align: center;
+	color: red;
+
+}
+#Need_Remaining_Budget
+{
+	position:absolute;
+	top:75px;
+	left:30px;
+
+	text-align: center;
+	color: red;
+}
+
+#addinput{
+	margin-left: 80px;
+	margin-top: 80px;
+
+	width: 230px;/*if 250px, then the box will be below saving box
+	therefore, rule of placing element is from left to right.
+	if the current element's width excess what can be place in the viewport, this element will got to next line*/
+	height: 160px;
+
+	border: 1px solid black;
+	float: left;
+
+	background-color: #E8B092;
+	border-radius:  25px;
+	border-style: outset;
+}
+
+.ADDInputButton{
+	border-radius: 15px;
+	border-color: green;
+	margin-left: 52px;
+	margin-top: 15px;
+}
+
+#AddInput_Reset{
+	margin-left: 10px;/*if I specified the margin for a class of elements, every element will have same margin in between them*/
+	/*however, if I step inner to specify one of the elements in the group, the margin property specify in the class will nulltify*/
+
+}

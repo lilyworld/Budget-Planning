@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> My Practice</title>
+		<link rel="stylesheet" type="text/css" href="style2.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!--link for icon stuff, if no link, then I have to download it in my pc-->
+		<script src="https://kit.fontawesome.com/3a572cd8d6.js" crossorigin="anonymous"></script>
+
+
+	</head>
+	<body>
+		<ul id = "navigation_bar">
+			<li class= "navigation_item">
+				
+				<a href=""><i class = "fa fa-home"></i>Home</a><!--place the icon inside the hyper text link so they link together-->
+			</li>
+			<li class= "navigation_item">
+				<a href=""><i class="fas fa-info-circle"></i>Service information</a>
+			</li>
+			<li class= "navigation_item">
+				<i class="fas fa-cloud"></i>
+				<a href="">Contact us</a>
+			</li>
+		</ul>
+
+		
+		<div><h1 style="text-align: center; color:white">Total Budget: $3000 </h1></div>
+		<!--the wants list-->
+
+
+	
+		<div id="WantList_Container">
+			<h3>Wants List:(currently 30%) </h3>
+			<div id = "Want_Remaining_Budget">*Remaining Budget: $0</div>
+			<ul style="list-style: none;" id = "Want_List"><!--the property list-style with value none will hide the bullpoint of ul and ol-->
+			</ul>
+			
+				
+			<button style= "margin-left:5px;" name= "delete_button" type = "botton" id = "WantList_Delete" onclick ="Delete_WantItem()">Delete</button><!--need to add function here-->
+
+			<button style = "margin-left:5px" name= "reset_button" type = "reset" id = "WantList_Reset" onclick = "ResetWantList()">Reset</button><!--need to add function here-->
+		</div>
+		
+
+		<div id="NeedList_Container">
+			<h3>Needs List:(currently 50%) </h3>
+			<div id = "Need_Remaining_Budget">*Remaining Budget: $0</div>
+			<ul style="list-style: none;" id = "Need_List">
+			</ul>
+			
+				
+			<button style= "margin-left:5px;" name= "delete_button" id = "NeedList_Delete" onclick = "Delete_NeedItem()">Delete</button>
+
+			<button style = "margin-left:5px" name= "reset_button" type = "reset" value = "Reset" id = "NeedList_Reset" onclick = "ResetNeedList()">Reset</button>
+		</div>
+	
+		<div id = "SavingList">
+			<h3> Your saving(currenly 20%)</h3>
+			<ul style="list-style-type: star;">
+				<li>Previous Saving: $0</li>
+				<li>New saving: $0</li>
+			</ul>
+		</div>
+
+		<!--input add box-->
+		<div id = "addinput">
+			<h3 id ="aaa">Add your item</h3>
+			
+			<label for = "Item Type" style = "margin-left:20px;">Item type:</label>
+			<label for ="want">Want</label>
+			<input type= "radio" id = "WantRadio" name = "Item Type">
+
+			<label for ="Need">Need</label>
+			<input type= "radio" id = "NeedRadio" name = "Item Type">
+			<br>
+
+			<label for = "NameTextBox" style = "margin-left:10px">Name: </label>
+			<input type = "text" id = "NameTextBox" placeholder = "Ex: Ps5">
+
+			<Br>
+			<label for = "PriceBox" style = "margin-left:10px">Price: </label>
+			<input type = "number" id = "PriceBox" style = "margin-left:5px" placeholder= "Ex: 399" step:".01">
+
+			<button onclick = "AddLI()" class = "ADDInputButton" id = "AddInput_Add_to_list">Add to list </button>
+
+			<button onclick = "ResetInput()" class = "ADDInputButton" id = "AddInput_Reset">Reset </button>
+
+
+		</div>
+		<script>
+		
+		function ResetWantList(){
+			var collection = document.getElementsByClassName("Want_Item");//return html colletion
+			for(let i = 0; i < collection.length; i++)
+			{
+				collection[i].checked =false;
+			}
+
+		}
+
+		function ResetNeedList(){
+			var collection = document.getElementsByClassName("Need_Item");//return html colletion
+			for(let i = 0; i < collection.length; i++)
+			{
+				collection[i].checked =false;
+			}
+
+		}
+
+		function Delete_WantItem(){
+			var collection = document.getElementsByClassName("Want_Item");//return html colletion
+			const ids=[];//creat a empty array
+			for(let i = 0; i < collection.length; i++)
+			{
+				if(collection[i].checked)
+				{
+					ids.push(collection[i].id);
+				}
+			}
+			for(let i =0; i < ids.length; i++)
+			{
+				document.getElementById(ids[i]).parentNode.remove();
+			}
+		}
+
+		function Delete_NeedItem(){
+			var collection = document.getElementsByClassName("Need_Item");//return html colletion
+			const ids=[];//creat a empty array
+			for(let i = 0; i < collection.length; i++)
+			{
+				if(collection[i].checked)
+				{
+					ids.push(collection[i].id);
+				}
+			}
+			for(let i =0; i < ids.length; i++)
+			{
+				document.getElementById(ids[i]).parentNode.remove();
+			}
+			
+		}
+
+		function ResetInput(){
+			document.getElementById("PriceBox").value = "";
+			document.getElementById("NameTextBox").value = "";
+			document.getElementById("WantRadio").checked = false;//for radio input type, value property is only associate with the input
+			document.getElementById("NeedRadio").checked = false;//to uncheck the radio, we need to access the checked property.
+		}	
+		//check which list have duplicate items
+		function ContainDuplicate(NameOfItem, ItemType){
+			var collection = document.getElementsByClassName(ItemType);//HTMLcollection
+			for(let i = 0; i < collection.length;i++)
+			{
+				if(collection[i].id == NameOfItem)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
+		function AddLI(){
+
+			var Name = document.getElementById("NameTextBox").value;//get the value of the input boxes
+			var price = document.getElementById("PriceBox").value;
+
+			//checking if input boxes was filled
+			if(Name == "" || price == "" || (document.getElementById("WantRadio").checked==false&& document.getElementById("NeedRadio").checked == false))
+			{
+				alert("Missing inputs");
+				ResetInput();
+				return;
+			}
+			var Display_text = Name + ": $"+ price;
+			var newLI = document.createElement("LI");//create a li node
+			
+			let myLit;
+			
+			if(document.getElementById("WantRadio").checked && ContainDuplicate(Name+"W", "Want_Item")){
+				var duplicate_Item = document.getElementById(Name+"W").parentNode;
+				//console.log(duplicate_Item.nodeName);LI
+				var Pre_price = duplicate_Item.lastChild.lastChild.innerHTML;
+				//console.log(duplicate_Item.lastChild.lastChild.innerHTML);1 when input 1, 1
+				var new_price = Number(Pre_price) + Number(price);
+				console.log(new_price);//2
+				duplicate_Item.lastChild.lastChild.innerHTML= new_price;
+				return;
+
+			}
+			else if(document.getElementById("NeedRadio").checked && ContainDuplicate(Name + "N", "Need_Item")){
+				var duplicate_Item = document.getElementById(Name+"N").parentNode;
+				//console.log(duplicate_Item.nodeName);LI
+				var Pre_price = duplicate_Item.lastChild.lastChild.innerHTML;
+				//console.log(duplicate_Item.lastChild.lastChild.innerHTML);1 when input 1, 1
+				var new_price = Number(Pre_price) + Number(price);
+				//console.log(new_price);//2
+				duplicate_Item.lastChild.lastChild.innerHTML= new_price;
+				return;
+				
+			}
+			else if(document.getElementById("WantRadio").checked){//see which radio got selected
+				myList = document.getElementById("Want_List");//return html element of Need list
+				newLI.innerHTML = "<input type=\"checkbox\" id=\"" + Name+  "W\" class = \"Want_Item\"><lable for = \"" +
+				Name+ "\"> <span>"+Name+": $</span> <span>"+price+"</span></lable>";
+			}
+			else{
+				myList = document.getElementById("Need_List");//return html element of Need list
+				newLI.innerHTML = "<input type=\"checkbox\" id=\"" + Name+  "N\" class = \"Need_Item\"><lable for = \"" +
+				Name+ "\"> <span>"+Name+": $</span> <span>"+price+"</span></lable>";
+			}
+			
+			//console.log(newText);//for test purpose
+			//console.log(typeof newText);//for test purpose
+			//newLI.appendChild(newText);since I modified the inner html, I dont need to append textnode
+			myList.appendChild(newLI);
+			//ResetInput();
+			return;
+		}
+
+		</script>
+	</body>
+</html>

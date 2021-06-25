@@ -58,7 +58,32 @@ class BudgetBox extends Component {
         document.getElementById("saving-percent").innerHTML=(n-0)-0;
 
         }
-    } 
+    }
+
+        needresetfunction(){
+            let x = document.getElementById("need-percent").innerHTML;
+            let y = document.getElementById("counter").innerHTML;
+            document.getElementById("need-percent").innerHTML=0;
+            document.getElementById("needamt").innerHTML=(0).toFixed(2);
+            document.getElementById("needinput").value="";
+            document.getElementById("counter").innerHTML=((x-0)+(y-0)).toFixed(2);
+        } 
+        wantresetfunction(){
+            let x = document.getElementById("want-percent").innerHTML;
+            let y = document.getElementById("counter").innerHTML;
+            document.getElementById("want-percent").innerHTML=0;
+            document.getElementById("wantamt").innerHTML=(0).toFixed(2);
+            document.getElementById("wantinput").value="";
+            document.getElementById("counter").innerHTML=((x-0)+(y-0)).toFixed(2);
+        }
+        savingresetfunction(){
+            let x = document.getElementById("saving-percent").innerHTML;
+            let y = document.getElementById("counter").innerHTML;
+            document.getElementById("saving-percent").innerHTML=0;
+            document.getElementById("savingamt").innerHTML=(0).toFixed(2);
+            document.getElementById("savinginput").value="";
+            document.getElementById("counter").innerHTML=((x-0)+(y-0)).toFixed(2);
+        }
     render() {
         return ( 
             <div>
@@ -68,6 +93,7 @@ class BudgetBox extends Component {
             <p>Amount:$<span id="needamt">0.00</span></p>
             <input id="needinput" type="number" placeholder="Budget Percentage"></input>%
             <br></br>
+            <button onClick={this.needresetfunction}>Reset</button>
             <button onClick={this.needsfunction}>Enter</button>
             </p>
 
@@ -76,6 +102,7 @@ class BudgetBox extends Component {
             <p>Budget:<span id="want-percent">30</span>%</p>
             <p>Amount:$<span id="wantamt">0.00</span></p>
             <input id="wantinput" type="number" placeholder="Budget Percentage"></input>%
+            <button onClick={this.wantresetfunction}>Reset</button>
             <button onClick={this.wantsfunction}>Enter</button>
             </p>
 
@@ -84,6 +111,7 @@ class BudgetBox extends Component {
             <p>Budget:<span id="saving-percent">20</span>%</p>
             <p>Amount:$<span id="savingamt">0.00</span></p>
             <input id="savinginput" type="number" placeholder="Budget Percentage"></input>%
+            <button onClick={this.savingresetfunction}>Reset</button>
             <button onClick={this.savingsfunction}>Enter</button>
             </p>
             <h2>Budget Left:<span id="counter">0</span>%</h2>

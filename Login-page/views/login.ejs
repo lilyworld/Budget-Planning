@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div id="smallbox">
+    <h1>Login</h1>
+
+    <% if(messages.error) { %> <!-- Display error: Flash will send an error message to Passport that sets an error message-->
+        <%= messages.error %>
+    <% } %>
+    <form class="box" action = "/Login" method = "POST">
+        <div>
+            <label for = "email"> Email </label>
+            <input type = "email" id = "email" name = "email" required>
+        </div>
+        <div>
+            <label for = "password"> Password </label>
+            <input type = "password" id = "password" name = "password" required>
+        </div>
+        <button type = "submit"> Login </button>
+    </form>
+    <a href = "/register"> Don't have an account? </a>
+</div>
+</body>
+</html>

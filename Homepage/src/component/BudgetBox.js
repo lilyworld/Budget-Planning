@@ -7,7 +7,7 @@ class BudgetBox extends Component {
         let m=document.getElementById("counter").innerHTML; /*m is a counter for budget left value*/
         let y = document.getElementById("need-percent").innerHTML; /*y is need percentage value*/
         if(n<0 || x==0 || n==""){   /*check for if the input value is negative or budget balance is zero or need box input is empty */
-            alert("the input cannot be negative or total budget is zero")
+            alert("the input cannot be negative or the input cannot be empty")
         }else if((m-n)<0 &&(((m-0)+(y-0))-n)<0){ /*check if counter value minus need box input value is less than zero or counter value add need percentage then minus need input value is less than zero*/
             alert("the budget percent input is too big");
         }
@@ -27,7 +27,7 @@ class BudgetBox extends Component {
         let m=document.getElementById("counter").innerHTML;
         let y = document.getElementById("want-percent").innerHTML;
         if(n<0 || x==0 || n==""){   /*check for negative input*/
-            alert("the input cannot be negative or total budget is zero")
+            alert("the input cannot be negative or the input cannot be empty")
         }else if((m-n)<0 &&(((m-0)+(y-0))-n)<0){
             alert("the budget percent input is too big");
         }
@@ -46,7 +46,7 @@ class BudgetBox extends Component {
         let m=document.getElementById("counter").innerHTML;
         let y = document.getElementById("saving-percent").innerHTML;
         if(n<0 || x==0 ||n==""){   /*check for negative input*/
-            alert("the input cannot be negative or total budget is zero")
+            alert("the input cannot be negative or the input cannot be empty")
         }else if((m-n)<0 &&(((m-0)+(y-0))-n)<0){
             alert("the budget percent input is too big");
         }
@@ -93,8 +93,8 @@ class BudgetBox extends Component {
             <p>Amount:$<span id="needamt">0.00</span></p>
             <input id="needinput" type="number" placeholder="Budget Percentage"></input>%
             <br></br>
-            <button onClick={this.needresetfunction}>Reset</button>
-            <button onClick={this.needsfunction}>Enter</button>
+            <button onClick={this.needresetfunction} id="bt">Reset</button>
+            <button onClick={this.needsfunction} id="bt">Enter</button>
             </p>
 
             <p id="p1">Wants
@@ -102,8 +102,8 @@ class BudgetBox extends Component {
             <p>Budget:<span id="want-percent">30</span>%</p>
             <p>Amount:$<span id="wantamt">0.00</span></p>
             <input id="wantinput" type="number" placeholder="Budget Percentage"></input>%
-            <button onClick={this.wantresetfunction}>Reset</button>
-            <button onClick={this.wantsfunction}>Enter</button>
+            <button onClick={this.wantresetfunction} id="bt">Reset</button>
+            <button onClick={this.wantsfunction} id="bt">Enter</button>
             </p>
 
             <p id="p1">Savings
@@ -111,11 +111,11 @@ class BudgetBox extends Component {
             <p>Budget:<span id="saving-percent">20</span>%</p>
             <p>Amount:$<span id="savingamt">0.00</span></p>
             <input id="savinginput" type="number" placeholder="Budget Percentage"></input>%
-            <button onClick={this.savingresetfunction}>Reset</button>
-            <button onClick={this.savingsfunction}>Enter</button>
+            <button onClick={this.savingresetfunction} id="bt">Reset</button>
+            <button onClick={this.savingsfunction} id="bt">Enter</button>
             </p>
-            <h2>Budget Left:<span id="counter">0</span>%</h2>
-            <button>Go to Planning</button>
+            <h2>Budget Available:<span id="counter">0</span>%</h2>
+            <button id="bt1">Go to Planning</button>
             </div>
          );
     }

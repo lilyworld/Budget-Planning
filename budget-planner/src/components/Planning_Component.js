@@ -1,42 +1,7 @@
 import React, { Component } from 'react';
+import SavingList from './SavingList';
 
-
-function Navigation_bar(Pros){
-    return (
-      <ul id = "navigation_bar">
-              <li className= "navigation_item">	
-                  <a href="">Home</a>
-              </li>
-              <li className= "navigation_item">
-                  <a href="">Service information</a>
-              </li>
-              <li className= "navigation_item">
-                  <a href="">Contact us</a>
-              </li>
-          </ul>
-    );
-  }
-  
-  function Total_budgetBar(Props){
-    return (<div><h1 id = "budget_bar">Total Budget: $3000 </h1></div>);
-  }
-  
-
-  class SavingList extends React.Component{
-    render(){
-      return ( 
-        <div id = "SavingList">
-              <h3> Your saving(currenly 20%)</h3>
-              <ul id = "SList">
-                  <li>Previous Saving: $0</li>
-                  <li>New saving: $0</li>
-              </ul>
-          </div>
-      );
-    }
-  }
-  
-  class Planning_Componenet extends React.Component{
+class Planning_Componenet extends React.Component{
     constructor(props){
       super(props);
       this.state = {
@@ -156,3 +121,5 @@ function Navigation_bar(Pros){
       );
     }
   }
+
+  export default Planning_Componenet;

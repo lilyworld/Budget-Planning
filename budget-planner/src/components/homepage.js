@@ -165,7 +165,7 @@ class HomePage extends Component {
 <button onClick={this.addfunction} id="add1">+</button>
 <br></br>
 <button onClick={this.clearfunction} id="clear1">Clear</button>
-<br><br>
+<br></br>
 <p id="p1">Needs
             <br></br>
             <p>Budget:<span id="need-percent">50</span>%</p>

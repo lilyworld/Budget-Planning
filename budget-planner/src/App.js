@@ -1,6 +1,10 @@
 
 import './App.css';
 import React from 'react';
+<<<<<<< HEAD
+=======
+import HomePage from './components/homepage';
+>>>>>>> deye
 import './index.css';
 import Total_budgetBar from './components/Total_BudgetBar';
 import SavingList from './components/SavingList';
@@ -17,6 +21,7 @@ class App extends React.Component{
       input_Price : "",
       Wantchecked: false, //zero for Need
       Needchecked: false,
+<<<<<<< HEAD
       Balance:0.00,
       Need_Amount:0.00,
       Want_Amount:0.00,
@@ -24,6 +29,9 @@ class App extends React.Component{
       Need_Percent:0,
       Want_Percent:0,
       Saving_Percent:0
+=======
+      Balance:0
+>>>>>>> deye
 
     };
 
@@ -74,6 +82,7 @@ class App extends React.Component{
     this.setState({Need_Percent:needp})
   }
 
+<<<<<<< HEAD
   wantdelete= ()=>{
     this.wantresetfunction();
     var wantamt = document.getElementById("wantamt").innerHTML;
@@ -106,6 +115,8 @@ class App extends React.Component{
     this.setState({Need_Percent:savingp})
   }
 
+=======
+>>>>>>> deye
   /**************************************************************** */
   //Planning page function
   //function to change component to display
@@ -179,8 +190,11 @@ class App extends React.Component{
     }
     //this.resetInput();uncommon this for user
   }
+<<<<<<< HEAD
 
   
+=======
+>>>>>>> deye
   checkDuplicate = (ItemName, ListType) =>{
     if(ListType == 0)//0 for want
     {
@@ -251,8 +265,14 @@ class App extends React.Component{
           this.setState({needList_Items: copy_array})
           return;
         }
+<<<<<<< HEAD
     } 
    }  
+=======
+      }
+    }
+    
+>>>>>>> deye
   }
 
   //function clean all the list items for a list in planning page
@@ -272,6 +292,7 @@ class App extends React.Component{
     var display_Component;
     if(this.state.display == false)
     {
+<<<<<<< HEAD
       display_Component =  <div>
       <h1 >Budget Balance:$<span id="amt1">{this.state.Balance}</span></h1>
       <button onClick={this.minusamt} id="minus1">-</button>
@@ -310,6 +331,9 @@ class App extends React.Component{
                   <h2>Budget Available:<span id="counter">0</span>%</h2>
                   <button onClick={this.changePage} id="bt1">Go to Planning</button>
       </div>;
+=======
+      display_Component = <HomePage/>//if part of the code do not need setState place it in a sepepated component
+>>>>>>> deye
     }
     else
     {

@@ -21,7 +21,6 @@ class App extends React.Component{
       input_Price : "",
       Wantchecked: false, //zero for Need
       Needchecked: false,
-<<<<<<< HEAD
       Balance:0.00,
       Need_Amount:0.00,
       Want_Amount:0.00,

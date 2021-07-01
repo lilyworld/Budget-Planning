@@ -56,19 +56,72 @@ class App extends React.Component{
 
   //function handle add button in planning page
   add = () =>{
+    if(this.checkInputFields() == false)
+    {
+      alert("Missing inputs");
+      return;
+    }
     var newObject = {Name: this.state.input_Name, Price: this.state.input_Price};
     var copy_array = [];
-    if(this.state.Wantchecked)
+    var duplicate_index_W = this.checkDuplicate(newObject.Name, 0);// -1 if no duplicate
+    var duplicate_index_N = this.checkDuplicate(newObject.Name, 1);// -1 if no duplicate 
+
+    if(this.state.Wantchecked && duplicate_index_W!= -1)
+    {
+      copy_array = this.state.wantList_Items;
+      copy_array[duplicate_index_W].Price = Number(copy_array[duplicate_index_W].Price) + Number(this.state.input_Price);//since price was store as string
+      //copy_array = [...this.state.wantList_Items, newObject];
+      this.setState({wantList_Items: copy_array})
+    }
+    else if(this.state.Needchecked && duplicate_index_N!= -1){
+      copy_array = this.state.needList_Items;
+      copy_array[duplicate_index_N].Price = Number(copy_array[duplicate_index_N].Price) + Number(this.state.input_Price); 
+      //copy_array = [...this.state.wantList_Items, newObject];
+      this.setState({needList_Items: copy_array})
+    }
+    else if(this.state.Wantchecked)
     {
       copy_array = [...this.state.wantList_Items, newObject];
       this.setState({wantList_Items: copy_array})
     }
-    else{
+    else if(this.state.Needchecked)
+    {
       copy_array = [...this.state.needList_Items, newObject];
       this.setState({needList_Items: copy_array})
     }
     //this.resetInput();uncommon this for user
-    
+  }
+  checkDuplicate = (ItemName, ListType) =>{
+    if(ListType == 0)//0 for want
+    {
+      for(let i = 0; i < this.state.wantList_Items.length; i++)
+      {
+        if(this.state.wantList_Items[i].Name == ItemName)
+        {
+          return i;
+        }
+      }
+    }
+    else if(ListType == 1)//1 for need list
+    {
+      for(let i = 0; i < this.state.needList_Items.length; i++)
+      {
+        if(this.state.needList_Items[i].Name == ItemName)
+        {
+          return i;
+        }
+      }
+    }
+    return -1; //-1 for no duplicate
+  }
+  //function check if the input box have want it has add button in planning page
+  checkInputFields= ()=>{
+    if(this.state.input_Name == "" || this.state.input_Price == "" || (this.state.Needchecked == false &&this.state.Wantchecked == false))
+    {
+      this.resetInput();
+      return false;
+    }
+    return true;
   }
 
   //reset function for planning page
@@ -80,7 +133,7 @@ class App extends React.Component{
       Needchecked: false
     })
   }
-
+  //function that delete items in list in planning page
   delete_item = (e)=>{
     var Object_Name = e.target.id;
     var ClassName = e.target.className;
@@ -113,8 +166,9 @@ class App extends React.Component{
     
   }
 
+  //function clean all the list items for a list in planning page
   resetItems=(e)=>{
-    if(e.target.id == "NeedList_Reset")
+    if(e.target.id == "WantList_Reset")
     {
       this.setState({wantList_Items:[]})
     }
@@ -140,7 +194,7 @@ class App extends React.Component{
       <div id = "Want_Remaining_Budget">*Remaining Budget: $0</div>
       <ul  id = "Want_List">
         {this.state.wantList_Items.map(
-          (Item)=> <li key = {Item.Name}>{Item.Name}: ${Item.Price}<button type = "button" onClick = {this. delete_item} id = {Item.Name} className = "Want">x</button> </li>//add icon to delete button
+          (Item)=> <li key = {Item.Name}> {Item.Name}: ${Item.Price}<button type = "button" onClick = {this. delete_item} id = {Item.Name} className = "Want">x</button> </li>//add icon to delete button
         )}
       </ul>
       <button onClick = {this.resetItems} name= "reset_button" type = "reset" id = "WantList_Reset">Reset</button>
@@ -152,11 +206,11 @@ class App extends React.Component{
             <div id = "Need_Remaining_Budget">*Remaining Budget: $0</div>
             <ul id = "Need_List">
        {this.state.needList_Items.map(
-          (Item)=> <li key = {Item.Name}>{Item.Name}: ${Item.Price} <button type = "button" onClick = {this. delete_item} id = {Item.Name} className = "Need">x</button></li>//add icon to delete button
+          (Item)=> <li key = {Item.Name}> {Item.Name}: ${Item.Price} <button type = "button" onClick = {this. delete_item} id = {Item.Name} className = "Need">x</button></li>//add icon to delete button
         )}
             </ul>
 
-            <button name= "reset_button" type = "reset" value = "Reset" id = "NeedList_Reset">Reset</button>
+            <button onClick = {this.resetItems} name= "reset_button" type = "reset" value = "Reset" id = "NeedList_Reset">Reset</button>
           </div>
 
       <SavingList/>

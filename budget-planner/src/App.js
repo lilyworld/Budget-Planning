@@ -2,12 +2,14 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import Planning_Component from './components/Planning_Component';
+import HomePage from './components/homepage';
+import './index.css';
 
 class App extends React.Component{
   constructor(Props){
     super(Props);
     this.state = {
-      display: true
+      display: false
       
     };
 
@@ -16,7 +18,7 @@ class App extends React.Component{
     let display_Component;
     if(this.state.display == false)
     {
-      //alex's component
+      display_Component = <HomePage/>;
     }
     else
     {
@@ -24,6 +26,7 @@ class App extends React.Component{
     }
     return (
         <div>
+
         {display_Component}
         </div>
       )

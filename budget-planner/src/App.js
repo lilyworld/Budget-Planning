@@ -1,10 +1,7 @@
 
 import './App.css';
 import React from 'react';
-<<<<<<< HEAD
-=======
 import HomePage from './components/homepage';
->>>>>>> deye
 import './index.css';
 import Total_budgetBar from './components/Total_BudgetBar';
 import SavingList from './components/SavingList';
@@ -13,7 +10,6 @@ class App extends React.Component{
   constructor(Props){
     super(Props);
     this.state = {
-      display:false,
       Items:[],
       wantList_Items:[],
       needList_Items:[],
@@ -21,110 +17,16 @@ class App extends React.Component{
       input_Price : "",
       Wantchecked: false, //zero for Need
       Needchecked: false,
-      Balance:0.00,
-      Need_Amount:0.00,
-      Want_Amount:0.00,
-      Saving_Amount:0.00,
-      Need_Percent:0,
-      Want_Percent:0,
-      Saving_Percent:0
-=======
       Balance:0
->>>>>>> deye
 
     };
 
   }
-  addamt = ()=>{
-    this.addfunction();
-    var value = document.getElementById("amt1").innerHTML;
-    this.setState({Balance:value})
-  }
 
-  minusamt = ()=>{
-    this.minusfunction();
-    var value = document.getElementById("amt1").innerHTML;
-    this.setState({Balance:value})
-  }
-
-  clearamt = ()=>{
-    this.clearfunction();
-    var amt = document.getElementById("amt1").innerHTML;
-    var needamt = document.getElementById("needamt").innerHTML;
-    var wantamt = document.getElementById("wantamt").innerHTML;
-    var savingamt = document.getElementById("savingamt").innerHTML;
-    var needp = document.getElementById("need-percent").innerHTML;
-    var wantp = document.getElementById("want-percent").innerHTML;
-    var savingp = document.getElementById("saving-percent").innerHTML
-    this.setState({Balance:amt})
-    this.setState({Need_Amount:needamt})
-    this.setState({Want_Amount:wantamt})
-    this.setState({Saving_Amount:savingamt})
-    this.setState({Need_Percent:needp})
-    this.setState({Want_Percent:wantp})
-    this.setState({Saving_Percent:savingp})
-  }
-
-  needdelete= ()=>{
-    this.needresetfunction();
-    var needamt = document.getElementById("needamt").innerHTML;
-    var needp = document.getElementById("need-percent").innerHTML;
-    this.setState({Need_Amount:needamt})
-    this.setState({Need_Percent:needp})
-  }
-
-  needenter= ()=>{
-    this.needsfunction();
-    var needamt = document.getElementById("needamt").innerHTML;
-    var needp = document.getElementById("need-percent").innerHTML;
-    this.setState({Need_Amount:needamt})
-    this.setState({Need_Percent:needp})
-  }
-
-<<<<<<< HEAD
-  wantdelete= ()=>{
-    this.wantresetfunction();
-    var wantamt = document.getElementById("wantamt").innerHTML;
-    var wantp = document.getElementById("want-percent").innerHTML;
-    this.setState({Need_Amount:wantamt})
-    this.setState({Need_Percent:wantp})
-  }
-
-  wantenter= ()=>{
-    this.wantsfunction();
-    var wantamt = document.getElementById("wantamt").innerHTML;
-    var wantp = document.getElementById("want-percent").innerHTML;
-    this.setState({Need_Amount:wantamt})
-    this.setState({Need_Percent:wantp})
-  }
-
-  savingdelete= ()=>{
-    this.savingresetfunction();
-    var savingamt = document.getElementById("savingamt").innerHTML;
-    var savingp = document.getElementById("saving-percent").innerHTML;
-    this.setState({Need_Amount:savingamt})
-    this.setState({Need_Percent:savingp})
-  }
-
-  savingenter= ()=>{
-    this.savingsfunction();
-    var savingamt = document.getElementById("savingamt").innerHTML;
-    var savingp = document.getElementById("saving-percent").innerHTML;
-    this.setState({Need_Amount:savingamt})
-    this.setState({Need_Percent:savingp})
-  }
-
-=======
->>>>>>> deye
   /**************************************************************** */
   //Planning page function
   //function to change component to display
   changePage = ()=>{
-    this.planfunction();
-    var savingamt = document.getElementById("savingamt").innerHTML;
-    var savingp = document.getElementById("saving-percent").innerHTML;
-    this.setState({Need_Amount:savingamt})
-    this.setState({Need_Percent:savingp})
     var value = !this.state.display;
     this.setState({display:value})
   }
@@ -189,11 +91,6 @@ class App extends React.Component{
     }
     //this.resetInput();uncommon this for user
   }
-<<<<<<< HEAD
-
-  
-=======
->>>>>>> deye
   checkDuplicate = (ItemName, ListType) =>{
     if(ListType == 0)//0 for want
     {
@@ -264,14 +161,9 @@ class App extends React.Component{
           this.setState({needList_Items: copy_array})
           return;
         }
-<<<<<<< HEAD
-    } 
-   }  
-=======
       }
     }
     
->>>>>>> deye
   }
 
   //function clean all the list items for a list in planning page
@@ -291,48 +183,7 @@ class App extends React.Component{
     var display_Component;
     if(this.state.display == false)
     {
-<<<<<<< HEAD
-      display_Component =  <div>
-      <h1 >Budget Balance:$<span id="amt1">{this.state.Balance}</span></h1>
-      <button onClick={this.minusamt} id="minus1">-</button>
-      <input type="number" id="input1" placeholder="Enter Budget Amount" min="0"></input>
-      <button onClick={this.addamt} id="add1">+</button>
-      <br></br>
-      <button onClick={this.clearamt} id="clear1">Clear</button>
-      <br></br>
-      <p id="p1">Needs
-                  <br></br>
-                  <p>Budget:<span id="need-percent">50</span>%</p>
-                  <p>Amount:$<span id="needamt">0.00</span></p>
-                  <input id="needinput" type="number" placeholder="Budget Percentage"></input>%
-                  <br></br>
-                  <button onClick={this.needdelete} id="bt">Reset</button>
-                  <button onClick={this.needenter} id="bt">Enter</button>
-                  </p>
-      
-                  <p id="p1">Wants
-                  <br></br>
-                  <p>Budget:<span id="want-percent">30</span>%</p>
-                  <p>Amount:$<span id="wantamt">0.00</span></p>
-                  <input id="wantinput" type="number" placeholder="Budget Percentage"></input>%
-                  <button onClick={this.wantdelete} id="bt">Reset</button>
-                  <button onClick={this.wantenter} id="bt">Enter</button>
-                  </p>
-      
-                  <p id="p1">Savings
-                  <br></br>
-                  <p>Budget:<span id="saving-percent">20</span>%</p>
-                  <p>Amount:$<span id="savingamt">0.00</span></p>
-                  <input id="savinginput" type="number" placeholder="Budget Percentage"></input>%
-                  <button onClick={this.savingdelete} id="bt">Reset</button>
-                  <button onClick={this.savingenter} id="bt">Enter</button>
-                  </p>
-                  <h2>Budget Available:<span id="counter">0</span>%</h2>
-                  <button onClick={this.changePage} id="bt1">Go to Planning</button>
-      </div>;
-=======
       display_Component = <HomePage/>//if part of the code do not need setState place it in a sepepated component
->>>>>>> deye
     }
     else
     {
@@ -392,6 +243,7 @@ class App extends React.Component{
         <div className = "App">
         
         {display_Component}
+        <button onClick = {this.changePage}>Change</button>
         </div>
       )
   }

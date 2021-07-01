@@ -78,32 +78,32 @@ class App extends React.Component{
     this.wantresetfunction();
     var wantamt = document.getElementById("wantamt").innerHTML;
     var wantp = document.getElementById("want-percent").innerHTML;
-    this.setState({Need_Amount:wantamt})
-    this.setState({Need_Percent:wantp})
+    this.setState({Want_Amount:wantamt})
+    this.setState({Want_Percent:wantp})
   }
 
   wantenter= ()=>{
     this.wantsfunction();
     var wantamt = document.getElementById("wantamt").innerHTML;
     var wantp = document.getElementById("want-percent").innerHTML;
-    this.setState({Need_Amount:wantamt})
-    this.setState({Need_Percent:wantp})
+    this.setState({Want_Amount:wantamt})
+    this.setState({Want_Percent:wantp})
   }
 
   savingdelete= ()=>{
     this.savingresetfunction();
     var savingamt = document.getElementById("savingamt").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML;
-    this.setState({Need_Amount:savingamt})
-    this.setState({Need_Percent:savingp})
+    this.setState({Saving_Amount:savingamt})
+    this.setState({Saving_Percent:savingp})
   }
 
   savingenter= ()=>{
     this.savingsfunction();
     var savingamt = document.getElementById("savingamt").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML;
-    this.setState({Need_Amount:savingamt})
-    this.setState({Need_Percent:savingp})
+    this.setState({Saving_Amount:savingamt})
+    this.setState({Saving_Percent:savingp})
   }
 
   changePage = ()=>{
@@ -285,8 +285,8 @@ savingsfunction(){
       <br></br>
       <p id="p1">Needs
                   <br></br>
-                  <p>Budget:<span id="need-percent">50</span>%</p>
-                  <p>Amount:$<span id="needamt">0.00</span></p>
+                  <p>Budget:<span id="need-percent">{this.state.Need_Percent}</span>%</p>
+                  <p>Amount:$<span id="needamt">{this.state.Need_Amount}</span></p>
                   <input id="needinput" type="number" placeholder="Budget Percentage"></input>%
                   <br></br>
                   <button onClick={this.needdelete} id="bt">Reset</button>
@@ -295,8 +295,8 @@ savingsfunction(){
       
                   <p id="p1">Wants
                   <br></br>
-                  <p>Budget:<span id="want-percent">30</span>%</p>
-                  <p>Amount:$<span id="wantamt">0.00</span></p>
+                  <p>Budget:<span id="want-percent">{this.state.Want_Percent}</span>%</p>
+                  <p>Amount:$<span id="wantamt">{this.state.Want_Amount}</span></p>
                   <input id="wantinput" type="number" placeholder="Budget Percentage"></input>%
                   <button onClick={this.wantdelete} id="bt">Reset</button>
                   <button onClick={this.wantenter} id="bt">Enter</button>
@@ -304,8 +304,8 @@ savingsfunction(){
       
                   <p id="p1">Savings
                   <br></br>
-                  <p>Budget:<span id="saving-percent">20</span>%</p>
-                  <p>Amount:$<span id="savingamt">0.00</span></p>
+                  <p>Budget:<span id="saving-percent">{this.state.Saving_Percent}</span>%</p>
+                  <p>Amount:$<span id="savingamt">{this.state.Saving_Amount}</span></p>
                   <input id="savinginput" type="number" placeholder="Budget Percentage"></input>%
                   <button onClick={this.savingdelete} id="bt">Reset</button>
                   <button onClick={this.savingenter} id="bt">Enter</button>

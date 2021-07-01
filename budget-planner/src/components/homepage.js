@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 
 class HomePage extends Component {
+    
     addfunction(){
         let y = document.getElementById("amt1").innerHTML;    /*y is a budget balance value */
         let x = document.getElementById("input1").value;       /*x is a input value */

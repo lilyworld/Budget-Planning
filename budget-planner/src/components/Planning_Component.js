@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SavingList from './SavingList';
+import Total_budgetBar from './Total_BudgetBar';
 
 class Planning_Componenet extends React.Component{
     constructor(props){
@@ -64,6 +65,7 @@ class Planning_Componenet extends React.Component{
     render(){
       return(
         <div>
+        <Total_budgetBar/>
         <div id="WantList_Container">
         <h3>Wants List:(currently 30%) </h3>
         <div id = "Want_Remaining_Budget">*Remaining Budget: $0</div>

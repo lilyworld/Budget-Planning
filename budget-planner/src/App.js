@@ -30,7 +30,8 @@ class App extends React.Component{
       display_Component = <Planning_Component/>;
     }
     return (
-        <div className="App">
+        <div className = "App">
+
         {display_Component}
         <button onClick = {this.changePage}>Change</button>
         </div>

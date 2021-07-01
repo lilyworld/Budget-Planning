@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import React from 'react';
 import Planning_Component from './components/Planning_Component';
@@ -14,6 +14,11 @@ class App extends React.Component{
     };
 
   }
+
+  changePage = ()=>{
+    var value = !this.state.display;
+    this.setState({display:value})
+  }
   render(){
     let display_Component;
     if(this.state.display == false)
@@ -28,6 +33,7 @@ class App extends React.Component{
         <div>
 
         {display_Component}
+        <button onClick = {this.changePage}>Change</button>
         </div>
       )
   }

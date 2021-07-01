@@ -9,8 +9,15 @@ class App extends React.Component{
   constructor(Props){
     super(Props);
     this.state = {
-      display: false
-      
+      Items:[],
+      wantList_Items:[],
+      needList_Items:[],
+      input_Name : "",
+      input_Price : "",
+      Wantchecked: false, //zero for Need
+      Needchecked: false,
+      Balance:123
+
     };
 
   }
@@ -20,10 +27,10 @@ class App extends React.Component{
     this.setState({display:value})
   }
   render(){
-    let display_Component;
+    var display_Component;
     if(this.state.display == false)
     {
-      display_Component = <HomePage/>;
+      display_Component = <div><h1 >Budget Balance:$<span id="amt1">{this.state.Balance}</span></h1><HomePage/></div>;
     }
     else
     {
@@ -31,7 +38,7 @@ class App extends React.Component{
     }
     return (
         <div className = "App">
-
+        
         {display_Component}
         <button onClick = {this.changePage}>Change</button>
         </div>

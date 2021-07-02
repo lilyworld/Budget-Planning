@@ -138,9 +138,9 @@ class App extends React.Component{
     let need = z*0.50;
     let want = z*0.30;
     let saving = z*0.20;
-    document.getElementById("needamt").innerHTML=need;
-    document.getElementById("wantamt").innerHTML=want;
-    document.getElementById("savingamt").innerHTML=saving;
+    document.getElementById("needamt").innerHTML=need.toFixed(2);
+    document.getElementById("wantamt").innerHTML=want.toFixed(2);
+    document.getElementById("savingamt").innerHTML=saving.toFixed(2);
     document.getElementById("need-percent").innerHTML="50"
     document.getElementById("want-percent").innerHTML="30"
     document.getElementById("saving-percent").innerHTML="20"
@@ -163,9 +163,9 @@ minusfunction(){
     let need = z*0.50;
     let want = z*0.30;
     let saving = z*0.20;
-    document.getElementById("needamt").innerHTML=need;
-    document.getElementById("wantamt").innerHTML=want;
-    document.getElementById("savingamt").innerHTML=saving;
+    document.getElementById("needamt").innerHTML=need.toFixed(2);
+    document.getElementById("wantamt").innerHTML=want.toFixed(2);
+    document.getElementById("savingamt").innerHTML=saving.toFixed(2);
     document.getElementById("need-percent").innerHTML="50"
     document.getElementById("want-percent").innerHTML="30"
     document.getElementById("saving-percent").innerHTML="20"

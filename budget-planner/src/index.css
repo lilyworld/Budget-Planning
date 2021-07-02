@@ -186,12 +186,12 @@ ul{
 
 
 #WantList_Container{
-	margin-left: 50px;
+	margin-left: 30px;
 	margin-top: 80px;
 
 	border-style: outset;
 	/*width, height property set the width height of the html element, and it do not include margin, paddling, border.*/
-	width: 250px;
+	width: 270px;
 	height: 400px;
 	border-radius: 25px;
 	background-color: #5ADFFA;
@@ -206,7 +206,7 @@ ul{
 	
 	position:absolute;
 	top: 85px;
-	width: 210px;
+	width: 230px;
 	height: 200px;
 	overflow: auto;
   background-color: white;
@@ -258,7 +258,7 @@ h3, h4{
 #Want_Remaining_Budget{
 	position:absolute;
 	top:75px;
-	left:30px;
+	left:20px;
 
 	text-align: center;
 	color: red;
@@ -269,18 +269,18 @@ h3, h4{
 {
 	position:absolute;
 	top:75px;
-	left:30px;
+	left:20px;
 
 	text-align: center;
 	color: red;
 }
 
 #NeedList_Container{
-	margin-left: 80px;
+	margin-left: 55px;
 	margin-top: 80px;
 
 	border-style: outset;
-	width: 250px;
+	width: 270px;
 	height: 400px;
 	border-radius: 25px;
 	background-color: #E8C7E2;
@@ -295,7 +295,7 @@ h3, h4{
 	
 	position:absolute;
 	top:85px;
-	width: 210px;
+	width: 230px;
 	height: 200px;
 	overflow: auto;
   background-color: white;
@@ -336,8 +336,8 @@ font-size: 20px;
 }
 
 #SavingList{
-	width: 220px;
-	height: 130px;
+	width: 240px;
+	height: 160px;
 
 	float: left;
 	border-style: outset;
@@ -360,7 +360,7 @@ font-size: 20px;
 	width: 250px;/*if 250px, then the box will be below saving box
 	therefore, rule of placing element is from left to right.
 	if the current element's width excess what can be place in the viewport, this element will got to next line*/
-	height: 180px;
+	height: 230px;
 
 	border: 1px solid black;
 	float: left;

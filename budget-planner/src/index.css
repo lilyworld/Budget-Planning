@@ -134,6 +134,14 @@ code {
 	overflow: hidden;/*for some reason, if the overflow is not hidden, then back ground color will not display*/
   opacity: 80%;
 }
+#IN{
+  position: absolute;
+  left: 10px;
+}
+.Want,.Need{
+  position: absolute;
+  right: 0px;
+}
 
 li.navigation_item{
 	float: left;
@@ -183,7 +191,7 @@ ul{
 
 	border-style: outset;
 	/*width, height property set the width height of the html element, and it do not include margin, paddling, border.*/
-	width: 220px;
+	width: 250px;
 	height: 400px;
 	border-radius: 25px;
 	background-color: #5ADFFA;
@@ -198,9 +206,10 @@ ul{
 	
 	position:absolute;
 	top: 85px;
-	width: 180px;
+	width: 210px;
 	height: 200px;
 	overflow: auto;
+  background-color: white;
 	
 }
 
@@ -230,13 +239,7 @@ font-size: 20px;
 }
 
 #WantList_Reset{
-	position: absolute;
-	left: 125px;
-	top: 350px;
-	padding:5px;
-  margin-left:5px;
-
-  
+position: relative;
 padding: 5px 10px;
 border-radius: 20px;
 display:inline-block;
@@ -246,7 +249,6 @@ cursor: pointer;
 background-color: cornflowerblue;
 color:white;
 font-size: 20px;
-	
 }
 
 h3, h4{
@@ -278,7 +280,7 @@ h3, h4{
 	margin-top: 80px;
 
 	border-style: outset;
-	width: 220px;
+	width: 250px;
 	height: 400px;
 	border-radius: 25px;
 	background-color: #E8C7E2;
@@ -293,9 +295,10 @@ h3, h4{
 	
 	position:absolute;
 	top:85px;
-	width: 180px;
+	width: 210px;
 	height: 200px;
 	overflow: auto;
+  background-color: white;
 	
 }
 
@@ -319,12 +322,7 @@ h3, h4{
 }
 
 #NeedList_Reset{
-	position: absolute;
-	left: 125px;
-	top: 350px;
-	padding:5px;
-  margin-left:5px;
-
+	position: relative;
   padding: 5px 10px;
 border-radius: 20px;
 display:inline-block;

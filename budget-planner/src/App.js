@@ -277,10 +277,10 @@ savingsfunction(){
   /**************************************************************** */
   //Planning page function
   //function to change component to display
-  changePage = ()=>{
-    var value = !this.state.display;
-    this.setState({display:value})
-  }
+  //changePage = ()=>{
+   // var value = !this.state.display;
+    //this.setState({display:value})
+  //}
   //seleteWant and update the state in planning page
   selectWant = (e) =>{
     var value = e.target.checked;
@@ -482,9 +482,10 @@ savingsfunction(){
       <div id = "Want_Remaining_Budget">*Remaining Budget: $0</div>
       <ul  id = "Want_List">
         {this.state.wantList_Items.map(
-          (Item)=> <li key = {Item.Name}> {Item.Name}: ${Item.Price}<button type = "button" onClick = {this. delete_item} id = {Item.Name} className = "Want">x</button> </li>//add icon to delete button
+          (Item)=> <li key = {Item.Name}> <span id="IN">{Item.Name}:</span> ${Item.Price}<button type = "button" onClick = {this. delete_item} id = {Item.Name} className = "Want">x</button> </li>//add icon to delete button
         )}
       </ul>
+      <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
       <button onClick = {this.resetItems} name= "reset_button" type = "reset" id = "WantList_Reset">Reset</button>
       </div>
 
@@ -494,10 +495,10 @@ savingsfunction(){
             <div id = "Need_Remaining_Budget">*Remaining Budget: $0</div>
             <ul id = "Need_List">
        {this.state.needList_Items.map(
-          (Item)=> <li key = {Item.Name}> {Item.Name}: ${Item.Price} <button type = "button" onClick = {this. delete_item} id = {Item.Name} className = "Need">x</button></li>//add icon to delete button
+          (Item)=> <li key = {Item.Name}> <span id="IN">{Item.Name}:</span> ${Item.Price} <button type = "button" onClick = {this. delete_item} id = {Item.Name} className = "Need">x</button></li>//add icon to delete button
         )}
             </ul>
-
+        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
             <button onClick = {this.resetItems} name= "reset_button" type = "reset" value = "Reset" id = "NeedList_Reset">Reset</button>
           </div>
 

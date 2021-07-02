@@ -275,7 +275,7 @@ savingsfunction(){
             document.getElementById("counter").innerHTML=0;
 
         }else{
-            alert("go to planning page");
+            //alert("go to planning page");
         }
 
     }

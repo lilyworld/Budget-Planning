@@ -115,8 +115,8 @@ class App extends React.Component{
     this.planfunction();
     var savingamt = document.getElementById("savingamt").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML;
-    this.setState({Need_Amount:savingamt})
-    this.setState({Need_Percent:savingp})
+    this.setState({Saving_Amount:savingamt})
+    this.setState({Saving_Percent:savingp})
     var value = !this.state.display;
     this.setState({display:value})
 

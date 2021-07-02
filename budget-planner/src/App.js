@@ -37,12 +37,36 @@ class App extends React.Component{
     this.addfunction();
     var value = document.getElementById("amt1").innerHTML;
     this.setState({Balance:value})
+    var needamt = document.getElementById("needamt").innerHTML;
+    var needp = document.getElementById("need-percent").innerHTML;
+    this.setState({Need_Amount:needamt})
+    this.setState({Need_Percent:needp})
+    var wantamt = document.getElementById("wantamt").innerHTML;
+    var wantp = document.getElementById("want-percent").innerHTML;
+    this.setState({Want_Amount:wantamt})
+    this.setState({Want_Percent:wantp})
+    var savingamt = document.getElementById("savingamt").innerHTML;
+    var savingp = document.getElementById("saving-percent").innerHTML;
+    this.setState({Saving_Amount:savingamt})
+    this.setState({Saving_Percent:savingp})
   }
 
   minusamt = ()=>{
     this.minusfunction();
     var value = document.getElementById("amt1").innerHTML;
     this.setState({Balance:value})
+    var needamt = document.getElementById("needamt").innerHTML;
+    var needp = document.getElementById("need-percent").innerHTML;
+    this.setState({Need_Amount:needamt})
+    this.setState({Need_Percent:needp})
+    var wantamt = document.getElementById("wantamt").innerHTML;
+    var wantp = document.getElementById("want-percent").innerHTML;
+    this.setState({Want_Amount:wantamt})
+    this.setState({Want_Percent:wantp})
+    var savingamt = document.getElementById("savingamt").innerHTML;
+    var savingp = document.getElementById("saving-percent").innerHTML;
+    this.setState({Saving_Amount:savingamt})
+    this.setState({Saving_Percent:savingp})
   }
 
   clearamt = ()=>{

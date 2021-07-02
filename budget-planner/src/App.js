@@ -135,13 +135,16 @@ class App extends React.Component{
     let z = (x-0)+(y-0); // z = input value + budget balance value
     document.getElementById("amt1").innerHTML=z.toFixed(2); //set budget balance value with z
     document.getElementById("input1").value=""; //then reset every other inputs and budget percentages to zero when you add a new value for budget balance
-    document.getElementById("needamt").innerHTML="0.00"
-    document.getElementById("wantamt").innerHTML="0.00"
-    document.getElementById("savingamt").innerHTML="0.00"
-    document.getElementById("need-percent").innerHTML="0"
-    document.getElementById("want-percent").innerHTML="0"
-    document.getElementById("saving-percent").innerHTML="0"
-    document.getElementById("counter").innerHTML="100"
+    let need = z*0.50;
+    let want = z*0.30;
+    let saving = z*0.20;
+    document.getElementById("needamt").innerHTML=need;
+    document.getElementById("wantamt").innerHTML=want;
+    document.getElementById("savingamt").innerHTML=saving;
+    document.getElementById("need-percent").innerHTML="50"
+    document.getElementById("want-percent").innerHTML="30"
+    document.getElementById("saving-percent").innerHTML="20"
+    document.getElementById("counter").innerHTML="0"
                             //the same comments apply to minusfunction 
     }
 }
@@ -157,13 +160,16 @@ minusfunction(){
     let z = y-x;
     document.getElementById("amt1").innerHTML=z.toFixed(2);
     document.getElementById("input1").value="";
-    document.getElementById("needamt").innerHTML="0.00"
-    document.getElementById("wantamt").innerHTML="0.00"
-    document.getElementById("savingamt").innerHTML="0.00"
-    document.getElementById("need-percent").innerHTML="0"
-    document.getElementById("want-percent").innerHTML="0"
-    document.getElementById("saving-percent").innerHTML="0"
-    document.getElementById("counter").innerHTML="100"
+    let need = z*0.50;
+    let want = z*0.30;
+    let saving = z*0.20;
+    document.getElementById("needamt").innerHTML=need;
+    document.getElementById("wantamt").innerHTML=want;
+    document.getElementById("savingamt").innerHTML=saving;
+    document.getElementById("need-percent").innerHTML="50"
+    document.getElementById("want-percent").innerHTML="30"
+    document.getElementById("saving-percent").innerHTML="20"
+    document.getElementById("counter").innerHTML="0"
     }
 }
 }

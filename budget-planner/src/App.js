@@ -20,7 +20,9 @@ class App extends React.Component{
       Needchecked: false,
       Balance:0.00,
       Need_Amount:0.00,
+      Need_Remaining:0.00,
       Want_Amount:0.00,
+      Want_Remaining:0.00,
       Saving_Amount:0.00,
       Need_Percent:0,
       Want_Percent:0,
@@ -117,6 +119,10 @@ class App extends React.Component{
     this.setState({Need_Percent:savingp})
     var value = !this.state.display;
     this.setState({display:value})
+
+    var N_amt = this.state.Need_Amount;
+    var W_amt = this.state.Want_Amount;
+    this.setState({Need_Remaining: N_amt, Want_Remaining: W_amt})
   }
 
   addfunction(){
@@ -269,18 +275,14 @@ savingsfunction(){
             document.getElementById("counter").innerHTML=0;
 
         }else{
-            alert("go to planning page");
+            //alert("go to planning page");
         }
 
     }
 
   /**************************************************************** */
   //Planning page function
-  //function to change component to display
-  //changePage = ()=>{
-   // var value = !this.state.display;
-    //this.setState({display:value})
-  //}
+  
   //seleteWant and update the state in planning page
   selectWant = (e) =>{
     var value = e.target.checked;
@@ -312,36 +314,67 @@ savingsfunction(){
       alert("Missing inputs");
       return;
     }
-    var newObject = {Name: this.state.input_Name, Price: this.state.input_Price};
+    
+    
+    var newObject = {Name: this.state.input_Name, Price: Number(this.state.input_Price).toFixed(2)};
     var copy_array = [];
     var duplicate_index_W = this.checkDuplicate(newObject.Name, 0);// -1 if no duplicate
     var duplicate_index_N = this.checkDuplicate(newObject.Name, 1);// -1 if no duplicate 
 
     if(this.state.Wantchecked && duplicate_index_W!= -1)
     {
+      if(this.state.Want_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
+      {
+        alert("Processing items excessing your current budget");
+        //this.resetInput(); uncomment this for user
+        return;
+      }
+      
       copy_array = this.state.wantList_Items;
-      copy_array[duplicate_index_W].Price = Number(copy_array[duplicate_index_W].Price) + Number(this.state.input_Price);//since price was store as string
+      copy_array[duplicate_index_W].Price = (Number(copy_array[duplicate_index_W].Price) + Number(this.state.input_Price)).toFixed(2);//since price was store as string
       //copy_array = [...this.state.wantList_Items, newObject];
-      this.setState({wantList_Items: copy_array})
+      this.setState({wantList_Items: copy_array, Want_Remaining: (this.state.Want_Remaining - this.state.input_Price).toFixed(2)})//sss
     }
     else if(this.state.Needchecked && duplicate_index_N!= -1){
+
+      if(this.state.Need_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
+      {
+        alert("Processing items excessing your current budget");
+        //this.resetInput(); uncomment this for user
+        return;
+      }
       copy_array = this.state.needList_Items;
-      copy_array[duplicate_index_N].Price = Number(copy_array[duplicate_index_N].Price) + Number(this.state.input_Price); 
+      copy_array[duplicate_index_N].Price = (Number(copy_array[duplicate_index_N].Price) + Number(this.state.input_Price)).toFixed(2); 
       //copy_array = [...this.state.wantList_Items, newObject];
-      this.setState({needList_Items: copy_array})
+      this.setState({needList_Items: copy_array, Need_Remaining: (this.state.Need_Remaining - this.state.input_Price).toFixed(2)})
     }
     else if(this.state.Wantchecked)
     {
+      if(this.state.Want_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
+      {
+        alert("Processing items excessing your current budget");
+        //this.resetInput(); uncomment this for user
+        return;
+      }
+
       copy_array = [...this.state.wantList_Items, newObject];
-      this.setState({wantList_Items: copy_array})
+      this.setState({wantList_Items: copy_array, Want_Remaining: (this.state.Want_Remaining - this.state.input_Price).toFixed(2)})
     }
     else if(this.state.Needchecked)
     {
+      if(this.state.Need_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
+      {
+        alert("Processing items excessing your current budget");
+        //this.resetInput(); uncomment this for user
+        return;
+      }
       copy_array = [...this.state.needList_Items, newObject];
-      this.setState({needList_Items: copy_array})
+      this.setState({needList_Items: copy_array, Need_Remaining: (this.state.Need_Remaining - this.state.input_Price).toFixed(2)})
     }
     //this.resetInput();uncommon this for user
   }
+
+  //checkout if list contain this item already
   checkDuplicate = (ItemName, ListType) =>{
     if(ListType == 0)//0 for want
     {
@@ -421,11 +454,13 @@ savingsfunction(){
   resetItems=(e)=>{
     if(e.target.id == "WantList_Reset")
     {
-      this.setState({wantList_Items:[]})
+      var x = this.state.Want_Amount;
+      this.setState({wantList_Items:[], Want_Remaining: x})
     }
     else if(e.target.id == "NeedList_Reset")
     {
-      this.setState({needList_Items:[]})
+      var x = this.state.Need_Amount;
+      this.setState({needList_Items:[], Need_Remaining: x})
     }
   }
   /**************************** ************************************************* */
@@ -476,10 +511,10 @@ savingsfunction(){
     else
     {
       display_Component = <div>
-      <Total_budgetBar/>
+      <Total_budgetBar Total_Amount = {this.state.Balance}/>
       <div id="WantList_Container">
-      <h3>Wants List:(currently 30%) </h3>
-      <div id = "Want_Remaining_Budget">*Remaining Budget: $0</div>
+      <h3>Wants List:(currently {this.state.Want_Percent}%) </h3>
+      <div id = "Want_Remaining_Budget">*Remaining Budget: ${this.state.Want_Remaining}</div>
       <ul  id = "Want_List">
         {this.state.wantList_Items.map(
           (Item)=> <li key = {Item.Name}> <span id="IN">{Item.Name}:</span> ${Item.Price}<button type = "button" onClick = {this. delete_item} id = {Item.Name} className = "Want">x</button> </li>//add icon to delete button
@@ -491,8 +526,8 @@ savingsfunction(){
 
 
       <div id="NeedList_Container">
-            <h3>Needs List:(currently 50%) </h3>
-            <div id = "Need_Remaining_Budget">*Remaining Budget: $0</div>
+            <h3>Needs List:(currently {this.state.Need_Percent}%) </h3>
+            <div id = "Need_Remaining_Budget">*Remaining Budget: ${this.state.Need_Remaining}</div>
             <ul id = "Need_List">
        {this.state.needList_Items.map(
           (Item)=> <li key = {Item.Name}> <span id="IN">{Item.Name}:</span> ${Item.Price} <button type = "button" onClick = {this. delete_item} id = {Item.Name} className = "Need">x</button></li>//add icon to delete button
@@ -502,7 +537,7 @@ savingsfunction(){
             <button onClick = {this.resetItems} name= "reset_button" type = "reset" value = "Reset" id = "NeedList_Reset">Reset</button>
           </div>
 
-      <SavingList/>
+      <SavingList Precent = {this.state.Saving_Percent} Total_Amount = {this.state.Balance}/>
 
 
       <div id = "addinput">

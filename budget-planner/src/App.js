@@ -537,7 +537,7 @@ savingsfunction(){
             <button onClick = {this.resetItems} name= "reset_button" type = "reset" value = "Reset" id = "NeedList_Reset">Reset</button>
           </div>
 
-      <SavingList Precent = {this.state.Saving_Percent} Total_Amount = {this.state.Balance}/>
+      <SavingList Precent = {this.state.Saving_Percent} Amount = {this.state.Saving_Amount}/>
 
 
       <div id = "addinput">

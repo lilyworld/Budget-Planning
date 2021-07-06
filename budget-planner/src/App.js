@@ -351,12 +351,13 @@ savingsfunction(){
     var duplicate_index_W = this.checkDuplicate(newObject.Name, 0);// -1 if no duplicate
     var duplicate_index_N = this.checkDuplicate(newObject.Name, 1);// -1 if no duplicate 
 
+    //follwing will reset input field if over butget amount
     if(this.state.Wantchecked && duplicate_index_W!= -1)
     {
       if(this.state.Want_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
       {
         alert("Processing items excessing your current budget");
-        //this.resetInput(); uncomment this for user
+        this.resetInput(); 
         return;
       }
       
@@ -370,7 +371,7 @@ savingsfunction(){
       if(this.state.Need_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
       {
         alert("Processing items excessing your current budget");
-        //this.resetInput(); uncomment this for user
+        this.resetInput(); 
         return;
       }
       copy_array = this.state.needList_Items;
@@ -383,7 +384,7 @@ savingsfunction(){
       if(this.state.Want_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
       {
         alert("Processing items excessing your current budget");
-        //this.resetInput(); uncomment this for user
+        this.resetInput(); 
         return;
       }
 
@@ -395,13 +396,13 @@ savingsfunction(){
       if(this.state.Need_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
       {
         alert("Processing items excessing your current budget");
-        //this.resetInput(); uncomment this for user
+        this.resetInput(); 
         return;
       }
       copy_array = [...this.state.needList_Items, newObject];
       this.setState({needList_Items: copy_array, Need_Remaining: (this.state.Need_Remaining - this.state.input_Price).toFixed(2)})
     }
-    //this.resetInput();uncommon this for user
+    this.resetInput();
   }
 
   //checkout if list contain this item already
@@ -459,8 +460,10 @@ savingsfunction(){
       {
         if(copy_array[i].Name == Object_Name)
         {
+          var x = copy_array[i].Price;//get the price of remove item
           copy_array.splice(i,1);
-          this.setState({wantList_Items: copy_array})
+          var remain = this.state.Want_Remaining;
+          this.setState({wantList_Items: copy_array, Want_Remaining: (Number(remain) + Number(x))})
           return;
         }
       }
@@ -471,9 +474,10 @@ savingsfunction(){
       {
         if(copy_array[i].Name == Object_Name)
         {
+          var x = copy_array[i].Price;//get the price of remove item
           copy_array.splice(i,1);
-          this.setState({needList_Items: copy_array})
-          return;
+          var remain = this.state.Need_Remaining;
+          this.setState({wantList_Items: copy_array, Need_Remaining: (Number(remain) + Number(x))})
         }
       }
     }

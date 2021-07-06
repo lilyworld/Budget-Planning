@@ -477,7 +477,7 @@ savingsfunction(){
           var x = copy_array[i].Price;//get the price of remove item
           copy_array.splice(i,1);
           var remain = this.state.Need_Remaining;
-          this.setState({wantList_Items: copy_array, Need_Remaining: (Number(remain) + Number(x))})
+          this.setState({NeedList_Items: copy_array, Need_Remaining: (Number(remain) + Number(x))})
         }
       }
     }

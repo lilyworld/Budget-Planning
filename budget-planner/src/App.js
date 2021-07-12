@@ -148,6 +148,10 @@ class App extends React.Component{
     var W_amt = this.state.Want_Amount;
     this.setState({Need_Remaining: N_amt, Want_Remaining: W_amt})
   }
+  PlanchangePage = ()=>{
+    var value = !this.state.display;
+    this.setState({display:value}) 
+  }
 
   addfunction(){
     let y = document.getElementById("amt1").innerHTML;    /*y is a budget balance value */
@@ -304,8 +308,6 @@ savingsfunction(){
             document.getElementById("savingamt").innerHTML=m.toFixed(2);
             document.getElementById("counter").innerHTML=0;
 
-        }else{
-            //alert("go to planning page");
         }
 
     }
@@ -503,7 +505,7 @@ savingsfunction(){
     var display_Component;
     if(this.state.display == false)
     {
-      display_Component = display_Component =  <div>
+      display_Component = display_Component =  <div  className = "App">
       <h1 >Budget Balance:$<span id="amt1">{this.state.Balance}</span></h1>
       <button onClick={this.minusamt} id="minus1">-</button>
       <input type="number" id="input1" placeholder="Enter Budget Amount" min="0"></input>
@@ -544,8 +546,19 @@ savingsfunction(){
     }
     else
     {
-      display_Component = <div>
+      display_Component = <div  className = "PApp">
       <Total_budgetBar Total_Amount = {this.state.Balance}/>
+      <div id = "addinput">
+      <input type = "text" id = "NameTextBox" placeholder = "Item Name" value = {this.state.input_Name} onChange = {this.handleNameInput}/>
+            <input type = "number" id = "PriceBox" placeholder= "Price" value = {this.state.input_Price} onChange = {this.handlePriceInput}/>      
+            <select id="picktype">
+              <option value="" disabled selected>Item Type</option>
+            <option id = "WantRadio" checked = {this.state.Wantchecked} onChange = {this.selectWant}>Want</option>
+            <option id = "NeedRadio" name = "Item Type" checked = {this.state.Needchecked} onChange = {this.selectNeed}>Need</option>
+            </select>
+            <button className = "ADDInputButton" id = "AddInput_Add_to_list" onClick = {this.add}>Add to list </button>
+            <button className = "ADDInputButton" id = "AddInput_Reset" onClick = {this.resetInput}>Reset </button>
+        </div>
       <div id="WantList_Container">
       <h3>Wants List:(currently {this.state.Want_Percent}%) </h3>
       <div id = "Want_Remaining_Budget">*Remaining Budget: ${this.state.Want_Remaining}</div>
@@ -572,33 +585,11 @@ savingsfunction(){
           </div>
 
       <SavingList Precent = {this.state.Saving_Percent} Amount = {this.state.Saving_Amount}/>
-
-
-      <div id = "addinput">
-            <h3>Add your item</h3>
-            
-            <label htmlFor = "Item Type" id = "ItemType_Label">Item type:</label>
-            <label htmlFor ="want">Want</label>
-            <input type= "radio" id = "WantRadio" checked = {this.state.Wantchecked} onChange = {this.selectWant}/>
-
-            <label htmlFor ="Need">Need</label>
-            <input type= "radio" id = "NeedRadio" name = "Item Type" checked = {this.state.Needchecked} onChange = {this.selectNeed}/>
-            <br/>
-
-            <label htmlFor = "NameTextBox" id = "NameTextBox_Label">Name: </label>
-            <input type = "text" id = "NameTextBox" placeholder = "Ex: Ps5" value = {this.state.input_Name} onChange = {this.handleNameInput}/>
-            <br/>
-            <label htmlFor = "PriceBox" id="PriceBox_Label">Price: </label>
-            <input type = "number" id = "PriceBox" placeholder= "Ex: 399" value = {this.state.input_Price} onChange = {this.handlePriceInput}/>
-
-            <button className = "ADDInputButton" id = "AddInput_Add_to_list" onClick = {this.add}>Add to list </button>
-
-            <button className = "ADDInputButton" id = "AddInput_Reset" onClick = {this.resetInput}>Reset </button>
-        </div>
+      <button onClick={this.PlanchangePage} id="bt1">Go to Home</button>
       </div>;
     }
     return (
-        <div className = "App">
+        <div>
         
         {display_Component}
         </div>

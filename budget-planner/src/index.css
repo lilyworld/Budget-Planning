@@ -18,6 +18,18 @@ body{
   margin-top: 100px;
   background-image: url(./imagesForComponent/money.jpg);
 }
+.PApp{
+  border: 1px solid black;
+  position: relative;
+  width: 1500px;
+  height: 800px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  margin-top: 100px;
+  background-image: url(./imagesForComponent/ocean.jpg);
+}
 #amt1,#counter{
   font-size: 30px;
   background-color: white;
@@ -354,21 +366,34 @@ font-size: 20px;
 }
 
 #addinput{
+  display: flex;
+  justify-content: center;
+  transition: 0.4s;
+  position: relative;
+  z-index: 1;
+  /*
 	margin-left: 80px;
 	margin-top: 80px;
 
 	width: 250px;/*if 250px, then the box will be below saving box
 	therefore, rule of placing element is from left to right.
 	if the current element's width excess what can be place in the viewport, this element will got to next line*/
-	height: 230px;
+	/*height: 230px;
 
 	border: 1px solid black;
 	float: left;
 
 	background-color: #E8B092;
 	border-radius:  25px;
-	border-style: outset;
+	border-style: outset;*/
 }
+#addinput input{
+  font-size: 18px;
+  padding: 10px 15px;
+  background-color: #FFF;
+}
+
+
 
 .ADDInputButton{
   /*
@@ -377,18 +402,26 @@ font-size: 20px;
 	margin-left: 52px;
 	margin-top: 15px;
   */
-  padding: 5px 10px;
-  border-radius: 20px;
-  display:inline-block;
+  padding: 10px 15px;
   transition: 0.2s;
-  margin: 10px;
-  border:yellow;
+  margin-left:0px;
+  border: yellow;
   cursor: pointer;
-  background-color: cornflowerblue;
-  color:white;
-  font-size: 20px;
+  font-size: 18px;
 }
-.ADDInputButton:hover,#WantList_Delete:hover,#WantList_Reset:hover,#NeedList_Delete:hover,#NeedList_Reset:hover{
+#AddInput_Add_to_list{
+  background-color: yellow;
+  color:black;
+}
+#AddInput_Reset{
+  background-color: red;
+  color: white;
+  width: 100px;
+	margin-left: 0px;/*if I specified the margin for a class of elements, every element will have same margin in between them*/
+	/*however, if I step inner to specify one of the elements in the group, the margin property specify in the class will nulltify*/
+
+}
+#AddInput_Add_to_list:hover,#AddInput_Reset:hover,#WantList_Delete:hover,#WantList_Reset:hover,#NeedList_Delete:hover,#NeedList_Reset:hover{
   background: darkturquoise;
   color: aliceblue;
   box-shadow: 0 0 10px darkturquoise, 0 0 40px darkturquoise,
@@ -396,14 +429,9 @@ font-size: 20px;
   text-shadow: yellow;
 }
 
-#AddInput_Reset{
-	margin-left: 10px;/*if I specified the margin for a class of elements, every element will have same margin in between them*/
-	/*however, if I step inner to specify one of the elements in the group, the margin property specify in the class will nulltify*/
-
-}
 
 #ItemType_Label{
-  margin-left:20px;
+  margin-left:0px;
 }
 
 #NameTextBox_Label{
@@ -415,5 +443,14 @@ font-size: 20px;
 }
 
 #PriceBox{
-  margin-left:8px;
+  border-color: white;
+  margin-left:-1px;
+}
+
+#NameTextBox{
+  border-color: white;
+}
+#picktype{
+  font-size: 18px;
+  padding: 10px 15px;
 }

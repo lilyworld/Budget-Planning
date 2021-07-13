@@ -26,8 +26,8 @@ class App extends React.Component{
       Saving_Amount:0.00,
       Need_Percent:0,
       Want_Percent:0,
-      Saving_Percent:0
-
+      Saving_Percent:0,
+      selectType: "Select a type"
     };
 
   }
@@ -314,18 +314,6 @@ savingsfunction(){
 
   /**************************************************************** */
   //Planning page function
-  
-  //seleteWant and update the state in planning page
-  selectWant = (e) =>{
-    var value = e.target.checked;
-    this.setState({Wantchecked: value, Needchecked:!value})
-
-  }
-  //seteteNeed and update the state in planning page
-  selectNeed = (e) =>{
-    var value = e.target.checked;
-    this.setState({Needchecked: value, Wantchecked:!value})
-  }
 
   //get the value of textbar for name and update the state in planning page
   handleNameInput = (e)=>{
@@ -350,11 +338,11 @@ savingsfunction(){
     
     var newObject = {Name: this.state.input_Name, Price: Number(this.state.input_Price).toFixed(2)};
     var copy_array = [];
-    var duplicate_index_W = this.checkDuplicate(newObject.Name, 0);// -1 if no duplicate
-    var duplicate_index_N = this.checkDuplicate(newObject.Name, 1);// -1 if no duplicate 
+    var duplicate_index_W = this.checkDuplicate(newObject.Name, 0);// return -1 if no duplicate
+    var duplicate_index_N = this.checkDuplicate(newObject.Name, 1);// return -1 if no duplicate 
 
     //follwing will reset input field if over butget amount
-    if(this.state.Wantchecked && duplicate_index_W!= -1)
+    if(this.state.selectType =="Want" && duplicate_index_W!= -1)
     {
       if(this.state.Want_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
       {
@@ -368,7 +356,7 @@ savingsfunction(){
       //copy_array = [...this.state.wantList_Items, newObject];
       this.setState({wantList_Items: copy_array, Want_Remaining: (this.state.Want_Remaining - this.state.input_Price).toFixed(2)})//sss
     }
-    else if(this.state.Needchecked && duplicate_index_N!= -1){
+    else if(this.state.selectType=="Need" && duplicate_index_N!= -1){
 
       if(this.state.Need_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
       {
@@ -381,7 +369,7 @@ savingsfunction(){
       //copy_array = [...this.state.wantList_Items, newObject];
       this.setState({needList_Items: copy_array, Need_Remaining: (this.state.Need_Remaining - this.state.input_Price).toFixed(2)})
     }
-    else if(this.state.Wantchecked)
+    else if(this.state.selectType == "Want")
     {
       if(this.state.Want_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
       {
@@ -393,7 +381,7 @@ savingsfunction(){
       copy_array = [...this.state.wantList_Items, newObject];
       this.setState({wantList_Items: copy_array, Want_Remaining: (this.state.Want_Remaining - this.state.input_Price).toFixed(2)})
     }
-    else if(this.state.Needchecked)
+    else if(this.state.selectType == "Need")
     {
       if(this.state.Need_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
       {
@@ -433,7 +421,7 @@ savingsfunction(){
   }
   //function check if the input box have want it has add button in planning page
   checkInputFields= ()=>{
-    if(this.state.input_Name == "" || this.state.input_Price == "" || (this.state.Needchecked == false &&this.state.Wantchecked == false))
+    if(this.state.input_Name == "" || this.state.input_Price == "" || this.state.selectType == "Select a type")
     {
       this.resetInput();
       return false;
@@ -446,8 +434,7 @@ savingsfunction(){
     this.setState({
       input_Name : "",
       input_Price : "",
-      Wantchecked: false, 
-      Needchecked: false
+      selectType: "Select a type"
     })
   }
   //function that delete items in list in planning page
@@ -499,6 +486,8 @@ savingsfunction(){
       this.setState({needList_Items:[], Need_Remaining: x})
     }
   }
+
+  handleSelectChange = (e)=> this.setState({selectType: e.target.value});
   /**************************** ************************************************* */
 
   render(){
@@ -549,12 +538,12 @@ savingsfunction(){
       display_Component = <div  className = "PApp">
       <Total_budgetBar Total_Amount = {this.state.Balance}/>
       <div id = "addinput">
-      <input type = "text" id = "NameTextBox" placeholder = "Item Name" value = {this.state.input_Name} onChange = {this.handleNameInput}/>
+            <input type = "text" id = "NameTextBox" placeholder = "Item Name" value = {this.state.input_Name} onChange = {this.handleNameInput}/>
             <input type = "number" id = "PriceBox" placeholder= "Price" value = {this.state.input_Price} onChange = {this.handlePriceInput}/>      
-            <select id="picktype">
-              <option value="" disabled selected>Item Type</option>
-            <option id = "WantRadio" checked = {this.state.Wantchecked} onChange = {this.selectWant}>Want</option>
-            <option id = "NeedRadio" name = "Item Type" checked = {this.state.Needchecked} onChange = {this.selectNeed}>Need</option>
+            <select value = {this.state.selectType} id="picktype" onChange = {this.handleSelectChange}>
+              <option value="Select a type">Select a type</option>
+              <option value = "Want" id = "WantRadio">Want</option>
+              <option value = "Need" id = "NeedRadio" name = "Item Type">Need</option>
             </select>
             <button className = "ADDInputButton" id = "AddInput_Add_to_list" onClick = {this.add}>Add to list </button>
             <button className = "ADDInputButton" id = "AddInput_Reset" onClick = {this.resetInput}>Reset </button>

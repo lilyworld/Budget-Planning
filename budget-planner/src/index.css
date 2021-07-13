@@ -374,15 +374,12 @@ font-size: 20px;
   /*
 	margin-left: 80px;
 	margin-top: 80px;
-
 	width: 250px;/*if 250px, then the box will be below saving box
 	therefore, rule of placing element is from left to right.
 	if the current element's width excess what can be place in the viewport, this element will got to next line*/
 	/*height: 230px;
-
 	border: 1px solid black;
 	float: left;
-
 	background-color: #E8B092;
 	border-radius:  25px;
 	border-style: outset;*/

@@ -5,6 +5,7 @@ import HomePage from './components/homepage';
 import './index.css';
 import Total_budgetBar from './components/Total_BudgetBar';
 import SavingList from './components/SavingList';
+import Planning_Component from './components/Planning_Component';
 
 class App extends React.Component{
   constructor(Props){
@@ -16,8 +17,6 @@ class App extends React.Component{
       needList_Items:[],
       input_Name : "",
       input_Price : "",
-      Wantchecked: false, //zero for Need
-      Needchecked: false,
       Balance:0.00,
       Need_Amount:0.00,
       Need_Remaining:0.00,
@@ -316,15 +315,13 @@ savingsfunction(){
   //Planning page function
 
   //get the value of textbar for name and update the state in planning page
-  handleNameInput = (e)=>{
-    var name = e.target.value;
-    this.setState({input_Name: name})
+  handleNameInput = (value)=>{
+    this.setState({input_Name: value})
   }
 
   //get the value of textbar for price and update the state in planning page
-  handlePriceInput = (e)=>{
-    var price = e.target.value;
-    this.setState({input_Price: price})
+  handlePriceInput = (value)=>{
+    this.setState({input_Price: value})
   }
 
   //function handle add button in planning page
@@ -487,7 +484,7 @@ savingsfunction(){
     }
   }
 
-  handleSelectChange = (e)=> this.setState({selectType: e.target.value});
+  handleSelectChange = (value)=> this.setState({selectType: value});
   /**************************** ************************************************* */
 
   render(){
@@ -535,47 +532,29 @@ savingsfunction(){
     }
     else
     {
-      display_Component = <div  className = "PApp">
-      <Total_budgetBar Total_Amount = {this.state.Balance}/>
-      <div id = "addinput">
-            <input type = "text" id = "NameTextBox" placeholder = "Item Name" value = {this.state.input_Name} onChange = {this.handleNameInput}/>
-            <input type = "number" id = "PriceBox" placeholder= "Price" value = {this.state.input_Price} onChange = {this.handlePriceInput}/>      
-            <select value = {this.state.selectType} id="picktype" onChange = {this.handleSelectChange}>
-              <option value="Select a type">Select a type</option>
-              <option value = "Want" id = "WantRadio">Want</option>
-              <option value = "Need" id = "NeedRadio" name = "Item Type">Need</option>
-            </select>
-            <button className = "ADDInputButton" id = "AddInput_Add_to_list" onClick = {this.add}>Add to list </button>
-            <button className = "ADDInputButton" id = "AddInput_Reset" onClick = {this.resetInput}>Reset </button>
-        </div>
-      <div id="WantList_Container">
-      <h3>Wants List:(currently {this.state.Want_Percent}%) </h3>
-      <div id = "Want_Remaining_Budget">*Remaining Budget: ${this.state.Want_Remaining}</div>
-      <ul  id = "Want_List">
-        {this.state.wantList_Items.map(
-          (Item)=> <li key = {Item.Name}> <span id="IN">{Item.Name}:</span> ${Item.Price}<button type = "button" onClick = {this. delete_item} id = {Item.Name} className = "Want">x</button> </li>//add icon to delete button
-        )}
-      </ul>
-      <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-      <button onClick = {this.resetItems} name= "reset_button" type = "reset" id = "WantList_Reset">Reset</button>
-      </div>
-
-
-      <div id="NeedList_Container">
-            <h3>Needs List:(currently {this.state.Need_Percent}%) </h3>
-            <div id = "Need_Remaining_Budget">*Remaining Budget: ${this.state.Need_Remaining}</div>
-            <ul id = "Need_List">
-       {this.state.needList_Items.map(
-          (Item)=> <li key = {Item.Name}> <span id="IN">{Item.Name}:</span> ${Item.Price} <button type = "button" onClick = {this. delete_item} id = {Item.Name} className = "Need">x</button></li>//add icon to delete button
-        )}
-            </ul>
-        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-            <button onClick = {this.resetItems} name= "reset_button" type = "reset" value = "Reset" id = "NeedList_Reset">Reset</button>
-          </div>
-
-      <SavingList Precent = {this.state.Saving_Percent} Amount = {this.state.Saving_Amount}/>
-      <button onClick={this.PlanchangePage} id="bt1">Go to Home</button>
-      </div>;
+      display_Component = <Planning_Component wantList_Items = {this.state.wantList_Items}
+                                              needList_Items = {this.state.needList_Items}
+                                              input_Name = {this.state.input_Name}
+                                              input_Price = {this.state.input_Price}
+                                              Balance = {this.state.Balance}
+                                              Need_Amount = {this.state.Need_Amount}
+                                              Need_Remaining = {this.state.Need_Remaining}
+                                              Want_Amount = {this.state.Want_Amount}
+                                              Want_Remaining = {this.state.Want_Remaining}
+                                              Saving_Amount = {this.state.Saving_Amount}
+                                              Need_Percent = {this.state.Need_Percent}
+                                              want_Percent = {this.state.Want_Percent}
+                                              Saving_Percent = {this.state.Saving_Percent}
+                                              selectType = {this.state.selectType}
+                                              PlanchangePage = {this.PlanchangePage}
+                                              handleNameInput = {this.handleNameInput}//for InputBoxes
+                                              handlePriceInput = {this.handlePriceInput}//Component
+                                              handleSelectChange = {this.handleSelectChange}//s
+                                              resetInput = {this.resetInput}//for inputBoxes
+                                              add = {this.add}//for inputBoxes
+                                              delete_item = {this.delete_item}//for wantList, needList
+                                              resetItems = {this.resetItems}//for wantList, needList
+                                              />;
     }
     return (
         <div>

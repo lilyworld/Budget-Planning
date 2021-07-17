@@ -33,6 +33,10 @@ class App extends React.Component{
           data:[0,0,0,0,0,0,0,0,0,0,0,0],
           backgroundColor:"red"
         },{
+          label:"Wants",
+          data:[0,0,0,0,0,0,0,0,0,0,0,0],
+          backgroundColor:"blue"
+        },{
           label:"Savings",
           data:[0,0,0,0,0,0,0,0,0,0,0,0],
           backgroundColor:"green"
@@ -505,15 +509,21 @@ savingsfunction(){
     this.setState({Hdisplay:value})
     var need_spend = this.state.Balance *(this.state.Need_Percent/100) - this.state.Need_Remaining;
     var save = this.state.Saving_Amount;
+    var want_spend = this.state.Balance *(this.state.Want_Percent/100) - this.state.Want_Remaining;
     var data = this.state.chartData;
     data.datasets[0].data[n]=need_spend;
-    data.datasets[1].data[n]=save;
+    data.datasets[1].data[n]=want_spend;
+    data.datasets[2].data[n]=save;
     this.setState({chartData:data})
   }
 
   /**************************************************************************** */
 
   render(){
+    var d = new Date();
+    var month = d.getMonth();
+    var day = d.getDate();
+    var year = d.getFullYear();
     var display_Component;
     if(this.state.display == false)
     {
@@ -585,6 +595,7 @@ savingsfunction(){
     }else if(this.state.display===true && this.state.Hdisplay===true){
       display_Component = <div className="HApp">
         <h1>History Page</h1>
+        <h3>Current Date:{month}/{day}/{year}</h3>
         <Bar id="bar" data={this.state.chartData}
         
         options={{

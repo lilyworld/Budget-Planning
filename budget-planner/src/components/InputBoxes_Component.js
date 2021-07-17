@@ -19,7 +19,7 @@ function InputBoxes_Component(Props){
 
     return(
     <div id = "addinput">
-        <input type = "text" id = "NameTextBox" placeholder = "Item Name" value = {Props.input_Name} onChange = {handleNameChange}/>
+        <input type = "text" id = "NameTextBox" placeholder = "Item Name" value = {Props.input_Name} onChange = {handleNameChange} maxLength="15"/>
         <input type = "number" id = "PriceBox" placeholder= "Price" value = {Props.input_Price} onChange = {handlePriceChange}/>      
         <select value = {Props.selectType} id="picktype" onChange = {handleSelectChange}>
             <option value="Select a type">Select a type</option>

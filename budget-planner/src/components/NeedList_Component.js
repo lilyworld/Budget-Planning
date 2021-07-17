@@ -9,7 +9,7 @@ function NeedList_Component(Props){
         (Item)=> <li key = {Item.Name}> <span id="IN">{Item.Name}:</span> ${Item.Price} <button type = "button" id = {Item.Name} className = "Need" onClick = {Props.delete_item} >x</button></li>//add icon to delete button
     )}
     </ul>
-<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br/><br/><br/>
     <button name= "reset_button" type = "reset" value = "Reset" id = "NeedList_Reset" onClick = {Props.resetItems} >Reset</button>
   </div>
 }

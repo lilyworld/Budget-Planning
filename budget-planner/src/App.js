@@ -1,17 +1,16 @@
 
 import './App.css';
 import React from 'react';
-import HomePage from './components/homepage';
 import './index.css';
-import Total_budgetBar from './components/Total_BudgetBar';
-import SavingList from './components/SavingList';
 import Planning_Component from './components/Planning_Component';
+import {Bar} from "react-chartjs-2"
 
 class App extends React.Component{
   constructor(Props){
     super(Props);
     this.state = {
       display:false,
+      Hdisplay:false,
       Items:[],
       wantList_Items:[],
       needList_Items:[],
@@ -486,6 +485,11 @@ savingsfunction(){
 
   handleSelectChange = (value)=> this.setState({selectType: value});
   /**************************** ************************************************* */
+  //History Page
+  HisChange = ()=>{
+    var value = !this.state.Hdisplay;
+    this.setState({Hdisplay:value}) 
+  }
 
   render(){
     var display_Component;
@@ -530,7 +534,7 @@ savingsfunction(){
                   <button onClick={this.changePage} id="bt1">Go to Planning</button>
       </div>;
     }
-    else
+    else if(this.state.Hdisplay===false && this.state.display===true)
     {
       display_Component = <Planning_Component wantList_Items = {this.state.wantList_Items}
                                               needList_Items = {this.state.needList_Items}
@@ -546,6 +550,7 @@ savingsfunction(){
                                               want_Percent = {this.state.Want_Percent}
                                               Saving_Percent = {this.state.Saving_Percent}
                                               selectType = {this.state.selectType}
+                                              HisChange = {this.HisChange}
                                               PlanchangePage = {this.PlanchangePage}
                                               handleNameInput = {this.handleNameInput}//for InputBoxes
                                               handlePriceInput = {this.handlePriceInput}//Component
@@ -555,6 +560,27 @@ savingsfunction(){
                                               delete_item = {this.delete_item}//for wantList, needList
                                               resetItems = {this.resetItems}//for wantList, needList
                                               />;
+    }else if(this.state.display===true && this.state.Hdisplay===true){
+      display_Component = <div className="HApp">
+        <h1>History Page</h1>
+        <Bar id="bar" data={{
+          labels:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+          datasets:[{
+            label:"Needs",
+            data:[1,2,3,4,5,6,7,8,9,10,11,12],
+            backgroundColor:"red"
+          },{
+            label:"Savings",
+            data:[12,11,10,9,8,7,6,5,4,3,2,1],
+            backgroundColor:"green"
+          }]
+        }}
+        options={{
+          maintainAspectRatio:false
+        }}
+        />
+      <button onClick={this.HisChange} id="bt1">Go Back</button>
+      </div>
     }
     return (
         <div>

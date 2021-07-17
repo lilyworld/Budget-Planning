@@ -37,7 +37,9 @@ function Planning_Component(Props){
   />
 
   <SavingList Precent = {Props.Saving_Percent} Amount = {Props.Saving_Amount}/>
+  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
   <button onClick={Props.PlanchangePage} id="bt1">Go to Home</button>
+  <button onClick={Props.HisChange} id="bt1">History</button>
   </div>);
   }
 

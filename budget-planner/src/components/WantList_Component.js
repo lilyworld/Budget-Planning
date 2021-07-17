@@ -11,7 +11,7 @@ function WantList_Component(Props){
         (Item)=> <li key = {Item.Name}> <span id="IN">{Item.Name}:</span> ${Item.Price}<button type = "button" id = {Item.Name} className = "Want" onClick = {Props.delete_item} >x</button> </li>//add icon to delete button
       )}
     </ul>
-    <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+    <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br/><br/><br/>
     <button name= "reset_button" type = "reset" id = "WantList_Reset" onClick = {Props.resetItems}>Reset</button>
     </div>);
 }

@@ -144,7 +144,7 @@ class App extends React.Component{
 
     var N_amt = this.state.Need_Amount;
     var W_amt = this.state.Want_Amount;
-    this.setState({Need_Remaining: N_amt, Want_Remaining: W_amt})
+    this.setState({Need_Remaining: N_amt, Want_Remaining: W_amt, needList_Items: [], wantList_Items:[]})
   }
   PlanchangePage = ()=>{
     var value = !this.state.display;

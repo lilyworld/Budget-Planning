@@ -25,7 +25,23 @@ class App extends React.Component{
       Need_Percent:0,
       Want_Percent:0,
       Saving_Percent:0,
-      selectType: "Select a type"
+      selectType: "Select a type",
+      chartData:{
+        labels:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+        datasets:[{
+          label:"Needs",
+          data:[0,0,0,0,0,0,0,0,0,0,0,0],
+          backgroundColor:"red"
+        },{
+          label:"Wants",
+          data:[0,0,0,0,0,0,0,0,0,0,0,0],
+          backgroundColor:"blue"
+        },{
+          label:"Savings",
+          data:[0,0,0,0,0,0,0,0,0,0,0,0],
+          backgroundColor:"green"
+        }]
+      }
     };
 
   }
@@ -486,12 +502,28 @@ savingsfunction(){
   handleSelectChange = (value)=> this.setState({selectType: value});
   /**************************** ************************************************* */
   //History Page
-  HisChange = ()=>{
+ HisChange = ()=>{
+    var d = new Date();
+    var n = d.getMonth();
     var value = !this.state.Hdisplay;
-    this.setState({Hdisplay:value}) 
+    this.setState({Hdisplay:value})
+    var need_spend = this.state.Balance *(this.state.Need_Percent/100) - this.state.Need_Remaining;
+    var save = this.state.Saving_Amount;
+    var want_spend = this.state.Balance *(this.state.Want_Percent/100) - this.state.Want_Remaining;
+    var data = this.state.chartData;
+    data.datasets[0].data[n]=need_spend;
+    data.datasets[1].data[n]=want_spend;
+    data.datasets[2].data[n]=save;
+    this.setState({chartData:data})
   }
 
+  /**************************************************************************** */
+
   render(){
+    var d = new Date();
+    var month = d.getMonth()+1;
+    var day = d.getDate();
+    var year = d.getFullYear();
     var display_Component;
     if(this.state.display == false)
     {
@@ -579,21 +611,24 @@ savingsfunction(){
     }else if(this.state.display===true && this.state.Hdisplay===true){
       display_Component = <div className="HApp">
         <h1>History Page</h1>
-        <Bar id="bar" data={{
-          labels:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
-          datasets:[{
-            label:"Needs",
-            data:[1,2,3,4,5,6,7,8,9,10,11,12],
-            backgroundColor:"blue"
-          },{
-            label:"Savings", 
-            data:[12,11,10,9,8,7,6,5,4,3,2,1],
-            backgroundColor:"green"
-          }]
-        }}
+        <h3>Current Date:{month}/{day}/{year}</h3>
+        <Bar id="bar" data={this.state.chartData}
         
         options={{
-          maintainAspectRatio:false
+                 scales:{
+            y:{
+              title:{
+                display:true,
+                text:"Expenses"
+              }
+            },
+            x:{
+              title:{
+                display:true,
+                text:"Months"
+              }
+            }
+          }
         }}
         />
       <button onClick={this.HisChange} id="bt1">Go Back</button>

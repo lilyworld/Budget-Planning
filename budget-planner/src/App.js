@@ -3,7 +3,7 @@ import './App.css';
 import React from 'react';
 import './index.css';
 import Planning_Component from './components/Planning_Component';
-import {Bar} from "react-chartjs-2"
+import {Bar, Doughnut} from "react-chartjs-2"
 
 class App extends React.Component{
   constructor(Props){
@@ -343,7 +343,7 @@ savingsfunction(){
       if(this.state.Want_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
       {
         alert("Processing items excessing your current budget");
-        this.resetInput(); 
+        //this.resetInput(); 
         return;
       }
       
@@ -357,7 +357,7 @@ savingsfunction(){
       if(this.state.Need_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
       {
         alert("Processing items excessing your current budget");
-        this.resetInput(); 
+        //this.resetInput(); 
         return;
       }
       copy_array = this.state.needList_Items;
@@ -370,7 +370,7 @@ savingsfunction(){
       if(this.state.Want_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
       {
         alert("Processing items excessing your current budget");
-        this.resetInput(); 
+        //this.resetInput(); 
         return;
       }
 
@@ -382,7 +382,7 @@ savingsfunction(){
       if(this.state.Need_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
       {
         alert("Processing items excessing your current budget");
-        this.resetInput(); 
+        //this.resetInput(); 
         return;
       }
       copy_array = [...this.state.needList_Items, newObject];
@@ -532,6 +532,22 @@ savingsfunction(){
                   </p>
                   <h2>Budget Available:<span id="counter">0</span>%</h2>
                   <button onClick={this.changePage} id="bt1">Go to Planning</button>
+                  <div className = "MyDoughnut">
+                  <Doughnut data={{
+                  labels:["Wants", "Needs", "Saving"],
+                   datasets:[{
+                   label:"Needs",
+                   data:[this.state.Want_Percent, this.state.Need_Percent, this.state.Saving_Percent],//interestingly, the JSX expression in here do not need to wrapped by {}
+                   backgroundColor:["rgba(62,237,231,0.9)","rgba(255,179,167,0.9)", "rgba(164,226,198,0.9)"]
+                    }]
+                    }}
+
+                    options={{
+                    maintainAspectRatio:false,
+                    animation: {duration:0}//animation disable
+                     }}
+                    />  
+                  </div>
       </div>;
     }
     else if(this.state.Hdisplay===false && this.state.display===true)

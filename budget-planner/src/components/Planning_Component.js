@@ -4,10 +4,9 @@ import Total_budgetBar from './Total_BudgetBar';
 import InputBoxes_Component from './InputBoxes_Component';
 import WantList_Component from './WantList_Component';
 import NeedList_Component from './NeedList_Component';
-import {Doughnut} from "react-chartjs-2"
+import {Doughnut, Pie} from "react-chartjs-2"
 
 function Planning_Component(Props){
-    
   return (
   <div  className = "PApp">
   <Total_budgetBar Total_Amount = {Props.Balance}/>
@@ -41,14 +40,31 @@ function Planning_Component(Props){
   <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
   <button onClick={Props.PlanchangePage} id="bt1">Go to Home</button>
   <button onClick={Props.HisChange} id="bt1">History</button>
-  
-  <div className = "MyDoughnut">
-  <Doughnut id = "Pie" data={{
-    labels:["Wants", "Needs", "Saving"],
+
+<div id = "Pie1" className = "MyPie">
+  <Pie  data={{
+    labels:["Want", "Remaining Budget"],
     datasets:[{
     label:"Needs",
-    data:[Props.want_Percent, Props.Need_Percent, Props.Saving_Percent],//interestingly, the JSX expression in here do not need to wrapped by {}
-    backgroundColor:["rgba(62,237,231,0.9)","rgba(255,179,167,0.9)", "rgba(164,226,198,0.9)"]
+    data:[ Props.Want_Amount - Props.Want_Remaining, Props.Want_Remaining],//interestingly, the JSX expression in here do not need to wrapped by {}
+    backgroundColor:["rgba(62,237,231,0.9)", "rgba(164,226,198,0.9)"]
+  }]
+  }}
+
+  options={{
+    maintainAspectRatio:false,
+    animation: {duration:0}//animation disable
+   }}
+/>  
+</div>
+
+<div id = "Pie2">
+  <Pie  data={{
+    labels:["Need", "Remaining Budget"],
+    datasets:[{
+    label:"Needs",
+    data:[ Props.Need_Amount - Props.Need_Remaining, Props.Need_Remaining],//interestingly, the JSX expression in here do not need to wrapped by {}
+    backgroundColor:["rgba(255,179,167,0.9)", "rgba(164,226,198,0.9)"]
   }]
   }}
 

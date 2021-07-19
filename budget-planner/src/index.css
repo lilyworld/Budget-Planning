@@ -285,22 +285,24 @@ h3, h4{
 
 #Want_Remaining_Budget{
 	position:absolute;
-	top:75px;
+	top:60px;
 	left:20px;
-
+  font-size:18px;
+  font-weight: bold;
 	text-align: center;
-	color: red;
+	color: white;
 
 }
 
 #Need_Remaining_Budget
 {
 	position:absolute;
-	top:75px;
+	top:60px;
 	left:20px;
-
+  font-weight: bold;
+  font-size: 18px;
 	text-align: center;
-	color: red;
+	color: white;
 }
 
 #NeedList_Container{
@@ -380,6 +382,13 @@ font-size: 20px;
 #SList{
   list-style-type: none;
   margin-left: -20px;
+}
+
+.SList_Items{
+  font-size:18px;
+  font-weight: bold;
+	text-align: center;
+	color: white;
 }
 
 #addinput{
@@ -469,16 +478,27 @@ font-size: 20px;
   padding: 10px 15px;
 }
 
-#Pie{
-  position: relative;
-  height: 40px;
-  width: 40px;
-}
-
-.MyDoughnut{
+#Pie1{
   height: 250px;
-  width: 270px;
+  width: 200px;
   position: absolute;
   left: 1000px;
   top: 370px;
+}
+
+#Pie2{
+  height: 250px;
+  width: 200px;
+  position: absolute;
+  left: 1200px;
+  top: 370px;
+
+}
+
+.MyDoughnut{
+  height: 220px;
+  width: 200px;
+  position: absolute;
+  left: 740px;
+  top: 480px;
 }

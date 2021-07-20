@@ -1,9 +1,11 @@
 
 import './App.css';
+import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 import React from 'react';
 import './index.css';
 import Planning_Component from './components/Planning_Component';
-import {Bar, Doughnut} from "react-chartjs-2"
+import {Bar, Doughnut} from "react-chartjs-2";
+import register from "./components/register";
 
 class App extends React.Component{
   constructor(Props){
@@ -45,6 +47,7 @@ class App extends React.Component{
     };
 
   }
+  
   /********************************** */
   //Homepage functions
   addamt = ()=>{
@@ -636,7 +639,12 @@ savingsfunction(){
     }
     return (
         <div>
-        
+        {/* <Router>
+          <Link to="register"> Login</Link>
+          <Switch>
+            <Route path="/register" exact component={register} />
+          </Switch>
+        </Router>    */}
         {display_Component}
         </div>
       )

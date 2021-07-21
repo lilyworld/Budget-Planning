@@ -231,62 +231,76 @@ clearfunction(){
 }
 
 needsfunction(){
-    let x = document.getElementById("amt1").innerHTML;    /*x is Budget balance value*/
-    let n = document.getElementById("needinput").value; /*n is need box input value*/
-    let m=document.getElementById("counter").innerHTML; /*m is a counter for budget left value*/
-    let y = document.getElementById("need-percent").innerHTML; /*y is need percentage value*/
-    if(n<0 || x==0 || n==""){   /*check for if the input value is negative or budget balance is zero or need box input is empty */
+    let balance = document.getElementById("amt1").innerHTML;    /*x is Budget balance value*/
+    let input = document.getElementById("needinput").value; /*n is need box input value*/
+    let counter=document.getElementById("counter").innerHTML; /*m is a counter for budget left value*/
+    let percent = document.getElementById("need-percent").innerHTML; /*y is need percentage value*/
+    if(input<0 || balance===0 || input===""){   /*check for if the input value is negative or budget balance is zero or need box input is empty */
         alert("the input cannot be negative or the input cannot be empty")
-    }else if((m-n)<0 &&(((m-0)+(y-0))-n)<0){ /*check if counter value minus need box input value is less than zero or counter value add need percentage then minus need input value is less than zero*/
+    }else if((counter-input)<0 &&(((counter-0)+(percent-0))-input)<0){ /*check if counter value minus need box input value is less than zero or counter value add need percentage then minus need input value is less than zero*/
         alert("the budget percent input is too big");
     }
     else{
-        m=(m-0)+(y-0);/*  set m = counter value add need percentage value  */
-        m=m-n; /*set m = counter value minus need box input value*/
-    document.getElementById("counter").innerHTML=m.toFixed(2); /*set counter value = new counter value with 2 decemal places */
-    document.getElementById("needamt").innerHTML=(x*(n/100)).toFixed(2);/*set need amount = budget balance value*(need input /100) */
-    document.getElementById("need-percent").innerHTML=(n-0)-0;/*set need percentage with new need box input value  */
-                                            /*the same comments above apply to the two functions below */
+      counter=counter-input;
+      percent=Number(percent)+Number(input);
+      let amount = (balance*(percent/100)).toFixed(2);
+      if(counter<0){
+      alert("There's not enough budget to add");
+      }else{
+  document.getElementById("counter").innerHTML=counter.toFixed(2);
+  document.getElementById("needamt").innerHTML=amount;
+  document.getElementById("need-percent").innerHTML=percent;
+      }
+
     }
 } 
 
 wantsfunction(){
-    let x = document.getElementById("amt1").innerHTML;
-    let n = document.getElementById("wantinput").value;
-    let m=document.getElementById("counter").innerHTML;
-    let y = document.getElementById("want-percent").innerHTML;
-    if(n<0 || x==0 || n==""){   /*check for negative input*/
+    let balance = document.getElementById("amt1").innerHTML;
+    let input = document.getElementById("wantinput").value;
+    let counter=document.getElementById("counter").innerHTML;
+    let percent = document.getElementById("want-percent").innerHTML;
+    if(input<0 || balance==0 || input==""){   /*check for negative input*/
         alert("the input cannot be negative or the input cannot be empty")
-    }else if((m-n)<0 &&(((m-0)+(y-0))-n)<0){
+    }else if((counter-input)<0 &&(((counter-0)+(percent-0))-input)<0){
         alert("the budget percent input is too big");
     }
     else{
-        m=(m-0)+(y-0)
-        m=m-n;
-    document.getElementById("counter").innerHTML=m.toFixed(2);
-    document.getElementById("wantamt").innerHTML=(x*(n/100)).toFixed(2);
-    document.getElementById("want-percent").innerHTML=(n-0)-0;
+        counter=counter-input;
+        percent=Number(percent)+Number(input);
+        let amount = (balance*(percent/100)).toFixed(2);
+        if(counter<0){
+        alert("There's not enough budget to add");
+        }else{
+    document.getElementById("counter").innerHTML=counter.toFixed(2);
+    document.getElementById("wantamt").innerHTML=amount;
+    document.getElementById("want-percent").innerHTML=percent;
+        }
 
     }
 } 
 savingsfunction(){
-    let x = document.getElementById("amt1").innerHTML;
-    let n = document.getElementById("savinginput").value;
-    let m=document.getElementById("counter").innerHTML;
-    let y = document.getElementById("saving-percent").innerHTML;
-    if(n<0 || x==0 ||n==""){   /*check for negative input*/
-        alert("the input cannot be negative or the input cannot be empty")
-    }else if((m-n)<0 &&(((m-0)+(y-0))-n)<0){
-        alert("the budget percent input is too big");
+ let balance = document.getElementById("amt1").innerHTML;    /*x is Budget balance value*/
+  let input = document.getElementById("savinginput").value; /*n is need box input value*/
+  let counter=document.getElementById("counter").innerHTML; /*m is a counter for budget left value*/
+  let percent = document.getElementById("saving-percent").innerHTML; /*y is need percentage value*/
+  if(input<0 || balance===0 || input===""){   /*check for if the input value is negative or budget balance is zero or need box input is empty */
+      alert("the input cannot be negative or the input cannot be empty")
+  }else if((counter-input)<0 &&(((counter-0)+(percent-0))-input)<0){ /*check if counter value minus need box input value is less than zero or counter value add need percentage then minus need input value is less than zero*/
+      alert("the budget percent input is too big");
+  }
+  else{
+    counter=counter-input;
+    percent=Number(percent)+Number(input);
+    if(counter<0){
+    alert("There's not enough budget to add");
+    }else{
+document.getElementById("counter").innerHTML=counter.toFixed(2);
+document.getElementById("savingamt").innerHTML=(balance*(percent/100)).toFixed(2);
+document.getElementById("saving-percent").innerHTML=percent;
     }
-    else{
-        m=(m-0)+(y-0)
-        m=m-n;
-    document.getElementById("counter").innerHTML=m.toFixed(2);
-    document.getElementById("savingamt").innerHTML=(x*(n/100)).toFixed(2);
-    document.getElementById("saving-percent").innerHTML=(n-0)-0;
 
-    }
+  }
 }
 
     needresetfunction(){

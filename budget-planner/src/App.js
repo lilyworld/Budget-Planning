@@ -103,43 +103,43 @@ class App extends React.Component{
   /********************************** */
   //Homepage functions
   addamt = ()=>{
-    this.addfunction();
+    this.addfunction(); //call add function to do addition input value to budget balance
     var value = document.getElementById("amt1").innerHTML;
-    this.setState({Balance:value})
+    this.setState({Balance:value}) //update balance value
     var needamt = document.getElementById("needamt").innerHTML;
     var needp = document.getElementById("need-percent").innerHTML;
-    this.setState({Need_Amount:needamt})
-    this.setState({Need_Percent:needp})
+    this.setState({Need_Amount:needamt}) //update need amount value
+    this.setState({Need_Percent:needp}) //update need percent value
     var wantamt = document.getElementById("wantamt").innerHTML;
     var wantp = document.getElementById("want-percent").innerHTML;
-    this.setState({Want_Amount:wantamt})
-    this.setState({Want_Percent:wantp})
+    this.setState({Want_Amount:wantamt}) //update want amount value
+    this.setState({Want_Percent:wantp}) //update want percent value
     var savingamt = document.getElementById("savingamt").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML;
-    this.setState({Saving_Amount:savingamt})
-    this.setState({Saving_Percent:savingp})
+    this.setState({Saving_Amount:savingamt}) //update saving amount value
+    this.setState({Saving_Percent:savingp}) //update saving percent value
   }
 
   minusamt = ()=>{
-    this.minusfunction();
+    this.minusfunction(); //call minus function to subtract budget balance by iinput value
     var value = document.getElementById("amt1").innerHTML;
-    this.setState({Balance:value})
+    this.setState({Balance:value}) //update balance value
     var needamt = document.getElementById("needamt").innerHTML;
     var needp = document.getElementById("need-percent").innerHTML;
-    this.setState({Need_Amount:needamt})
-    this.setState({Need_Percent:needp})
+    this.setState({Need_Amount:needamt}) //update need amount value
+    this.setState({Need_Percent:needp})//update need percent value
     var wantamt = document.getElementById("wantamt").innerHTML;
     var wantp = document.getElementById("want-percent").innerHTML;
-    this.setState({Want_Amount:wantamt})
-    this.setState({Want_Percent:wantp})
+    this.setState({Want_Amount:wantamt}) //update want amount value
+    this.setState({Want_Percent:wantp}) //update want percent value
     var savingamt = document.getElementById("savingamt").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML;
-    this.setState({Saving_Amount:savingamt})
-    this.setState({Saving_Percent:savingp})
+    this.setState({Saving_Amount:savingamt}) //update saving amount value
+    this.setState({Saving_Percent:savingp}) //update saving percent value
   }
 
   clearamt = ()=>{
-    this.clearfunction();
+    this.clearfunction(); //call clear function to set all the value to zero 
     var amt = document.getElementById("amt1").innerHTML;
     var needamt = document.getElementById("needamt").innerHTML;
     var wantamt = document.getElementById("wantamt").innerHTML;
@@ -147,13 +147,13 @@ class App extends React.Component{
     var needp = document.getElementById("need-percent").innerHTML;
     var wantp = document.getElementById("want-percent").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML
-    this.setState({Balance:amt})
+    this.setState({Balance:amt})    //update all value in the homepage to zero
     this.setState({Need_Amount:needamt})
     this.setState({Want_Amount:wantamt})
     this.setState({Saving_Amount:savingamt})
     this.setState({Need_Percent:needp})
     this.setState({Want_Percent:wantp})
-    this.setState({Saving_Percent:savingp})
+    this.setState({Saving_Percent:savingp})////////////////////////////////////////////
   }
 
   needdelete= ()=>{
@@ -222,6 +222,7 @@ class App extends React.Component{
     this.setState({display:value}) 
   }
 
+  //Add helper function
   addfunction(){
     let y = document.getElementById("amt1").innerHTML;    /*y is a budget balance value */
     let x = document.getElementById("input1").value;       /*x is a input value */
@@ -245,6 +246,7 @@ class App extends React.Component{
                             //the same comments apply to minusfunction 
     }
 }
+//Minus button helper function
 minusfunction(){
     let y = document.getElementById("amt1").innerHTML;
     let x = document.getElementById("input1").value;
@@ -270,6 +272,7 @@ minusfunction(){
     }
 }
 }
+//clear button helper function
 clearfunction(){
     //the clear function basically set all other value to zero
     document.getElementById("amt1").innerHTML="0.00"
@@ -282,6 +285,7 @@ clearfunction(){
     document.getElementById("counter").innerHTML="100"
 }
 
+//Need box value helper function
 needsfunction(){
     let balance = document.getElementById("amt1").innerHTML;    /*x is Budget balance value*/
     let input = document.getElementById("needinput").value; /*n is need box input value*/
@@ -306,7 +310,7 @@ needsfunction(){
 
     }
 } 
-
+//Want box value helper function
 wantsfunction(){
     let balance = document.getElementById("amt1").innerHTML;
     let input = document.getElementById("wantinput").value;
@@ -331,6 +335,7 @@ wantsfunction(){
 
     }
 } 
+//Saving box helper function
 savingsfunction(){
  let balance = document.getElementById("amt1").innerHTML;    /*x is Budget balance value*/
   let input = document.getElementById("savinginput").value; /*n is need box input value*/
@@ -354,7 +359,7 @@ document.getElementById("saving-percent").innerHTML=percent;
 
   }
 }
-
+  //need box reset button function
     needresetfunction(){
         let x = document.getElementById("need-percent").innerHTML;
         let y = document.getElementById("counter").innerHTML;
@@ -363,6 +368,7 @@ document.getElementById("saving-percent").innerHTML=percent;
         document.getElementById("needinput").value="";
         document.getElementById("counter").innerHTML=((x-0)+(y-0)).toFixed(2);
     } 
+    //want box reset button function
     wantresetfunction(){
         let x = document.getElementById("want-percent").innerHTML;
         let y = document.getElementById("counter").innerHTML;
@@ -371,6 +377,7 @@ document.getElementById("saving-percent").innerHTML=percent;
         document.getElementById("wantinput").value="";
         document.getElementById("counter").innerHTML=((x-0)+(y-0)).toFixed(2);
     }
+    //saving box reset button function
     savingresetfunction(){
         let x = document.getElementById("saving-percent").innerHTML;
         let y = document.getElementById("counter").innerHTML;
@@ -379,7 +386,7 @@ document.getElementById("saving-percent").innerHTML=percent;
         document.getElementById("savinginput").value="";
         document.getElementById("counter").innerHTML=((x-0)+(y-0)).toFixed(2);
     }
-
+    //to go to planning page button function and move all remaining budget percentage to saving box if there are unallocated budget before go-to planning page 
     planfunction(){
         let x= document.getElementById("counter").innerHTML;
         let y= document.getElementById("saving-percent").innerHTML;
@@ -574,21 +581,21 @@ document.getElementById("saving-percent").innerHTML=percent;
  HisChange = ()=>{
     var d = new Date();
     var n = d.getMonth();
-    var value = !this.state.Hdisplay;
+    var value = !this.state.Hdisplay; //set the Hdisplay to opposite value to change page
     this.setState({Hdisplay:value})
     var need_spend = this.state.Balance *(this.state.Need_Percent/100) - this.state.Need_Remaining;
     var save = this.state.Saving_Amount;
     var want_spend = this.state.Balance *(this.state.Want_Percent/100) - this.state.Want_Remaining;
     var data = this.state.chartData;
-    data.datasets[0].data[n]=need_spend;
-    data.datasets[1].data[n]=want_spend;
-    data.datasets[2].data[n]=save;
+    data.datasets[0].data[n]=need_spend; //set need spend value on the current month bar chart
+    data.datasets[1].data[n]=want_spend; //set want spend value on the current month bar chart
+    data.datasets[2].data[n]=save; //set saving spend value on the current month bar chart
     this.setState({chartData:data});
     var data2 = this.state.historyData;
     var total_spending = need_spend + want_spend;
     var total_saving = save;
     var remain_budget = (this.state.Need_Remaining-0) + (this.state.Want_Remaining-0);
-    data2[n].total_spending=total_spending;
+    data2[n].total_spending=total_spending; 
     data2[n].total_saving=total_saving;
     data2[n].Remaining_budget=remain_budget;
     this.setState({historyData:data2});

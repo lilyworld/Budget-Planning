@@ -35,17 +35,24 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
 }
-.HApp,#bar{
+.HApp{
   position: relative;
-  width: 900px;
-  height: 500px;
+  width: 1500px;
+  height: 800px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 20px;
   margin-top: 100px;
-  background-color: white;
-
-
+  background-image: url(./imagesForComponent/plant.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bar{
+  margin-left: auto;
+  margin-right: auto;
+  width: 900px;
+  height: 400px;  
 }
 #amt1,#counter{
   font-size: 30px;

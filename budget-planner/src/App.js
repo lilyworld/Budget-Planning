@@ -43,7 +43,59 @@ class App extends React.Component{
           data:[0,0,0,0,0,0,0,0,0,0,0,0],
           backgroundColor:"green"
         }]
-      }
+      },
+      historyData:[{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },
+      {
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },
+      {
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },],
+      monthSelect:0,
     };
 
   }
@@ -531,7 +583,16 @@ document.getElementById("saving-percent").innerHTML=percent;
     data.datasets[0].data[n]=need_spend;
     data.datasets[1].data[n]=want_spend;
     data.datasets[2].data[n]=save;
-    this.setState({chartData:data})
+    this.setState({chartData:data});
+    var data2 = this.state.historyData;
+    var total_spending = need_spend + want_spend;
+    var total_saving = save;
+    var remain_budget = (this.state.Need_Remaining-0) + (this.state.Want_Remaining-0);
+    data2[n].total_spending=total_spending;
+    data2[n].total_saving=total_saving;
+    data2[n].Remaining_budget=remain_budget;
+    this.setState({historyData:data2});
+    this.setState({monthSelect:0});
   }
 
   /**************************************************************************** */
@@ -629,7 +690,52 @@ document.getElementById("saving-percent").innerHTML=percent;
       display_Component = <div className="HApp">
         <h1>History Page</h1>
         <h3>Current Date:{month}/{day}/{year}</h3>
-        <Bar id="bar" data={this.state.chartData}
+        <label for="month">Choose a month:</label>
+        <select id="month" name="month"
+        onChange={(e) => {
+          const selectedmonth = e.target.value;
+          if(selectedmonth ==="Jan"){
+            this.setState({monthSelect:0})
+          }else if(selectedmonth ==="Feb"){
+            this.setState({monthSelect:1})
+          }else if(selectedmonth ==="Mar"){
+            this.setState({monthSelect:2})
+          }else if(selectedmonth ==="Apr"){
+            this.setState({monthSelect:3})
+          }else if(selectedmonth ==="May"){
+            this.setState({monthSelect:4})
+          }else if(selectedmonth ==="Jun"){
+            this.setState({monthSelect:5})
+          }else if(selectedmonth ==="Jul"){
+            this.setState({monthSelect:6})
+          }else if(selectedmonth ==="Aug"){
+            this.setState({monthSelect:7})
+          }else if(selectedmonth ==="Sep"){
+            this.setState({monthSelect:8})
+          }else if(selectedmonth ==="Oct"){
+            this.setState({monthSelect:9})
+          }else if(selectedmonth ==="Nov"){
+            this.setState({monthSelect:10})
+          }else if(selectedmonth ==="Dec"){
+            this.setState({monthSelect:11})
+          }
+        }}
+        >
+          <option value="Jan">Jan</option>
+          <option value="Feb">Feb</option>
+          <option value="Mar">Mar</option>
+          <option value="Apr">Apr</option>
+          <option value="May">May</option>
+          <option value="Jun">Jun</option>
+          <option value="Jul">Jul</option>
+          <option value="Aug">Aug</option>
+          <option value="Sep">Sep</option>
+          <option value="Oct">Oct</option>
+          <option value="Nov">Nov</option>
+          <option value="Dec">Dec</option>
+        </select>
+        <div className="bar">
+        <Bar data={this.state.chartData}
         
         options={{
                  scales:{
@@ -648,6 +754,11 @@ document.getElementById("saving-percent").innerHTML=percent;
           }
         }}
         />
+        </div>
+        <br/><br/>
+        <h3>Total spending:{this.state.historyData[this.state.monthSelect].total_spending}</h3>
+        <h3>Total saving:{this.state.historyData[this.state.monthSelect].total_saving}</h3>
+        <h3>The remaining budget:{this.state.historyData[this.state.monthSelect].Remaining_budget}</h3>
       <button onClick={this.HisChange} id="bt1">Go Back</button>
       </div>
     }

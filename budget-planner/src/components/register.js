@@ -11,14 +11,14 @@ function register() {
     }
 
     const validationSchema = Yup.object().shape({
-        username: Yup.string().required("You must input a username!"),
-        email: Yup.string().required("You must input a email!") ,
+        username: Yup.string().min(3).max(15).required("You must input a username!"),
+        email: Yup.string().min(10).max(25).required("You must input a email!") ,
         password: Yup.string().min(3).max(15).required("You must input a password!"),
     });
 
     const onSubmit = (data) => {
-    axios.post("http://localhost:4990/users", data).then((response) => {
-      console.log("IT WORKED");
+        axios.post("http://localhost:4990/users", data).then(() => {
+            console.log("IT WORKED");
     });
   };
 
@@ -50,6 +50,7 @@ function register() {
           <ErrorMessage name="password" component="span" />
           <Field
             autocomplete="off"
+            type="password"
             id="inputRegister"
             name="password"
             placeholder="Please enter your password..."

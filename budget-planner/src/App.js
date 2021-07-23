@@ -6,6 +6,7 @@ import './index.css';
 import Planning_Component from './components/Planning_Component';
 import {Bar, Doughnut} from "react-chartjs-2";
 import register from "./components/register";
+import Navigation from "./components/Navigation";
 
 class App extends React.Component{
   constructor(Props){
@@ -595,9 +596,9 @@ document.getElementById("saving-percent").innerHTML=percent;
     var total_spending = need_spend + want_spend;
     var total_saving = save;
     var remain_budget = (this.state.Need_Remaining-0) + (this.state.Want_Remaining-0);
-    data2[n].total_spending=total_spending; 
-    data2[n].total_saving=total_saving;
-    data2[n].Remaining_budget=remain_budget;
+    data2[n].total_spending=total_spending; //set total spending value on the current month 
+    data2[n].total_saving=total_saving; //set total saving value on the current month 
+    data2[n].Remaining_budget=remain_budget; //set remaining budget value on the current month
     this.setState({historyData:data2});
     this.setState({monthSelect:0});
   }
@@ -699,7 +700,7 @@ document.getElementById("saving-percent").innerHTML=percent;
         <h3>Current Date:{month}/{day}/{year}</h3>
         <label for="month">Choose a month:</label>
         <select id="month" name="month"
-        onChange={(e) => {
+        onChange={(e) => {                    //use for determine which month the user select 
           const selectedmonth = e.target.value;
           if(selectedmonth ==="Jan"){
             this.setState({monthSelect:0})
@@ -771,6 +772,7 @@ document.getElementById("saving-percent").innerHTML=percent;
     }
     return (
         <div>
+          <Navigation/>
         {/* <Router>
           <Link to="register"> Login</Link>
           <Switch>

@@ -3,11 +3,11 @@ const router = express.Router();
 const { Needs } = require("../models");
 
 router.get('/', async (req, res) => {
-    const listOfNeeds = await Users.findAll();
+    const listOfNeeds = await Needs.findAll();
     res.json(listOfNeeds);
 });
 
-router.post("/needs", async (req,res) => {
+router.post("/", async (req,res) => {
     const needs = req.body;
     await Needs.create(needs);
     res.json(needs);

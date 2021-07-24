@@ -19,8 +19,10 @@ body{
   
   background-image: url(./imagesForComponent/plant.jpg);
   background-repeat: no-repeat;
-  background-size: cover;
-}
+  background-size: cover;  
+  }
+
+
 .PApp{
   border: 1px solid black;
   position: relative;
@@ -91,6 +93,7 @@ background-color: cornflowerblue;
   color:white;
   background-color:rgb(172, 121, 26);
 }
+
 
 #input1{
   font-size: 20px;
@@ -508,4 +511,43 @@ font-size: 20px;
   position: absolute;
   left: 740px;
   top: 480px;
+}
+@media screen and (max-width:950px) {
+  #p1{
+    width:350px;
+    height: 200px;
+    margin-left: 80px;
+  }
+  #input1{
+    font-size: 12px;
+  }
+  .App{
+    width: 490px;
+    height: 1200px;
+  }
+  .HApp{
+    width: 490px;
+    height: 700px;
+  }
+  .HistoryBar{
+    margin-top: -200px;
+  }
+  .historyHeader{
+    margin-bottom: 10px;
+  }
+  .bar{
+    margin-top: 100px;
+    width: 450px;
+  }
+  #needinput,#wantinput,#savinginput{
+    font-size: 20px;
+    padding:7px 1px;
+  }
+  .MyDoughnut{
+    height: 170px;
+    width: 150px;
+    position: absolute;
+    left: 350px;
+    top: 1000px;
+  }
 }

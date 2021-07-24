@@ -696,6 +696,7 @@ document.getElementById("saving-percent").innerHTML=percent;
                                               />;
     }else if(this.state.display===true && this.state.Hdisplay===true){
       display_Component = <div className="HApp">
+        <div className="historyHeader">
         <h1>History Page</h1>
         <h3>Current Date:{month}/{day}/{year}</h3>
         <label for="month">Choose a month:</label>
@@ -742,6 +743,7 @@ document.getElementById("saving-percent").innerHTML=percent;
           <option value="Nov">Nov</option>
           <option value="Dec">Dec</option>
         </select>
+        </div>
         <div className="bar">
         <Bar data={this.state.chartData}
         
@@ -764,10 +766,12 @@ document.getElementById("saving-percent").innerHTML=percent;
         />
         </div>
         <br/><br/>
+        <div className="HistoryBar">
         <h3>Total spending:{this.state.historyData[this.state.monthSelect].total_spending}</h3>
         <h3>Total saving:{this.state.historyData[this.state.monthSelect].total_saving}</h3>
         <h3>The remaining budget:{this.state.historyData[this.state.monthSelect].Remaining_budget}</h3>
       <button onClick={this.HisChange} id="bt1">Go Back</button>
+      </div>
       </div>
     }
     return (

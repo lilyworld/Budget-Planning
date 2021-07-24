@@ -6,6 +6,9 @@ import './index.css';
 import Planning_Component from './components/Planning_Component';
 import {Bar, Doughnut} from "react-chartjs-2";
 import Navigation from "./components/Navigation";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import {Navbar} from 'react-bootstrap';
 
 class App extends React.Component{
   constructor(Props){
@@ -616,7 +619,6 @@ savingsfunction(){
         <div className="historyHeader">
         <h1>History Page</h1>
         <h3>Current Date:{month}/{day}/{year}</h3>
-<<<<<<< HEAD
         <label for="month">Choose a month:</label>
         <select id="month" name="month"
         onChange={(e) => {                    //use for determine which month the user select 
@@ -664,9 +666,6 @@ savingsfunction(){
         </div>
         <div className="bar">
         <Bar data={this.state.chartData}
-=======
-        <Bar id="bar" data={this.state.chartData}
->>>>>>> ligao
         
         options={{
                  scales:{
@@ -685,28 +684,34 @@ savingsfunction(){
           }
         }}
         />
-<<<<<<< HEAD
         </div>
         <br/><br/>
         <div className="HistoryBar">
         <h3>Total spending:{this.state.historyData[this.state.monthSelect].total_spending}</h3>
         <h3>Total saving:{this.state.historyData[this.state.monthSelect].total_saving}</h3>
         <h3>The remaining budget:{this.state.historyData[this.state.monthSelect].Remaining_budget}</h3>
-=======
->>>>>>> ligao
       <button onClick={this.HisChange} id="bt1">Go Back</button>
       </div>
       </div>
     }
     return (
         <div>
-        <Navigation/>
-        {/* <Router>
-          <Link to="register"> Login</Link>
+      
+        <div className="navigation_bar">
+        <Router>
+          <Navbar/>
+          <div className="navigation_item">
+            <Link to="/users/Login"> Login </Link>
+            <Link to="/users"> Register</Link>
+           </div>
           <Switch>
-            <Route path="/Register" exact component={Register} />
+            <Route path="/users" exact component={Register} />
+            <Route path="/users/login" exact component={Login} />
           </Switch>
-        </Router>    */}
+
+        </Router>
+       </div>
+
         {display_Component}
         </div>
       )

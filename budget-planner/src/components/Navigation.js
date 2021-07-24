@@ -1,20 +1,25 @@
-import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import Login from "./Login";
+import Register from "./Register";
 
 
 function Navigation_bar(Pros){
     return (
-      <ul id = "navigation_bar">
-              <li className= "navigation_item">	
-                  <a href="">Home</a>
-              </li>
-              <li className= "navigation_item">
-                  <a href="">Service information</a>
-              </li>
-              <li className= "navigation_item">
-                  <a href="">Contact us</a>
-              </li>
-          </ul>
-    );
-  }
+        <div className="navigation_bar">
+        <Router>
+          <div className="navigation_item">
+            <Link to="/users/Login"> Login </Link>
+            <Link to="/users"> Register</Link>
+           </div>
+          <Switch>
+            <Route path="/users" exact component={Register} />
+            <Route path="/users/login" exact component={Login} />
+          </Switch>
 
-  export default Navigation_bar
+        </Router>
+       </div>
+      
+    );
+  };
+
+  export default Navigation_bar;

@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
-function login() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  let history = useHistory();
 
   const login = () => {
     const data = { email: email, password: password };
     axios.post("http://localhost:4990/users/login", data).then((response) => {
-      console.log(response.data);
+      if(response.data.error){
+        alert(response.data.error);
+      } else {
+        sessionStorage.setItem("accessToken", response.data);
+        history.push("/");
+      } 
     });
   };
   return (
@@ -33,4 +41,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;

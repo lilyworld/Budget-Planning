@@ -14,7 +14,8 @@ const needsRouter = require("./routes/Needs");
 app.use("/needs", needsRouter);
 const wantsRouter = require("./routes/Wants");
 app.use("/wants", wantsRouter);
-
+const saveRouter = require("./routes/Savings");
+app.use("/savings", saveRouter);
 
 db.sequelize.sync().then(() => {
     app.listen(4990, () => {

@@ -5,7 +5,6 @@ import React from 'react';
 import './index.css';
 import Planning_Component from './components/Planning_Component';
 import {Bar, Doughnut} from "react-chartjs-2";
-import register from "./components/register";
 import Navigation from "./components/Navigation";
 
 class App extends React.Component{
@@ -44,59 +43,7 @@ class App extends React.Component{
           data:[0,0,0,0,0,0,0,0,0,0,0,0],
           backgroundColor:"green"
         }]
-      },
-      historyData:[{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },
-      {
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },
-      {
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },],
-      monthSelect:0,
+      }
     };
 
   }
@@ -104,43 +51,43 @@ class App extends React.Component{
   /********************************** */
   //Homepage functions
   addamt = ()=>{
-    this.addfunction(); //call add function to do addition input value to budget balance
+    this.addfunction();
     var value = document.getElementById("amt1").innerHTML;
-    this.setState({Balance:value}) //update balance value
+    this.setState({Balance:value})
     var needamt = document.getElementById("needamt").innerHTML;
     var needp = document.getElementById("need-percent").innerHTML;
-    this.setState({Need_Amount:needamt}) //update need amount value
-    this.setState({Need_Percent:needp}) //update need percent value
+    this.setState({Need_Amount:needamt})
+    this.setState({Need_Percent:needp})
     var wantamt = document.getElementById("wantamt").innerHTML;
     var wantp = document.getElementById("want-percent").innerHTML;
-    this.setState({Want_Amount:wantamt}) //update want amount value
-    this.setState({Want_Percent:wantp}) //update want percent value
+    this.setState({Want_Amount:wantamt})
+    this.setState({Want_Percent:wantp})
     var savingamt = document.getElementById("savingamt").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML;
-    this.setState({Saving_Amount:savingamt}) //update saving amount value
-    this.setState({Saving_Percent:savingp}) //update saving percent value
+    this.setState({Saving_Amount:savingamt})
+    this.setState({Saving_Percent:savingp})
   }
 
   minusamt = ()=>{
-    this.minusfunction(); //call minus function to subtract budget balance by iinput value
+    this.minusfunction();
     var value = document.getElementById("amt1").innerHTML;
-    this.setState({Balance:value}) //update balance value
+    this.setState({Balance:value})
     var needamt = document.getElementById("needamt").innerHTML;
     var needp = document.getElementById("need-percent").innerHTML;
-    this.setState({Need_Amount:needamt}) //update need amount value
-    this.setState({Need_Percent:needp})//update need percent value
+    this.setState({Need_Amount:needamt})
+    this.setState({Need_Percent:needp})
     var wantamt = document.getElementById("wantamt").innerHTML;
     var wantp = document.getElementById("want-percent").innerHTML;
-    this.setState({Want_Amount:wantamt}) //update want amount value
-    this.setState({Want_Percent:wantp}) //update want percent value
+    this.setState({Want_Amount:wantamt})
+    this.setState({Want_Percent:wantp})
     var savingamt = document.getElementById("savingamt").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML;
-    this.setState({Saving_Amount:savingamt}) //update saving amount value
-    this.setState({Saving_Percent:savingp}) //update saving percent value
+    this.setState({Saving_Amount:savingamt})
+    this.setState({Saving_Percent:savingp})
   }
 
   clearamt = ()=>{
-    this.clearfunction(); //call clear function to set all the value to zero 
+    this.clearfunction();
     var amt = document.getElementById("amt1").innerHTML;
     var needamt = document.getElementById("needamt").innerHTML;
     var wantamt = document.getElementById("wantamt").innerHTML;
@@ -148,13 +95,13 @@ class App extends React.Component{
     var needp = document.getElementById("need-percent").innerHTML;
     var wantp = document.getElementById("want-percent").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML
-    this.setState({Balance:amt})    //update all value in the homepage to zero
+    this.setState({Balance:amt})
     this.setState({Need_Amount:needamt})
     this.setState({Want_Amount:wantamt})
     this.setState({Saving_Amount:savingamt})
     this.setState({Need_Percent:needp})
     this.setState({Want_Percent:wantp})
-    this.setState({Saving_Percent:savingp})////////////////////////////////////////////
+    this.setState({Saving_Percent:savingp})
   }
 
   needdelete= ()=>{
@@ -223,7 +170,6 @@ class App extends React.Component{
     this.setState({display:value}) 
   }
 
-  //Add helper function
   addfunction(){
     let y = document.getElementById("amt1").innerHTML;    /*y is a budget balance value */
     let x = document.getElementById("input1").value;       /*x is a input value */
@@ -247,7 +193,6 @@ class App extends React.Component{
                             //the same comments apply to minusfunction 
     }
 }
-//Minus button helper function
 minusfunction(){
     let y = document.getElementById("amt1").innerHTML;
     let x = document.getElementById("input1").value;
@@ -273,7 +218,6 @@ minusfunction(){
     }
 }
 }
-//clear button helper function
 clearfunction(){
     //the clear function basically set all other value to zero
     document.getElementById("amt1").innerHTML="0.00"
@@ -286,81 +230,65 @@ clearfunction(){
     document.getElementById("counter").innerHTML="100"
 }
 
-//Need box value helper function
 needsfunction(){
-    let balance = document.getElementById("amt1").innerHTML;    /*x is Budget balance value*/
-    let input = document.getElementById("needinput").value; /*n is need box input value*/
-    let counter=document.getElementById("counter").innerHTML; /*m is a counter for budget left value*/
-    let percent = document.getElementById("need-percent").innerHTML; /*y is need percentage value*/
-    if(input<0 || balance===0 || input===""){   /*check for if the input value is negative or budget balance is zero or need box input is empty */
+    let x = document.getElementById("amt1").innerHTML;    /*x is Budget balance value*/
+    let n = document.getElementById("needinput").value; /*n is need box input value*/
+    let m=document.getElementById("counter").innerHTML; /*m is a counter for budget left value*/
+    let y = document.getElementById("need-percent").innerHTML; /*y is need percentage value*/
+    if(n<0 || x==0 || n==""){   /*check for if the input value is negative or budget balance is zero or need box input is empty */
         alert("the input cannot be negative or the input cannot be empty")
-    }else if((counter-input)<0 &&(((counter-0)+(percent-0))-input)<0){ /*check if counter value minus need box input value is less than zero or counter value add need percentage then minus need input value is less than zero*/
+    }else if((m-n)<0 &&(((m-0)+(y-0))-n)<0){ /*check if counter value minus need box input value is less than zero or counter value add need percentage then minus need input value is less than zero*/
         alert("the budget percent input is too big");
     }
     else{
-      counter=counter-input;
-      percent=Number(percent)+Number(input);
-      let amount = (balance*(percent/100)).toFixed(2);
-      if(counter<0){
-      alert("There's not enough budget to add");
-      }else{
-  document.getElementById("counter").innerHTML=counter.toFixed(2);
-  document.getElementById("needamt").innerHTML=amount;
-  document.getElementById("need-percent").innerHTML=percent;
-      }
-
+        m=(m-0)+(y-0);/*  set m = counter value add need percentage value  */
+        m=m-n; /*set m = counter value minus need box input value*/
+    document.getElementById("counter").innerHTML=m.toFixed(2); /*set counter value = new counter value with 2 decemal places */
+    document.getElementById("needamt").innerHTML=(x*(n/100)).toFixed(2);/*set need amount = budget balance value*(need input /100) */
+    document.getElementById("need-percent").innerHTML=(n-0)-0;/*set need percentage with new need box input value  */
+                                            /*the same comments above apply to the two functions below */
     }
 } 
-//Want box value helper function
+
 wantsfunction(){
-    let balance = document.getElementById("amt1").innerHTML;
-    let input = document.getElementById("wantinput").value;
-    let counter=document.getElementById("counter").innerHTML;
-    let percent = document.getElementById("want-percent").innerHTML;
-    if(input<0 || balance==0 || input==""){   /*check for negative input*/
+    let x = document.getElementById("amt1").innerHTML;
+    let n = document.getElementById("wantinput").value;
+    let m=document.getElementById("counter").innerHTML;
+    let y = document.getElementById("want-percent").innerHTML;
+    if(n<0 || x==0 || n==""){   /*check for negative input*/
         alert("the input cannot be negative or the input cannot be empty")
-    }else if((counter-input)<0 &&(((counter-0)+(percent-0))-input)<0){
+    }else if((m-n)<0 &&(((m-0)+(y-0))-n)<0){
         alert("the budget percent input is too big");
     }
     else{
-        counter=counter-input;
-        percent=Number(percent)+Number(input);
-        let amount = (balance*(percent/100)).toFixed(2);
-        if(counter<0){
-        alert("There's not enough budget to add");
-        }else{
-    document.getElementById("counter").innerHTML=counter.toFixed(2);
-    document.getElementById("wantamt").innerHTML=amount;
-    document.getElementById("want-percent").innerHTML=percent;
-        }
+        m=(m-0)+(y-0)
+        m=m-n;
+    document.getElementById("counter").innerHTML=m.toFixed(2);
+    document.getElementById("wantamt").innerHTML=(x*(n/100)).toFixed(2);
+    document.getElementById("want-percent").innerHTML=(n-0)-0;
 
     }
 } 
-//Saving box helper function
 savingsfunction(){
- let balance = document.getElementById("amt1").innerHTML;    /*x is Budget balance value*/
-  let input = document.getElementById("savinginput").value; /*n is need box input value*/
-  let counter=document.getElementById("counter").innerHTML; /*m is a counter for budget left value*/
-  let percent = document.getElementById("saving-percent").innerHTML; /*y is need percentage value*/
-  if(input<0 || balance===0 || input===""){   /*check for if the input value is negative or budget balance is zero or need box input is empty */
-      alert("the input cannot be negative or the input cannot be empty")
-  }else if((counter-input)<0 &&(((counter-0)+(percent-0))-input)<0){ /*check if counter value minus need box input value is less than zero or counter value add need percentage then minus need input value is less than zero*/
-      alert("the budget percent input is too big");
-  }
-  else{
-    counter=counter-input;
-    percent=Number(percent)+Number(input);
-    if(counter<0){
-    alert("There's not enough budget to add");
-    }else{
-document.getElementById("counter").innerHTML=counter.toFixed(2);
-document.getElementById("savingamt").innerHTML=(balance*(percent/100)).toFixed(2);
-document.getElementById("saving-percent").innerHTML=percent;
+    let x = document.getElementById("amt1").innerHTML;
+    let n = document.getElementById("savinginput").value;
+    let m=document.getElementById("counter").innerHTML;
+    let y = document.getElementById("saving-percent").innerHTML;
+    if(n<0 || x==0 ||n==""){   /*check for negative input*/
+        alert("the input cannot be negative or the input cannot be empty")
+    }else if((m-n)<0 &&(((m-0)+(y-0))-n)<0){
+        alert("the budget percent input is too big");
     }
+    else{
+        m=(m-0)+(y-0)
+        m=m-n;
+    document.getElementById("counter").innerHTML=m.toFixed(2);
+    document.getElementById("savingamt").innerHTML=(x*(n/100)).toFixed(2);
+    document.getElementById("saving-percent").innerHTML=(n-0)-0;
 
-  }
+    }
 }
-  //need box reset button function
+
     needresetfunction(){
         let x = document.getElementById("need-percent").innerHTML;
         let y = document.getElementById("counter").innerHTML;
@@ -369,7 +297,6 @@ document.getElementById("saving-percent").innerHTML=percent;
         document.getElementById("needinput").value="";
         document.getElementById("counter").innerHTML=((x-0)+(y-0)).toFixed(2);
     } 
-    //want box reset button function
     wantresetfunction(){
         let x = document.getElementById("want-percent").innerHTML;
         let y = document.getElementById("counter").innerHTML;
@@ -378,7 +305,6 @@ document.getElementById("saving-percent").innerHTML=percent;
         document.getElementById("wantinput").value="";
         document.getElementById("counter").innerHTML=((x-0)+(y-0)).toFixed(2);
     }
-    //saving box reset button function
     savingresetfunction(){
         let x = document.getElementById("saving-percent").innerHTML;
         let y = document.getElementById("counter").innerHTML;
@@ -387,7 +313,7 @@ document.getElementById("saving-percent").innerHTML=percent;
         document.getElementById("savinginput").value="";
         document.getElementById("counter").innerHTML=((x-0)+(y-0)).toFixed(2);
     }
-    //to go to planning page button function and move all remaining budget percentage to saving box if there are unallocated budget before go-to planning page 
+
     planfunction(){
         let x= document.getElementById("counter").innerHTML;
         let y= document.getElementById("saving-percent").innerHTML;
@@ -582,25 +508,16 @@ document.getElementById("saving-percent").innerHTML=percent;
  HisChange = ()=>{
     var d = new Date();
     var n = d.getMonth();
-    var value = !this.state.Hdisplay; //set the Hdisplay to opposite value to change page
+    var value = !this.state.Hdisplay;
     this.setState({Hdisplay:value})
     var need_spend = this.state.Balance *(this.state.Need_Percent/100) - this.state.Need_Remaining;
     var save = this.state.Saving_Amount;
     var want_spend = this.state.Balance *(this.state.Want_Percent/100) - this.state.Want_Remaining;
     var data = this.state.chartData;
-    data.datasets[0].data[n]=need_spend; //set need spend value on the current month bar chart
-    data.datasets[1].data[n]=want_spend; //set want spend value on the current month bar chart
-    data.datasets[2].data[n]=save; //set saving spend value on the current month bar chart
-    this.setState({chartData:data});
-    var data2 = this.state.historyData;
-    var total_spending = need_spend + want_spend;
-    var total_saving = save;
-    var remain_budget = (this.state.Need_Remaining-0) + (this.state.Want_Remaining-0);
-    data2[n].total_spending=total_spending; //set total spending value on the current month 
-    data2[n].total_saving=total_saving; //set total saving value on the current month 
-    data2[n].Remaining_budget=remain_budget; //set remaining budget value on the current month
-    this.setState({historyData:data2});
-    this.setState({monthSelect:0});
+    data.datasets[0].data[n]=need_spend;
+    data.datasets[1].data[n]=want_spend;
+    data.datasets[2].data[n]=save;
+    this.setState({chartData:data})
   }
 
   /**************************************************************************** */
@@ -699,6 +616,7 @@ document.getElementById("saving-percent").innerHTML=percent;
         <div className="historyHeader">
         <h1>History Page</h1>
         <h3>Current Date:{month}/{day}/{year}</h3>
+<<<<<<< HEAD
         <label for="month">Choose a month:</label>
         <select id="month" name="month"
         onChange={(e) => {                    //use for determine which month the user select 
@@ -746,6 +664,9 @@ document.getElementById("saving-percent").innerHTML=percent;
         </div>
         <div className="bar">
         <Bar data={this.state.chartData}
+=======
+        <Bar id="bar" data={this.state.chartData}
+>>>>>>> ligao
         
         options={{
                  scales:{
@@ -764,23 +685,26 @@ document.getElementById("saving-percent").innerHTML=percent;
           }
         }}
         />
+<<<<<<< HEAD
         </div>
         <br/><br/>
         <div className="HistoryBar">
         <h3>Total spending:{this.state.historyData[this.state.monthSelect].total_spending}</h3>
         <h3>Total saving:{this.state.historyData[this.state.monthSelect].total_saving}</h3>
         <h3>The remaining budget:{this.state.historyData[this.state.monthSelect].Remaining_budget}</h3>
+=======
+>>>>>>> ligao
       <button onClick={this.HisChange} id="bt1">Go Back</button>
       </div>
       </div>
     }
     return (
         <div>
-          <Navigation/>
+        <Navigation/>
         {/* <Router>
           <Link to="register"> Login</Link>
           <Switch>
-            <Route path="/register" exact component={register} />
+            <Route path="/Register" exact component={Register} />
           </Switch>
         </Router>    */}
         {display_Component}

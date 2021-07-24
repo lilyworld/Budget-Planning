@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {Users} = require("../models");
 const bcrypt = require("bcrypt");
+const {sign} = require("jsonwebtoken");
 
 router.get('/', async (req, res) => {
     const listOfUsers = await Users.findAll();
@@ -26,8 +27,21 @@ router.post("/login", async(req, res) => {
     if(!user) res.json({error: "User Doesn't Exist"});
     bcrypt.compare(password, user.password).then((match) =>{
         if (!match) res.json({error: "Wrong username and password combination"});
-        res.json("You Logged In");
+
+        const accessToken = sign({ username: user.username, id:user.id }, "important");
+        res.json(accessToken);
     });
 });
 
+/** DELETE SPECIFIC USERS */
+router.delete('/:id', function(req, res, next) {
+    Users.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(() => res.status(200).json("Deleted a user!"))
+      .catch(err => next(err));
+  });
+  
 module.exports = router;

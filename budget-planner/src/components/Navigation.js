@@ -9,7 +9,7 @@ function Navigation_bar(Pros){
         <div className="navigation_bar">
         <Router>
           <div className="navigation_item">
-            <Link to="/users/Login"> Login </Link>
+            <Link to="/users/login"> Login </Link>
             <Link to="/users"> Register</Link>
            </div>
           <Switch>

@@ -148,7 +148,28 @@ background-color: cornflowerblue;
  
 }
 
+#bt2{
+  padding: 10px 15px;
+  border-radius: 10px;
+  display:inline-block;
+  transition: 0.2s;
+  margin: 10px;
+  border:black;
+  cursor: pointer;
+  background-color: red;
+  color: white;
+  font-size: 20px;
+  box-shadow: inset 0 0 0 0 #f9e506;
+ 
+}
+
 #bt1:hover{
+  background: orangered;
+  color: black;
+  box-shadow: inset 190px 0 0 0 #f9e506;
+}
+
+#bt2:hover{
   background: orangered;
   color: black;
   box-shadow: inset 190px 0 0 0 #f9e506;
@@ -550,4 +571,173 @@ font-size: 20px;
     left: 350px;
     top: 1000px;
   }
+}
+@media only screen and (max-width:600px){
+  *{
+    box-sizing: border-box;
+  }
+  body{
+    position: absolute;
+    width:100%;
+    padding:0%;
+    height: 100%;
+  }
+  /*Css for the biggest boxes in the middle*/
+  .PApp{
+    border: 1px solid black;
+    position: relative;
+    width: 75%;
+    height: 1250px;
+    border-radius: 20px;
+    margin-top: 15%;
+    margin-bottom:15%;
+    background-image: url(./imagesForComponent/plant.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  /*Css for the whole inputfields*/
+  #addinput{
+    display: block;
+  }
+
+  #PriceBox{
+    border-color: white;
+    border-width: 1px;
+    width:75%;
+
+  }
+  
+  #NameTextBox{
+    border-color: white;
+    border-width:1px;
+    width:75%;
+  }
+  #picktype{
+    font-size: 18px;
+    padding: px 15px;
+  }
+  
+  #AddInput_Reset{
+    background-color: red;
+    color: white;
+    width: 75%;
+    margin-left: 0px;/*if I specified the margin for a class of elements, every element will have same margin in between them*/
+    /*however, if I step inner to specify one of the elements in the group, the margin property specify in the class will nulltify*/
+  
+  }
+  
+  /**************/
+  /*css for changing pages buttons*/
+  #bt1{
+    padding: 10px 15px;
+    margin:0px 0px 0px 0px;
+    border-radius: 0px 0px 0px 20px;
+    transition: 0.2s;
+    border:black;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    box-shadow: inset 0 0 0 0 #f9e506;
+    width: 50%;
+    position: absolute;
+    left:0%;
+    bottom: 0%;
+   
+  }
+  
+  #bt2{
+    padding: 10px 15px;
+    margin:0px 0px 0px 0px;
+    border-radius: 0px 0px 20px 0px;
+    transition: 0.2s;
+    border:black;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    box-shadow: inset 0 0 0 0 #f9e506;
+    width: 50%;
+    position: absolute;
+    left:50%;
+    bottom: 0%;
+   
+  }
+  /*Css for want list container*/
+  #WantList_Container{
+    border-style: outset;
+    /*width, height property set the width height of the html element, and it do not include margin, paddling, border.*/
+    width: 75%;
+    height: 400px;
+    border-radius: 25px;
+    background-color: rgba(62,237,231,0.9);
+    border-width: 0px;
+    display:block;
+    position: absolute;
+    left:12.25%;
+    top: 25%;
+    /*left: 50px;// even when float property is applied, left property is still effective*/
+ 
+  }
+  #Want_List{
+	
+    position:absolute;
+    top: 20%;
+    left:10%;
+    width: 80%;
+    height: 60%;
+    overflow: auto;
+    background-color: white;
+    
+  }
+  /*Css for need list*/
+  #NeedList_Container{
+    border-style: outset;
+    width: 75%;
+    height: 400px;
+    border-radius: 25px;
+    background-color: rgba(255,179,167,0.9);
+    border-width: 0px;
+    /*it make the div line together horizontaliy*/
+    overflow: auto;
+    position: absolute;
+    left: 12.25%;
+    top:60%;
+  }
+  
+  #Need_List{
+    
+    position:absolute;
+    top: 20%;
+    left:10%;
+    width: 80%;
+    height: 60%;
+    overflow: auto;
+    background-color: white;
+    
+  }
+  
+  #Pie1{
+    display:none;
+  }
+  
+  #Pie2{
+    display:none;
+  
+  }
+
+  #SavingList{
+    width: 100%;
+    height: 100px;
+  
+    
+    border-style: outset;
+    border-radius: 0px 0px 0px 0px;
+    background-color: rgba(164,226,198,0.9);
+    
+    position: fixed;
+    left: 0px;
+    top: 0%;
+  }
+  
 }

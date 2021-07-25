@@ -6,8 +6,8 @@ import './index.css';
 import Planning_Component from './components/Planning_Component';
 import {Bar, Doughnut} from "react-chartjs-2";
 import Navigation from "./components/Navigation";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import Login from "./components/login";
+import Register from "./components/register";
 import {Navbar} from 'react-bootstrap';
 
 class App extends React.Component{

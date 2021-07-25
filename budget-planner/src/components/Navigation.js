@@ -4,6 +4,7 @@ import Register from "./register";
 
 
 function Navigation_bar(Pros){
+    var abc;
     return (
         <div className="navigation_bar">
         <Router>

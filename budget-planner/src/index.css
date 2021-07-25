@@ -614,7 +614,37 @@ font-size: 20px;
   }
   #picktype{
     font-size: 18px;
-    padding: px 15px;
+    padding-left:0px;
+    padding-right:0px;
+    padding-top:0px;
+    padding-bottom:0px;
+    width:50%;
+    margin: 0px 0px 0px 0px;
+    height:40px;
+  }
+
+  #AddInput_Add_to_list{
+    background-color: yellow;
+    color:black;
+    width:25%;
+    margin: 0px 0px 0px 0px;
+    padding-left:0px;
+    padding-right:0px;
+    padding-bottom:0px;
+    padding-top:0px;
+    height:40px;
+    /*position: absolute;
+    top:87px;*/
+
+  }
+
+  .ADDInputButton{
+    padding: 10px 15px;
+    transition: 0.2s;
+    margin-left:0px;
+    border: yellow;
+    cursor: pointer;
+    font-size: 18px;
   }
   
   #AddInput_Reset{

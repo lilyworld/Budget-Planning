@@ -4,6 +4,7 @@ import Register from "./Register";
 import { AuthContext } from "../helpers/AuthContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import '../index.css';
 
 
 function Navigation_bar(Pros){
@@ -42,7 +43,8 @@ function Navigation_bar(Pros){
         <div className="navigation_bar">
         <AuthContext.Provider value={{ authState, setAuthState }}>
         <Router>
-          <div className="navigation_item">
+          <div className="navbar">
+          <div className="links">
           {!authState.status && (
             <>
             <Link to="/users/login"> Login </Link>
@@ -51,8 +53,9 @@ function Navigation_bar(Pros){
           )}
            </div>
            <div className="loggedInContainer">
-              <h1>{authState.username} </h1>
+              <h1> Welcome {authState.username} </h1>
               {authState.status && <button onClick={logout}> Logout</button> }
+          </div>
           </div>
           <Switch>
             <Route path="/users" exact component={Register} />

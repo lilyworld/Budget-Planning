@@ -45,8 +45,8 @@ router.delete('/:id', function(req, res, next) {
       .catch(err => next(err));
   });
   
-// router.get("/auth", validateToken, (req, res) => {
-//     res.json(req.user);
-// });
+router.get("/auth", validateToken, (req, res) => {
+    res.json(req.user);
+});
 
 module.exports = router;

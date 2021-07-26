@@ -1,16 +1,9 @@
 
 import './App.css';
-import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 import React from "react";
 import './index.css';
 import Planning_Component from './components/Planning_Component';
 import {Bar, Doughnut} from "react-chartjs-2";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import {Navbar} from 'react-bootstrap';
-import { AuthContext } from "./helpers/AuthContext";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import Navigation from "./components/Navigation";
 
 class App extends React.Component{

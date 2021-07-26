@@ -49,7 +49,59 @@ class App extends React.Component{
           data:[0,0,0,0,0,0,0,0,0,0,0,0],
           backgroundColor:"green"
         }]
-      }
+      },
+      historyData:[{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },
+      {
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },
+      {
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },{
+        total_spending:0,
+        total_saving:0,
+        Remaining_budget:0,
+      },],
+      monthSelect:0,
     };
 
   }

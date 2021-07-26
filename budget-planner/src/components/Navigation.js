@@ -15,7 +15,7 @@ function Navigation_bar(Pros){
     
       useEffect(() => {
         axios
-          .get("http://localhost:4990/users/auth", {
+          .get("http://localhost:4990/users", {
             headers: {
               accessToken: localStorage.getItem("accessToken"),
             },

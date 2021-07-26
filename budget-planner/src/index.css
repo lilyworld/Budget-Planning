@@ -533,6 +533,11 @@ font-size: 20px;
   left: 740px;
   top: 480px;
 }
+
+.myIcons{
+  color: red;
+}
+
 @media screen and (max-width:950px) {
   #p1{
     width:350px;

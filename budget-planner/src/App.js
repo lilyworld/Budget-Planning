@@ -1,14 +1,17 @@
 
 import './App.css';
 import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
-import React from 'react';
+import React from "react";
 import './index.css';
 import Planning_Component from './components/Planning_Component';
 import {Bar, Doughnut} from "react-chartjs-2";
-import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import {Navbar} from 'react-bootstrap';
+import { AuthContext } from "./helpers/AuthContext";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Navigation from "./components/Navigation";
 
 class App extends React.Component{
   constructor(Props){
@@ -46,63 +49,12 @@ class App extends React.Component{
           data:[0,0,0,0,0,0,0,0,0,0,0,0],
           backgroundColor:"green"
         }]
-      },
-      historyData:[{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },
-      {
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },
-      {
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },{
-        total_spending:0,
-        total_saving:0,
-        Remaining_budget:0,
-      },],
-      monthSelect:0,
+      }
     };
 
   }
   
+
   /********************************** */
   //Homepage functions
   addamt = ()=>{
@@ -575,6 +527,7 @@ savingsfunction(){
     this.setState({chartData:data})
   }
 
+
   /**************************************************************************** */
 
   render(){
@@ -748,21 +701,32 @@ savingsfunction(){
     }
     return (
         <div>
-      
-        <div className="navigation_bar">
+        <Navigation/>
+        {/* <div className="navigation_bar">
+        <AuthContext.Provider value={{ authState, setAuthState }}>
         <Router>
-          <Navbar/>
+          <Navbar bg="primary" variant = "dark" expand="lg" collapseOnSelect>
           <div className="navigation_item">
-            <Link to="/users/Login"> Login </Link>
+          {!authState.status && (
+            <>
+            <Link to="/users/login"> Login </Link>
             <Link to="/users"> Register</Link>
+            </>
+          )}
            </div>
+           <div className="loggedInContainer">
+              <h1>{authState.username} </h1>
+              {authState.status && <button onClick={logout}> Logout</button>}
+            </div>
+      
           <Switch>
             <Route path="/users" exact component={Register} />
             <Route path="/users/login" exact component={Login} />
           </Switch>
-
+          </Navbar>
         </Router>
-       </div>
+        </AuthContext.Provider>
+       </div> */}
 
         {display_Component}
         </div>

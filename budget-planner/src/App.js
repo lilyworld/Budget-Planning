@@ -677,7 +677,7 @@ savingsfunction(){
       display_Component = <div className="HApp">
         <div className="historyHeader">
         <h1>History Page</h1>
-        <h3>Current Date:{month}/{day}/{year}</h3>
+        <h3 id="current_date">Current Date:{month}/{day}/{year}</h3>
         
         </div>
         <div className="bar">
@@ -718,7 +718,7 @@ savingsfunction(){
                      }}
                     />  
                   </div>
-        <h3>Statistics</h3>
+        <h3 id="stat">Statistics</h3>
         <label for="month">Choose a month:</label>
         <select id="month" name="month"
         onChange={(e) => {                    //use for determine which month the user select 

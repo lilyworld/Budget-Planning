@@ -27,10 +27,10 @@ router.post("/login", async(req, res) => {
     const user = await Users.findOne({where : {email:email}});
     if(!user) res.json({error: "User Doesn't Exist"});
     bcrypt.compare(password, user.password).then((match) =>{
-        if (!match) res.json({error: "Wrong username and password combination"});
+        if (!match) res.json({error: "Wrong password!"});
 
-        const accessToken = sign({ email: user.email, id:user.id }, "important");
-        res.json({ token: accessToken, email: email, id: user.id });
+        const accessToken = sign({ email: user.email, id:user.id, username:user.username }, "important");
+        res.json({ token: accessToken, email: email, id: user.id, username:user.username });
     });
 });
 

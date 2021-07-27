@@ -572,8 +572,8 @@ savingsfunction(){
     this.setState({chartData:data})
     var data2 = this.state.historyData;
     var total_spending = need_spend + want_spend;
-    var total_saving = save;
     var remain_budget = (this.state.Need_Remaining-0) + (this.state.Want_Remaining-0);
+    var total_saving = (save-0) + (remain_budget-0);
     data2[n].total_spending=total_spending; //set total spending value on the current month 
     data2[n].total_saving=total_saving; //set total saving value on the current month 
     data2[n].Remaining_budget=remain_budget; //set remaining budget value on the current month
@@ -678,6 +678,47 @@ savingsfunction(){
         <div className="historyHeader">
         <h1>History Page</h1>
         <h3>Current Date:{month}/{day}/{year}</h3>
+        
+        </div>
+        <div className="bar">
+        <Bar data={this.state.chartData}
+        
+        options={{
+                 scales:{
+            y:{
+              title:{
+                display:true,
+                text:"Expenses"
+              }
+            },
+            x:{
+              title:{
+                display:true,
+                text:"Months"
+              }
+            }
+          }
+        }}
+        />
+        </div>
+      <br/>
+        <div className = "historyPie">
+                  <Doughnut data={{
+                  labels:["Total spending", "Total saving", "The remaining budget"],
+                   datasets:[{
+                   label:"Needs",
+                   data:[this.state.historyData[this.state.monthSelect].total_spending, this.state.historyData[this.state.monthSelect].total_saving, this.state.historyData[this.state.monthSelect].Remaining_budget],//interestingly, the JSX expression in here do not need to wrapped by {}
+                   backgroundColor:["rgba(62,237,231,0.9)","rgba(255,179,167,0.9)", "rgba(164,226,198,0.9)"]
+                    }]
+                    }}
+
+                    options={{
+                    maintainAspectRatio:false,
+                    animation: {duration:0}//animation disable
+                     }}
+                    />  
+                  </div>
+        <h3>Statistics</h3>
         <label for="month">Choose a month:</label>
         <select id="month" name="month"
         onChange={(e) => {                    //use for determine which month the user select 
@@ -722,33 +763,10 @@ savingsfunction(){
           <option value="Nov">Nov</option>
           <option value="Dec">Dec</option>
         </select>
-        </div>
-        <div className="bar">
-        <Bar data={this.state.chartData}
-        
-        options={{
-                 scales:{
-            y:{
-              title:{
-                display:true,
-                text:"Expenses"
-              }
-            },
-            x:{
-              title:{
-                display:true,
-                text:"Months"
-              }
-            }
-          }
-        }}
-        />
-        </div>
-        <br/><br/>
         <div className="HistoryBar">
-        <h3>Total spending:{this.state.historyData[this.state.monthSelect].total_spending}</h3>
-        <h3>Total saving:{this.state.historyData[this.state.monthSelect].total_saving}</h3>
-        <h3>The remaining budget:{this.state.historyData[this.state.monthSelect].Remaining_budget}</h3>
+        <h4>Total spending:${this.state.historyData[this.state.monthSelect].total_spending}</h4>
+        <h4>Total saving:${this.state.historyData[this.state.monthSelect].total_saving}</h4>
+        <h4>The remaining budget:${this.state.historyData[this.state.monthSelect].Remaining_budget}</h4>
       <button onClick={this.HisChange} id="bt1">Go Back</button>
       </div>
       </div>

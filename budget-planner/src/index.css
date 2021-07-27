@@ -528,6 +528,22 @@ h4 {
   left: 740px;
   top: 480px;
 }
+.historyPie{
+  height: 220px;
+  width: 200px;
+  position: absolute;
+  left: 940px;
+  top: 580px;  
+}
+.HistoryBar{
+border: black;
+background-color:wheat;
+width: 300px;
+height: 180px;
+margin-left: 610px;
+margin-top: -15px;
+border-radius: 20px;
+}
 
 .myIcons {
   color: red;

@@ -147,7 +147,7 @@ class App extends React.Component{
     var needp = document.getElementById("need-percent").innerHTML;
     var wantp = document.getElementById("want-percent").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML
-    this.setState({Balance:amt})    //update all value in the homepage to zero
+    this.setState({Balance:amt})    //update all state objects value in the homepage to zero 
     this.setState({Need_Amount:needamt})
     this.setState({Want_Amount:wantamt})
     this.setState({Saving_Amount:savingamt})
@@ -156,7 +156,7 @@ class App extends React.Component{
     this.setState({Saving_Percent:savingp})////////////////////////////////////////////
   }
 
-  needdelete= ()=>{
+  needdelete= ()=>{   //need box delete function 
     this.needresetfunction();
     var needamt = document.getElementById("needamt").innerHTML;
     var needp = document.getElementById("need-percent").innerHTML;
@@ -164,7 +164,7 @@ class App extends React.Component{
     this.setState({Need_Percent:needp})
   }
 
-  needenter= ()=>{
+  needenter= ()=>{ //need box enter function
     this.needsfunction();
     var needamt = document.getElementById("needamt").innerHTML;
     var needp = document.getElementById("need-percent").innerHTML;
@@ -172,7 +172,7 @@ class App extends React.Component{
     this.setState({Need_Percent:needp})
   }
 
-  wantdelete= ()=>{
+  wantdelete= ()=>{ //want box delete function
     this.wantresetfunction();
     var wantamt = document.getElementById("wantamt").innerHTML;
     var wantp = document.getElementById("want-percent").innerHTML;
@@ -180,7 +180,7 @@ class App extends React.Component{
     this.setState({Want_Percent:wantp})
   }
 
-  wantenter= ()=>{
+  wantenter= ()=>{ //want box enter function
     this.wantsfunction();
     var wantamt = document.getElementById("wantamt").innerHTML;
     var wantp = document.getElementById("want-percent").innerHTML;
@@ -188,7 +188,7 @@ class App extends React.Component{
     this.setState({Want_Percent:wantp})
   }
 
-  savingdelete= ()=>{
+  savingdelete= ()=>{ //saving box delete function
     this.savingresetfunction();
     var savingamt = document.getElementById("savingamt").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML;
@@ -196,7 +196,7 @@ class App extends React.Component{
     this.setState({Saving_Percent:savingp})
   }
 
-  savingenter= ()=>{
+  savingenter= ()=>{ //saving box enter function
     this.savingsfunction();
     var savingamt = document.getElementById("savingamt").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML;
@@ -204,7 +204,7 @@ class App extends React.Component{
     this.setState({Saving_Percent:savingp})
   }
 
-  changePage = ()=>{
+  changePage = ()=>{ //change page button function to change page 
     this.planfunction();
     var savingamt = document.getElementById("savingamt").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML;
@@ -215,7 +215,7 @@ class App extends React.Component{
 
     var N_amt = this.state.Need_Amount;
     var W_amt = this.state.Want_Amount;
-    this.setState({Need_Remaining: N_amt, Want_Remaining: W_amt, needList_Items: [], wantList_Items:[]})
+    this.setState({Need_Remaining: N_amt, Want_Remaining: W_amt, needList_Items: [], wantList_Items:[]}) // set need list and want list to empty if change page back to home
   }
   PlanchangePage = ()=>{
     var value = !this.state.display;
@@ -582,34 +582,34 @@ document.getElementById("saving-percent").innerHTML=percent;
     var d = new Date();
     var n = d.getMonth();
     var value = !this.state.Hdisplay;
-    this.setState({Hdisplay:value})
+    this.setState({Hdisplay:value}) //update the state object to change page
     var need_spend = this.state.Balance *(this.state.Need_Percent/100) - this.state.Need_Remaining;
     var save = this.state.Saving_Amount;
     var want_spend = this.state.Balance *(this.state.Want_Percent/100) - this.state.Want_Remaining;
     var data = this.state.chartData;
-    data.datasets[0].data[n]=need_spend;
-    data.datasets[1].data[n]=want_spend;
-    data.datasets[2].data[n]=save;
-    this.setState({chartData:data})
-    var data2 = this.state.historyData;
+    data.datasets[0].data[n]=need_spend;//set the need spending to the current month state array for bar graph 
+    data.datasets[1].data[n]=want_spend;//set the want spending to the current month state array for bar graph
+    data.datasets[2].data[n]=save;//set the saving value to the current month state array for bar graph
+    this.setState({chartData:data}) //update the bar graph state object with the inserted data
+    var data2 = this.state.historyData; // data for statistics section
     var total_spending = need_spend + want_spend;
     var remain_budget = (this.state.Need_Remaining-0) + (this.state.Want_Remaining-0);
     var total_saving = (save-0) + (remain_budget-0);
     data2[n].total_spending=total_spending; //set total spending value on the current month 
     data2[n].total_saving=total_saving; //set total saving value on the current month 
     data2[n].Remaining_budget=remain_budget; //set remaining budget value on the current month
-    this.setState({historyData:data2});
-    this.setState({monthSelect:0});
+    this.setState({historyData:data2}); //update the statistics data with the new data inserted 
+    this.setState({monthSelect:0}); // set the select month to January as default 
   }
 
 
   /**************************************************************************** */
 
   render(){
-    var d = new Date();
-    var month = d.getMonth()+1;
-    var day = d.getDate();
-    var year = d.getFullYear();
+    var d = new Date();// use to get the current date and year 
+    var month = d.getMonth()+1;///
+    var day = d.getDate();/////
+    var year = d.getFullYear();////////////////////////////////
     var display_Component;
     if(this.state.display == false)
     {

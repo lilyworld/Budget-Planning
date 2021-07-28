@@ -718,14 +718,15 @@ document.getElementById("saving-percent").innerHTML=percent;
                 text:"Months"
               }
             }
-          }
+          },
+          animation: {duration:0}//animation disable
         }}
         />
         </div>
       <br/>
         <div className = "historyPie">
                   <Doughnut data={{
-                  labels:["Total spending", "Total saving", "The remaining budget"],
+                  labels:["Total spending", "Total saving", "Remaining budget"],
                    datasets:[{
                    label:"Needs",
                    data:[this.state.historyData[this.state.monthSelect].total_spending, this.state.historyData[this.state.monthSelect].total_saving, this.state.historyData[this.state.monthSelect].Remaining_budget],//interestingly, the JSX expression in here do not need to wrapped by {}

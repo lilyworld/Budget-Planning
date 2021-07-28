@@ -5,7 +5,7 @@ function SavingList(props){
         <div id = "SavingList">
               <h3> Your saving(currenly {props.Precent}%)</h3>
               <ul id = "SList">
-                  <li className = 'SList_Items'>New saving: $ {props.Amount}</li>
+                  <li className = 'SList_Items'>Inital saving: $ {props.Amount}</li>
               </ul>
           </div>
       );

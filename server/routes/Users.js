@@ -22,14 +22,15 @@ router.post("/", async (req,res) => {
     })
 });
 
+
 router.post("/login", async(req, res) => {
     const{email, password} = req.body;
     const user = await Users.findOne({where : {email:email}});
     if(!user) res.json({error: "User Doesn't Exist"});
     bcrypt.compare(password, user.password).then((match) =>{
-        if (!match) res.json({error: "Wrong password!"});
+        if (!match) res.json({error: "Password is incorrect!"});
 
-        const accessToken = sign({ email: user.email, id:user.id, username:user.username }, "important");
+        const accessToken = sign({ exp: Math.floor(Date.now() / 1000) + (60), email: user.email, id:user.id, username:user.username }, "important");
         res.json({ token: accessToken, email: email, id: user.id, username:user.username });
     });
 });

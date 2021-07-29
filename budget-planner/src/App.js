@@ -5,6 +5,7 @@ import './index.css';
 import Planning_Component from './components/Planning_Component';
 import {Bar, Doughnut} from "react-chartjs-2";
 import Navigation from "./components/Navigation";
+import axios from "axios";
 
 class App extends React.Component{
   constructor(Props){
@@ -435,6 +436,9 @@ savingsfunction(){
       copy_array[duplicate_index_N].Price = (Number(copy_array[duplicate_index_N].Price) + Number(this.state.input_Price)).toFixed(2); 
       //copy_array = [...this.state.wantList_Items, newObject];
       this.setState({needList_Items: copy_array, Need_Remaining: (this.state.Need_Remaining - this.state.input_Price).toFixed(2)})
+      axios.post("http://localhost:4990/needs", newObject).then(() => {
+            console.log("IT WORKED");
+    });
     }
     else if(this.state.selectType == "Want")
     {

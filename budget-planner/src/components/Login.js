@@ -50,7 +50,7 @@ function Login() {
       />
 
       <button id="login_bt" onClick={login}> Login </button>
-      <a href="http://localhost:3000/"><button id="close">Cancel</button></a>
+      <a href="http://localhost:3000/"><button id="close" >Cancel</button></a>
       </div>
     </div>
   );

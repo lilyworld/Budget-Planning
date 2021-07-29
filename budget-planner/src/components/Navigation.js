@@ -16,7 +16,7 @@ function Navigation_bar(Pros){
     
       useEffect(() => {
         axios
-          .get("http://localhost:4990/users", {
+          .get("http://localhost:4990/users/auth", {
             headers: {
               accessToken: localStorage.getItem("accessToken"),
             },
@@ -39,7 +39,6 @@ function Navigation_bar(Pros){
         setAuthState({ username: "", id: 0, status: false });
       };
 
-
     return (
         <div className="navigation_bar">
         <AuthContext.Provider value={{ authState, setAuthState }}>
@@ -48,14 +47,14 @@ function Navigation_bar(Pros){
           <div className="links">
           {!authState.status && (
             <>
-            <Link to="/users/login" className = "Navi_Items" > Login </Link>
-            <Link to="/users" className = "Navi_Items" > Register</Link>
+            <Link to="/users/login"> Login </Link>
+            <Link to="/users"> Register</Link>
             </>
           )}
            </div>
            <div className="loggedInContainer">
               <h1> Welcome {authState.username} </h1>
-              {authState.status && <button onClick={logout}> Logout</button> }
+              {authState.status && <button onClick={logout}> Logout</button>}
           </div>
           </div>
           <Switch>

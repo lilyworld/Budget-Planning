@@ -1,10 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
     const Needs = sequelize.define("Needs", {
-        itemname: {
+        Name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        price:{
+        Price:{
             type: DataTypes.STRING,
             allowNull: false,
         },

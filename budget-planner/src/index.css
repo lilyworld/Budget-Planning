@@ -883,4 +883,110 @@ notice the media queries should alway place under the original css code, otherwi
   }
 }
 
+/*Login css*/
+.loginContainer{
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+.register{
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+.loginContent{
+  text-align: center;
+  border-radius: 20px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+ width: 500px;
+ height: 500px;
+}
+.formContainer{
+  text-align: center;
+  border-radius: 20px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+ width: 500px;
+ height: 500px;
+}
+input[type=text], input[type=password],#inputRegister {
+  border: 0;
+  text-align: center;
+  background: none;
+  display: block;
+  margin: 10px auto;
+  border: 2px solid blue;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+input[type=text]:focus, input[type=password]:focus,#inputRegister:focus{
+  width: 280px;
+  border-color: lime;
+}
+#login_bt,#register_bt{
+  border: 0;
+  text-align: center;
+  background: none;
+  display: block;
+  margin: 10px auto;
+  border: 2px solid lightgreen;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+#close{
+  border: 0;
+  text-align: center;
+  background: none;
+  display: block;
+  margin: 10px auto;
+  border: 2px solid red;
+  padding: 14px 10px;
+  width: 170px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+#login_bt:hover,#register_bt:hover{
+  background-color: darkturquoise;
+  color: white;
+  text-shadow: yellow;
+}
+#close:hover{
+  background-color: red;
+  color: white;
+  text-shadow: yellow;
+}
+
 

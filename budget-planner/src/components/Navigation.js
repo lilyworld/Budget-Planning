@@ -39,6 +39,13 @@ function Navigation_bar(Pros){
         setAuthState({ username: "", id: 0, status: false });
       };
 
+      function displaylogin_screen(){
+      document.getElementById("login1").style.display="block";  
+      }
+      function displayregister_screen(){
+        document.getElementById("register1").style.display="block";  
+        }
+
     return (
         <div className="navigation_bar">
         <AuthContext.Provider value={{ authState, setAuthState }}>
@@ -47,8 +54,8 @@ function Navigation_bar(Pros){
           <div className="links">
           {!authState.status && (
             <>
-            <Link to="/users/login" className = "Navi_Items"> Login </Link>
-            <Link to="/users" className = "Navi_Items"> Register</Link>
+            <Link to="/users/login" className = "Navi_Items" > Login </Link>
+            <Link to="/users" className = "Navi_Items" > Register</Link>
             </>
           )}
            </div>

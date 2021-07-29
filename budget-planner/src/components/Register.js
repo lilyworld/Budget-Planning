@@ -24,15 +24,19 @@ function Register() {
             history.push("/users/login");
     });
   };
+  function close_screen(){
+    document.getElementById("register1").style.display="none";  
+    }
 
   return (
-    <div className="register">
+    <div className="register" id="register1">
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
         validationSchema={validationSchema}
       >
         <Form className="formContainer">
+          <h1>Register</h1>
           <label>Username: </label>
           <ErrorMessage name="username" component="span" />
           <Field
@@ -59,7 +63,8 @@ function Register() {
             placeholder="Please enter your password..."
           />
 
-          <button type="submit"> Register </button>
+          <button type="submit" id="register_bt"> Register </button>
+          <button id="close" onClick={close_screen}>close</button>
         </Form>
       </Formik>
     </div>

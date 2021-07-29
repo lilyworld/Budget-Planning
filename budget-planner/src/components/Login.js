@@ -27,16 +27,22 @@ function Login() {
       } 
     });
   };
+  function close_screen(){
+    document.getElementById("login1").style.display="none";  
+    }
   return (
-    <div className="loginContainer">
-      <label>Email:</label>
+    <div className="loginContainer" id="login1">
+      
+      <div className="loginContent">
+        <h1>Login</h1>
+      <label><strong>Email:</strong></label>
       <input
         type="text"
         onChange={(event) => {
           setEmail(event.target.value);
         }}
       />
-      <label>Password:</label>
+      <label><strong>Password:</strong></label>
       <input
         type="password"
         onChange={(event) => {
@@ -44,7 +50,9 @@ function Login() {
         }}
       />
 
-      <button onClick={login}> Login </button>
+      <button id="login_bt" onClick={login}> Login </button>
+      <button id="close" onClick={close_screen}>Cancel</button>
+      </div>
     </div>
   );
 }

@@ -28,23 +28,30 @@ function Login() {
     });
   };
   return (
-    <div className="loginContainer">
-      <label>Email:</label>
+    <div className="loginContainer" id="login1">
+      
+      <div className="loginContent">
+        <h1>Login</h1>
+      <label><strong>Email:</strong></label>
       <input
+      id="inputlogin"
         type="text"
         onChange={(event) => {
           setEmail(event.target.value);
         }}
       />
-      <label>Password:</label>
+      <label><strong>Password:</strong></label>
       <input
+      id="inputlogin"
         type="password"
         onChange={(event) => {
           setPassword(event.target.value);
         }}
       />
 
-      <button onClick={login}> Login </button>
+      <button id="login_bt" onClick={login}> Login </button>
+      <a href="http://localhost:3000/"><button id="close" >Cancel</button></a>
+      </div>
     </div>
   );
 }

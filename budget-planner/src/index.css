@@ -1,10 +1,23 @@
 /*Alex css file*/
+html{
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  border-width: 0px;
+  width:100%;
+}
+/*setting margin padding border-width to 0px will make the elements inside close to the border with no white space*/
 body {
   background-image: url(./imagesForComponent/coffee.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  border-width: 0px;
+  width:100%;
 }
 .App {
   border: 1px solid black;
@@ -54,6 +67,9 @@ body {
   margin-right: auto;
   width: 900px;
   height: 400px;
+}
+#Budget_Bar{
+  color:white;
 }
 #amt1,
 #counter {
@@ -185,18 +201,6 @@ code {
     monospace;
 }
 
-#navigation_bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  list-style-type: none;
-  background-color: black;
-  margin: 0%;
-  overflow: hidden; /*for some reason, if the overflow is not hidden, then back ground color will not display*/
-  opacity: 80%;
-}
 #IN {
   position: absolute;
   left: 10px;
@@ -528,12 +532,213 @@ h4 {
   left: 740px;
   top: 480px;
 }
+.historyPie{
+  height: 220px;
+  width: 200px;
+  position: absolute;
+  left: 940px;
+  top: 580px;  
+}
+.HistoryBar{
+border: black;
+background-color:wheat;
+width: 300px;
+height: 180px;
+margin-left: 610px;
+margin-top: -15px;
+border-radius: 20px;
+}
+#stat{
+  margin-top: 30px;
+}
 
 .myIcons {
   color: red;
 }
+/*Navigation bar css
+notice the media queries should alway place under the original css code, otherwise it wont work
+*/
+.navbar {
+  box-sizing: border-box;
+  padding: 0px;
+  border-width: 0px;
+  width: 100%;
+  height: 70px;
+  background-color: rgba(164, 226, 198, 0.9);
+  display: flex;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.links {
+  box-sizing: border-box;
+  margin: 0px;
+  flex: 50%;
+  height: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 
-@media screen and (max-width: 950px) {
+.loggedInContainer {
+  box-sizing: border-box;
+  margin: 0px;
+  flex: 50%;
+  height: 100%;
+  display:flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.Navi_Items {
+  box-sizing: border-box;
+  width: 20%;
+  height:100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0px 0px 0px 0px;
+  text-decoration: none;
+  color: white;
+}
+
+.Navi_Items:hover{
+  background-color: rgba(164, 226, 198, 1)
+}
+
+.navbar button {
+  width: 100px;
+  height: 40px;
+  cursor: pointer;
+  margin-right: 10px;
+  background-color: white;
+}
+
+.navbar h1 {
+  text-align: right;
+  margin-right: 10px;
+  color: white;
+  font-weight: lighter;
+}
+
+
+
+/*Login css*/
+.loginContainer{
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+.register{
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/*the login box*/
+.loginContent{
+  text-align: center;
+  border-radius: 20px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  width: 500px;
+  height: 400px;
+}
+
+/*Register box css*/
+.formContainer{
+  text-align: center;
+  border-radius: 20px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+ width: 500px;
+ height: 500px;
+}
+#inputlogin,#inputRegister {
+  border: 0;
+  text-align: center;
+  background: none;
+  display: block;
+  margin: 10px auto;
+  border: 2px solid blue;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+#inputlogin:focus, #inputRegister:focus{
+  width: 280px;
+  border-color: lime;
+}
+#login_bt,#register_bt{
+  border: 0;
+  text-align: center;
+  background: none;
+  display: block;
+  margin: 10px auto;
+  border: 2px solid lightgreen;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+#close{
+  border: 0;
+  text-align: center;
+  background: none;
+  display: block;
+  margin: 10px auto;
+  border: 2px solid red;
+  padding: 14px 10px;
+  width: 170px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+#login_bt:hover,#register_bt:hover{
+  background-color: darkturquoise;
+  color: white;
+  text-shadow: yellow;
+}
+#close:hover{
+  background-color: red;
+  color: white;
+  text-shadow: yellow;
+}
+a:link{
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 950px) {
+  html{
+    height:1600px;
+  }
   #p1 {
     width: 350px;
     height: 200px;
@@ -573,8 +778,60 @@ h4 {
     left: 350px;
     top: 1000px;
   }
-}
-@media only screen and (max-width: 600px) {
+  #stat{
+    margin-top: -200px;
+  }
+  .historyPie{
+    height: 200px;
+    width: 150px;
+    position: absolute;
+    left: 250px;
+    top: 480px;  
+  }
+  .HistoryBar{
+  border: black;
+  background-color:wheat;
+  width: 200px;
+  height: 150px;
+  font-size: 15px;
+  margin-left: 30px;
+  margin-top: 20px;
+  border-radius: 20px;
+  }
+
+  #Want_Remaining_Budget {
+    text-align: center;
+    left:10%;
+    width:80%;
+  }
+  
+  #Need_Remaining_Budget {
+    text-align: center;
+    left:10%;
+    width:80%;
+
+  }
+
+  /*Css for Navigation bar at low width*/
+  .navbar {
+    box-sizing: border-box;
+    padding: 0px;
+    border-width: 0px;
+    width: 100%;
+    height: 70px;
+    background-color: rgba(164, 226, 198, 0.9);
+    display: flex;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    position:fixed;
+    top:0px;
+    z-index: 1;
+  }
+
+  .Navi_Items {
+    width: 50%;
+  }
+
   * {
     box-sizing: border-box;
   }
@@ -589,7 +846,7 @@ h4 {
     border: 1px solid black;
     position: relative;
     width: 75%;
-    height: 1250px;
+    height: 1450px;
     border-radius: 20px;
     margin-top: 15%;
     margin-bottom: 15%;
@@ -702,7 +959,7 @@ h4 {
     display: block;
     position: absolute;
     left: 12.25%;
-    top: 25%;
+    top: 20%;
     /*left: 50px;// even when float property is applied, left property is still effective*/
   }
   #Want_List {
@@ -726,7 +983,7 @@ h4 {
     overflow: auto;
     position: absolute;
     left: 12.25%;
-    top: 60%;
+    top: 52.5%;
   }
 
   #Need_List {
@@ -748,65 +1005,41 @@ h4 {
   }
 
   #SavingList {
-    width: 100%;
+    width: 75%;
     height: 100px;
-
     border-style: outset;
     border-radius: 0px 0px 0px 0px;
+    border-width:0px;
     background-color: rgba(164, 226, 198, 0.9);
+    position: absolute;
+    left: 12.25%;
+    top: 82.5%;
+    border-radius: 25px;
 
-    position: fixed;
-    left: 0px;
-    top: 0%;
   }
-}
+  /*Login, Register responstive css*/
+  .loginContent{
+    margin-top: 20px;
+    display:block;
+    width: 60%;
+    height: 400px;
+  }
 
-/**************************************************/
-/* span {
-  color: red;
-} */
+  #inputlogin,#inputRegister {
+      width: 60%;  
+  }
 
-/* NAVBAR */
+  #inputlogin:focus, #inputRegister:focus{
+    width: 80%;
+  }
 
-.navbar {
-  width: 100%;
-  height: 70px;
-  background-color: black;
-  display: flex;
-  align-items: center;
-  font-family: Arial, Helvetica, sans-serif;
-}
-.navbar .links {
-  flex: 50%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.navbar .loggedInContainer {
-  flex: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-.navbar a {
-  margin-left: 20px;
-  text-decoration: none;
-  color: white;
-}
-
-.navbar button {
-  width: 100px;
-  height: 40px;
-  cursor: pointer;
-  margin-right: 10px;
-  background-color: white;
-}
-
-.navbar h1 {
-  text-align: right;
-  margin-right: 10px;
-  color: white;
-  font-weight: lighter;
+  .formContainer{
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    width: 60%;
+   height: 500px;
+  }
+  /*.....*/
 }

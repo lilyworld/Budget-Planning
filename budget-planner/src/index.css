@@ -68,6 +68,9 @@ body {
   width: 900px;
   height: 400px;
 }
+#Budget_Bar{
+  color:white;
+}
 #amt1,
 #counter {
   font-size: 30px;
@@ -795,6 +798,20 @@ a:link{
   margin-top: 20px;
   border-radius: 20px;
   }
+
+  #Want_Remaining_Budget {
+    text-align: center;
+    left:10%;
+    width:80%;
+  }
+  
+  #Need_Remaining_Budget {
+    text-align: center;
+    left:10%;
+    width:80%;
+
+  }
+
   /*Css for Navigation bar at low width*/
   .navbar {
     box-sizing: border-box;

@@ -615,7 +615,7 @@ document.getElementById("saving-percent").innerHTML=percent;
     if(this.state.display == false)
     {
       display_Component = display_Component =  <div  className = "App">
-      <h1 >Budget Balance:$<span id="amt1">{this.state.Balance}</span></h1>
+      <h1 id = "Budget_Bar">Budget Balance:$<span id="amt1">{this.state.Balance}</span></h1>
       <div>
       <label for="month">Choose a month to budget:</label>
         <select id="month" name="month"

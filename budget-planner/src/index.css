@@ -930,7 +930,7 @@ notice the media queries should alway place under the original css code, otherwi
  width: 500px;
  height: 500px;
 }
-input[type=text], input[type=password],#inputRegister {
+#inputlogin,#inputRegister {
   border: 0;
   text-align: center;
   background: none;
@@ -944,7 +944,7 @@ input[type=text], input[type=password],#inputRegister {
   border-radius: 24px;
   transition: 0.25s;
 }
-input[type=text]:focus, input[type=password]:focus,#inputRegister:focus{
+#inputlogin:focus, #inputlogin:focus,#inputRegister:focus{
   width: 280px;
   border-color: lime;
 }

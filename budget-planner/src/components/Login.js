@@ -37,6 +37,7 @@ function Login() {
         <h1>Login</h1>
       <label><strong>Email:</strong></label>
       <input
+      id="inputlogin"
         type="text"
         onChange={(event) => {
           setEmail(event.target.value);
@@ -44,6 +45,7 @@ function Login() {
       />
       <label><strong>Password:</strong></label>
       <input
+      id="inputlogin"
         type="password"
         onChange={(event) => {
           setPassword(event.target.value);

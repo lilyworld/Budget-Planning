@@ -988,5 +988,8 @@ notice the media queries should alway place under the original css code, otherwi
   color: white;
   text-shadow: yellow;
 }
+a:link{
+  text-decoration: none;
+}
 
 

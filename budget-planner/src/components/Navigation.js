@@ -39,12 +39,6 @@ function Navigation_bar(Pros){
         setAuthState({ username: "", id: 0, status: false });
       };
 
-      function displaylogin_screen(){
-      document.getElementById("login1").style.display="block";  
-      }
-      function displayregister_screen(){
-        document.getElementById("register1").style.display="block";  
-        }
 
     return (
         <div className="navigation_bar">

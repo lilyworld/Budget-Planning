@@ -27,9 +27,6 @@ function Login() {
       } 
     });
   };
-  function close_screen(){
-    document.getElementById("login1").style.display="none";  
-    }
   return (
     <div className="loginContainer" id="login1">
       
@@ -53,7 +50,7 @@ function Login() {
       />
 
       <button id="login_bt" onClick={login}> Login </button>
-      <button id="close" onClick={close_screen}>Cancel</button>
+      <a href="http://localhost:3000/"><button id="close">Cancel</button></a>
       </div>
     </div>
   );

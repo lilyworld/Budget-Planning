@@ -24,10 +24,6 @@ function Register() {
             history.push("/users/login");
     });
   };
-  function close_screen(){
-    document.getElementById("register1").style.display="none";  
-    }
-
   return (
     <div className="register" id="register1">
       <Formik
@@ -64,7 +60,7 @@ function Register() {
           />
 
           <button type="submit" id="register_bt"> Register </button>
-          <button id="close" onClick={close_screen}>close</button>
+          <a href="http://localhost:3000/" id="close">Cancel</a>
         </Form>
       </Formik>
     </div>

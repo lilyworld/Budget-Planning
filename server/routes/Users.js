@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const {sign} = require("jsonwebtoken");
 const { validateToken } = require("../middlewares/AuthMiddleware");
 
+//Can see all of datas in users api, but not really use it in this project, just for testing in postman
 router.get('/', async (req, res) => {
     const listOfUsers = await Users.findAll();
     res.json(listOfUsers);
@@ -12,6 +13,7 @@ router.get('/', async (req, res) => {
 
 router.post("/", async (req,res) => {
     const {username, email, password} = req.body;
+    //for data security, even in the backend, password is not visible with bcrypt
     bcrypt.hash(password, 10).then((hash) => {
         Users.create({
             username:username,
@@ -29,8 +31,8 @@ router.post("/login", async(req, res) => {
     if(!user) res.json({error: "User Doesn't Exist"});
     bcrypt.compare(password, user.password).then((match) =>{
         if (!match) res.json({error: "Password is incorrect!"});
-
-        const accessToken = sign({ exp: Math.floor(Date.now() / 1000) + (60), email: user.email, id:user.id, username:user.username }, "important");
+        //the accessToken will be invalid in 1 hour, the random string created for accessToken will carry user's email, username and id.
+        const accessToken = sign({ exp: Math.floor(Date.now() / 1000) + (60 * 60), email: user.email, id:user.id, username:user.username }, "important");
         res.json({ token: accessToken, email: email, id: user.id, username:user.username });
     });
 });

@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import '../index.css';
 
-
+//useState and useEffect can only be used in function components, but not class components
 function Navigation_bar(Pros){
     const [authState, setAuthState] = useState({
         username: "",
@@ -54,7 +54,7 @@ function Navigation_bar(Pros){
            </div>
            <div className="loggedInContainer">
               <h1> Welcome {authState.username} </h1>
-              {authState.status && <button onClick={logout}> Logout</button>}
+              {authState.status && <button onClick={logout}> Logout</button>} 
           </div>
           </div>
           <Switch>

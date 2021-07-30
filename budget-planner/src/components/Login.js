@@ -17,13 +17,13 @@ function Login() {
       if(response.data.error){
         alert(response.data.error);
       } else {
-        localStorage.setItem("accessToken", response.data.token);
+        localStorage.setItem("accessToken", response.data.token); 
         setAuthState({
             username: response.data.username,
             id: response.data.id,
             status: true,
           });
-        history.push("/");
+        history.push("/");  //Push to home page when login successfully 
       } 
     });
   };

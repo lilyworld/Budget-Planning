@@ -1,3 +1,5 @@
+//import this to some functions, then users need to have permission(like logging in) to do some actions
+
 const { verify } = require("jsonwebtoken");
 
 const validateToken = (req, res, next) => {

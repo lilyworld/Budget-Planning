@@ -524,11 +524,11 @@ h4 {
 }
 
 .MyDoughnut {
-  height: 220px;
-  width: 200px;
+  height: 210px;
+  width: 190px;
   position: absolute;
   left: 740px;
-  top: 480px;
+  top: 490px;
 }
 .historyPie{
   height: 220px;

@@ -671,7 +671,7 @@ document.getElementById("saving-percent").innerHTML=percent;
       <button onClick={this.addamt} id="add1">+</button>
       <br></br>
       <button onClick={this.clearamt} id="clear1">Clear</button>
-      <br></br>
+      <br/>
       <p id="p1">Needs
                   <br></br>
                   <p>Budget:<span id="need-percent">{this.state.Need_Percent}</span>%</p>

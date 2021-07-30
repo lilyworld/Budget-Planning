@@ -47,8 +47,8 @@ function Navigation_bar(Pros){
           <div className="links">
           {!authState.status && (
             <>
-            <Link to="/users/login"> Login </Link>
-            <Link to="/users"> Register</Link>
+            <Link to="/users/login" className = "Navi_Items"> Login </Link>
+            <Link to="/users" className = "Navi_Items"> Register</Link>
             </>
           )}
            </div>

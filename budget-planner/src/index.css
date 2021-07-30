@@ -588,6 +588,8 @@ notice the media queries should alway place under the original css code, otherwi
 }
 .Navi_Items {
   box-sizing: border-box;
+  
+  
   width: 20%;
   height:100%;
   display:flex;

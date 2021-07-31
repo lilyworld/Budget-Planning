@@ -199,7 +199,20 @@ class App extends React.Component{
 
   savingenter= ()=>{
     this.savingsfunction();
-    var savingamt = document.getElementById("savingamt").innerHTML;
+    let savingamt = document.getElementById("savingamt").innerHTML;
+    // creates entity, it does not work now !!!!!!!
+    fetch("http://localhost:4990/savings", {
+      method: "POST",
+      headers:{"context-type": "application/json"},
+      body: JSON.stringify(savingamt)
+    })
+    .then(response => response.json())
+    .then(response => {
+      console.log(response)
+    })
+    .catch(err => {
+      console.log(err);
+    });
     var savingp = document.getElementById("saving-percent").innerHTML;
     this.setState({Saving_Amount:savingamt})
     this.setState({Saving_Percent:savingp})
@@ -404,7 +417,7 @@ savingsfunction(){
     }
     
     
-    var newObject = {Name: this.state.input_Name, Price: Number(this.state.input_Price).toFixed(2)};
+    let newObject = {Name: this.state.input_Name, Price: Number(this.state.input_Price).toFixed(2)};
     var copy_array = [];
     var duplicate_index_W = this.checkDuplicate(newObject.Name, 0);// return -1 if no duplicate
     var duplicate_index_N = this.checkDuplicate(newObject.Name, 1);// return -1 if no duplicate 
@@ -436,21 +449,6 @@ savingsfunction(){
       copy_array[duplicate_index_N].Price = (Number(copy_array[duplicate_index_N].Price) + Number(this.state.input_Price)).toFixed(2); 
       //copy_array = [...this.state.wantList_Items, newObject];
       this.setState({needList_Items: copy_array, Need_Remaining: (this.state.Need_Remaining - this.state.input_Price).toFixed(2)})
-      // creates entity, it does not work now !!!!!!!
-      fetch("https://localhost:4990/needs", {
-        "method": "POST",
-        "body": JSON.stringify({
-          Name: this.state.input_Name,
-          Price: this.state.input_Price
-        })
-      })
-      .then(response => response.json())
-      .then(response => {
-        console.log(response)
-      })
-      .catch(err => {
-        console.log(err);
-      });
     }
     else if(this.state.selectType == "Want")
     {
@@ -463,6 +461,10 @@ savingsfunction(){
 
       copy_array = [...this.state.wantList_Items, newObject];
       this.setState({wantList_Items: copy_array, Want_Remaining: (this.state.Want_Remaining - this.state.input_Price).toFixed(2)})
+      //add to wants api, the variable names for wants table are "itemname" and "price"
+      axios.post("http://localhost:4990/wants", {itemname: this.state.input_Name, price: this.state.input_Price}).then(() => {
+        console.log("IT WORKED");
+      });
     }
     else if(this.state.selectType == "Need")
     {
@@ -474,6 +476,10 @@ savingsfunction(){
       }
       copy_array = [...this.state.needList_Items, newObject];
       this.setState({needList_Items: copy_array, Need_Remaining: (this.state.Need_Remaining - this.state.input_Price).toFixed(2)})
+      //add to needs api, the variable names for needs table are "itemname" and "price"
+      axios.post("http://localhost:4990/needs", {itemname: this.state.input_Name, price: this.state.input_Price}).then(() => {
+            console.log("IT WORKED");
+          });
       
     }
     this.resetInput();

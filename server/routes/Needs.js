@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { Needs } = require("../models");
+const { Needs, Users } = require("../models");
+const { validateToken } = require("../middlewares/AuthMiddleware");
 
 router.get('/', async (req, res) => {
     const listOfNeeds = await Needs.findAll();
@@ -9,7 +10,7 @@ router.get('/', async (req, res) => {
 
 
 /**ADD NEW ITEMS */
-router.post("/", async (req,res) => {
+router.post("/", validateToken, async (req,res) => {
     const needs = req.body;
     await Needs.create(needs);
     res.json(needs);

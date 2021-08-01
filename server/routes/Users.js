@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const {Users} = require("../models");
+const {Users, Needs} = require("../models");
 const bcrypt = require("bcrypt");
 const {sign} = require("jsonwebtoken");
 const { validateToken } = require("../middlewares/AuthMiddleware");
 
 //Can see all of datas in users api, but not really use it in this project, just for testing in postman
 router.get('/', async (req, res) => {
-    const listOfUsers = await Users.findAll();
+    const listOfUsers = await Users.findAll({include:[Needs]});
     res.json(listOfUsers);
 });
 

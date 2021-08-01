@@ -117,6 +117,18 @@ class App extends React.Component{
     this.setState({Want_Amount:wantamt}) //update want amount value
     this.setState({Want_Percent:wantp}) //update want percent value
     var savingamt = document.getElementById("savingamt").innerHTML;
+    axios.post("http://localhost:4990/savings",
+    {
+      amount: savingamt
+     },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
     var savingp = document.getElementById("saving-percent").innerHTML;
     this.setState({Saving_Amount:savingamt}) //update saving amount value
     this.setState({Saving_Percent:savingp}) //update saving percent value
@@ -201,19 +213,18 @@ class App extends React.Component{
   savingenter= ()=>{ //saving box enter function
     this.savingsfunction();
     let savingamt = document.getElementById("savingamt").innerHTML;
-    // creates entity, it does not work now !!!!!!!
-    fetch("http://localhost:4990/savings", {
-      method: "POST",
-      headers:{"context-type": "application/json"},
-      body: JSON.stringify(savingamt)
-    })
-    .then(response => response.json())
-    .then(response => {
-      console.log(response)
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    axios.post("http://localhost:4990/savings",
+    {
+      amount: savingamt
+     },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
     var savingp = document.getElementById("saving-percent").innerHTML;
     this.setState({Saving_Amount:savingamt})
     this.setState({Saving_Percent:savingp})
@@ -483,7 +494,17 @@ document.getElementById("saving-percent").innerHTML=percent;
       copy_array = [...this.state.wantList_Items, newObject];
       this.setState({wantList_Items: copy_array, Want_Remaining: (this.state.Want_Remaining - this.state.input_Price).toFixed(2)})
       //add to wants api, the variable names for wants table are "itemname" and "price"
-      axios.post("http://localhost:4990/wants", {itemname: this.state.input_Name, price: this.state.input_Price}).then(() => {
+      axios.post("http://localhost:4990/wants",
+       {
+         itemname: this.state.input_Name, 
+         price: this.state.input_Price
+        },
+       {
+          headers: {
+            accessToken: localStorage.getItem("accessToken"),  // new item will only be added to database when user is logged in
+          },
+        }
+        ).then(() => {
         console.log("IT WORKED");
       });
     }
@@ -498,7 +519,17 @@ document.getElementById("saving-percent").innerHTML=percent;
       copy_array = [...this.state.needList_Items, newObject];
       this.setState({needList_Items: copy_array, Need_Remaining: (this.state.Need_Remaining - this.state.input_Price).toFixed(2)})
       //add to needs api, the variable names for needs table are "itemname" and "price"
-      axios.post("http://localhost:4990/needs", {itemname: this.state.input_Name, price: this.state.input_Price}).then(() => {
+      axios.post("http://localhost:4990/needs", 
+      {
+        itemname: this.state.input_Name,
+        price: this.state.input_Price
+      },
+      {
+        headers: {
+          accessToken: localStorage.getItem("accessToken"), // new item will only be added to database when user is logged in
+        },
+      }
+      ).then(() => {
             console.log("IT WORKED");
           });
       
@@ -577,7 +608,17 @@ document.getElementById("saving-percent").innerHTML=percent;
           var x = copy_array[i].Price;//get the price of remove item
           copy_array.splice(i,1);
           var remain = this.state.Need_Remaining;
-          this.setState({NeedList_Items: copy_array, Need_Remaining: (Number(remain) + Number(x))})
+          this.setState({NeedList_Items: copy_array, Need_Remaining: (Number(remain) + Number(x))});
+          axios.delete("http://localhost:4990/needs/${e.target.id}",  // cannot work yet
+          {
+            headers: {
+              accessToken: localStorage.getItem("accessToken"), // only the person who logged in can delete item from databases
+            },
+          }
+          ).then(() => {
+                console.log("IT WORKED");
+              });
+          
         }
       }
     }

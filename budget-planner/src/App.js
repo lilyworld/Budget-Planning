@@ -300,16 +300,67 @@ class App extends React.Component{
     this.minusfunction(); //call minus function to subtract budget balance by iinput value
     var value = document.getElementById("amt1").innerHTML;
     this.setState({Balance:value}) //update balance value
+    axios.post("http://localhost:4990/budget",
+    {
+      amount: value
+     },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
     var needamt = document.getElementById("needamt").innerHTML;
     var needp = document.getElementById("need-percent").innerHTML;
+    axios.post("http://localhost:4990/needs",
+    {
+      amount: needamt,
+      percent: needp
+     },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
     this.setState({Need_Amount:needamt}) //update need amount value
     this.setState({Need_Percent:needp})//update need percent value
     var wantamt = document.getElementById("wantamt").innerHTML;
     var wantp = document.getElementById("want-percent").innerHTML;
+    axios.post("http://localhost:4990/wants",
+    {
+      amount: wantamt,
+      percent: wantp
+     },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
     this.setState({Want_Amount:wantamt}) //update want amount value
     this.setState({Want_Percent:wantp}) //update want percent value
     var savingamt = document.getElementById("savingamt").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML;
+    axios.post("http://localhost:4990/savings",
+    {
+      amount: savingamt,
+      percent: savingp
+     },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
     this.setState({Saving_Amount:savingamt}) //update saving amount value
     this.setState({Saving_Percent:savingp}) //update saving percent value
         var counter = document.getElementById("counter").innerHTML; 

@@ -12,7 +12,7 @@ function NeedList_Component(Props){
         (Item)=> <li key = {Item.Name}> <span id="IN">{Item.Name}:</span> ${Item.Price} 
             <button type = "button" id = {Item.Name} className = "Need" onClick = {Props.delete_item}>
             {icon}
-            </button></li>//add icon to delete button
+            </button></li>
     )}
     </ul>
 <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br/><br/><br/>

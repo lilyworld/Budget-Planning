@@ -101,6 +101,18 @@ class App extends React.Component{
 
   }
   
+  //This function will be called when app component render or mounted
+  componentDidMount(){
+    if(sessionStorage.length!=0)//if sessionStorage contain something
+    {
+      let balance = Number(sessionStorage.getItem('Balance')).toFixed(2);
+      
+      this.setState({Balance:balance});
+    }
+    else{
+      //do nothing
+    }
+  }
 
   /********************************** */
   //Homepage functions
@@ -108,6 +120,7 @@ class App extends React.Component{
     this.addfunction(); //call add function to do addition input value to budget balance
     var value = document.getElementById("amt1").innerHTML;
     this.setState({Balance:value}) //update balance value
+    sessionStorage.setItem('Balance',value.toString());//sessionStorage example
     var needamt = document.getElementById("needamt").innerHTML;
     var needp = document.getElementById("need-percent").innerHTML;
     this.setState({Need_Amount:needamt}) //update need amount value

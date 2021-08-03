@@ -341,6 +341,19 @@ class App extends React.Component{
     this.needsfunction();
     var needamt = document.getElementById("needamt").innerHTML;
     var needp = document.getElementById("need-percent").innerHTML;
+    axios.post("http://localhost:4990/needs",
+    {
+      amount: needamt,
+      percent: needp
+     },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
     this.setState({Need_Amount:needamt})
     this.setState({Need_Percent:needp})
   }
@@ -357,6 +370,19 @@ class App extends React.Component{
     this.wantsfunction();
     var wantamt = document.getElementById("wantamt").innerHTML;
     var wantp = document.getElementById("want-percent").innerHTML;
+    axios.post("http://localhost:4990/wants",
+    {
+      amount: wantamt,
+      percent: wantp
+     },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
     this.setState({Want_Amount:wantamt})
     this.setState({Want_Percent:wantp})
   }

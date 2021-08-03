@@ -26,7 +26,7 @@ router.post("/", validateToken, async (req,res) => {
       percent: want.percent
     }
     console.log(rowData)
-    await want_amount.upsert(rowData);     // "upsert" inserts if it doesn't exist, otherwise updates.
+    await Want_amount.upsert(rowData);     // "upsert" inserts if it doesn't exist, otherwise updates.
     res.json(want);
 });
 

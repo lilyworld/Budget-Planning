@@ -19,6 +19,7 @@ class App extends React.Component{
       input_Name : "",
       input_Price : "",
       Balance:0.00,
+      Budget_Available:100,
       Need_Amount:0.00,
       Need_Remaining:0.00,
       Want_Amount:0.00,
@@ -291,6 +292,8 @@ class App extends React.Component{
    });
     this.setState({Saving_Amount:savingamt}) //update saving amount value
     this.setState({Saving_Percent:savingp}) //update saving percent value
+    var counter = document.getElementById("counter").innerHTML; 
+    this.setState({Budget_Available:counter});//update budget available value
   }
 
   minusamt = ()=>{
@@ -309,6 +312,8 @@ class App extends React.Component{
     var savingp = document.getElementById("saving-percent").innerHTML;
     this.setState({Saving_Amount:savingamt}) //update saving amount value
     this.setState({Saving_Percent:savingp}) //update saving percent value
+        var counter = document.getElementById("counter").innerHTML; 
+    this.setState({Budget_Available:counter});//update budget available value
   }
 
   clearamt = ()=>{
@@ -327,6 +332,8 @@ class App extends React.Component{
     this.setState({Need_Percent:needp})
     this.setState({Want_Percent:wantp})
     this.setState({Saving_Percent:savingp})////////////////////////////////////////////
+        var counter = document.getElementById("counter").innerHTML; 
+    this.setState({Budget_Available:counter});//update budget available value
   }
 
   needdelete= ()=>{   //need box delete function 
@@ -335,6 +342,8 @@ class App extends React.Component{
     var needp = document.getElementById("need-percent").innerHTML;
     this.setState({Need_Amount:needamt})
     this.setState({Need_Percent:needp})
+        var counter = document.getElementById("counter").innerHTML; 
+    this.setState({Budget_Available:counter});//update budget available value
   }
 
   needenter= ()=>{ //need box enter function
@@ -356,6 +365,8 @@ class App extends React.Component{
    });
     this.setState({Need_Amount:needamt})
     this.setState({Need_Percent:needp})
+        var counter = document.getElementById("counter").innerHTML; 
+    this.setState({Budget_Available:counter});//update budget available value
   }
 
   wantdelete= ()=>{ //want box delete function
@@ -364,6 +375,8 @@ class App extends React.Component{
     var wantp = document.getElementById("want-percent").innerHTML;
     this.setState({Want_Amount:wantamt})
     this.setState({Want_Percent:wantp})
+        var counter = document.getElementById("counter").innerHTML; 
+    this.setState({Budget_Available:counter});//update budget available value
   }
 
   wantenter= ()=>{ //want box enter function
@@ -385,6 +398,8 @@ class App extends React.Component{
    });
     this.setState({Want_Amount:wantamt})
     this.setState({Want_Percent:wantp})
+        var counter = document.getElementById("counter").innerHTML; 
+    this.setState({Budget_Available:counter});//update budget available value
   }
 
   savingdelete= ()=>{ //saving box delete function
@@ -393,6 +408,8 @@ class App extends React.Component{
     var savingp = document.getElementById("saving-percent").innerHTML;
     this.setState({Saving_Amount:savingamt})
     this.setState({Saving_Percent:savingp})
+        var counter = document.getElementById("counter").innerHTML; 
+    this.setState({Budget_Available:counter});//update budget available value
   }
 
   savingenter= ()=>{ //saving box enter function
@@ -414,12 +431,16 @@ class App extends React.Component{
    });
     this.setState({Saving_Amount:savingamt})
     this.setState({Saving_Percent:savingp})
+        var counter = document.getElementById("counter").innerHTML; 
+    this.setState({Budget_Available:counter});//update budget available value
   }
 
   changePage = ()=>{ //change page button function to change page 
     this.planfunction();
     var savingamt = document.getElementById("savingamt").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML;
+        var counter = document.getElementById("counter").innerHTML; 
+    this.setState({Budget_Available:counter});//update budget available value
     this.setState({Saving_Amount:savingamt})
     this.setState({Saving_Percent:savingp})
     var value = !this.state.display;

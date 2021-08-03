@@ -1,11 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
-    const Savings = sequelize.define("Savings", {
-        amount:{
+    const Budget = sequelize.define("Budget", {
+        amount: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-
     });
-    
-    return Savings;
+
+    return Budget;
 };

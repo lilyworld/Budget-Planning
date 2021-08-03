@@ -100,18 +100,124 @@ class App extends React.Component{
     };
 
   }
+
+  loadBudgetData = () => {
+    this.setState({loading: true})
+    if (localStorage.getItem("accessToken") === "") {
+      this.setState({loading: false})
+      return
+    }
+    const headers = {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+    }
+    return axios.get("http://localhost:4990/budget", {headers: headers}).then((result) => {
+          if (result === {}) {
+            return
+          }
+          let balance = result.data[result.data.length-1]
+          this.setState({
+            Balance: balance.amount,
+          })
+          console.log("setting balance to:")
+          console.log(balance)
+        }).catch((reason) => {
+          console.error("ERROR in loadData in componentDidMount")
+          console.error(reason)
+        }).finally(()=>{
+          this.setState({loading: false})
+        })
+  }
+
+  loadSaveData = () => {
+    this.setState({loading: true})
+    if (localStorage.getItem("accessToken") === "") {
+      this.setState({loading: false})
+      return
+    }
+    const headers = {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+    }
+    return axios.get("http://localhost:4990/savings", {headers: headers}).then((result) => {
+          if (result === {}) {
+            return
+          }
+          let savings = result.data[result.data.length-1]
+          this.setState({
+            Saving_Amount: savings.amount,
+            Saving_Percent: savings.percent,
+          })
+          console.log(savings)
+        }).catch((reason) => {
+          console.error("ERROR in loadData in componentDidMount")
+          console.error(reason)
+        }).finally(()=>{
+          this.setState({loading: false})
+        })
+  }
+
+  loadNeedData = () => {
+    this.setState({loading: true})
+    if (localStorage.getItem("accessToken") === "") {
+      this.setState({loading: false})
+      return
+    }
+    const headers = {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+    }
+    return axios.get("http://localhost:4990/needs", {headers: headers}).then((result) => {
+          if (result === {}) {
+            return
+          }
+          let needs = result.data[result.data.length-1]
+          this.setState({
+            Need_Amount: needs.amount,
+            Need_Percent: needs.percent,
+          })
+          console.log(needs)
+        }).catch((reason) => {
+          console.error("ERROR in loadData in componentDidMount")
+          console.error(reason)
+        }).finally(()=>{
+          this.setState({loading: false})
+        })
+  }
+
+  loadWantData = () => {
+    this.setState({loading: true})
+    if (localStorage.getItem("accessToken") === "") {
+      this.setState({loading: false})
+      return
+    }
+    const headers = {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+    }
+    return axios.get("http://localhost:4990/wants", {headers: headers}).then((result) => {
+          if (result === {}) {
+            return
+          }
+          let wants = result.data[result.data.length-1]
+          this.setState({
+            Want_Amount: wants.amount,
+            Want_Percent: wants.percent,
+          })
+          console.log(wants)
+        }).catch((reason) => {
+          console.error("ERROR in loadData in componentDidMount")
+          console.error(reason)
+        }).finally(()=>{
+          this.setState({loading: false})
+        })
+  }
   
-  //This function will be called when app component render or mounted
-  componentDidMount(){
-    if(sessionStorage.length!=0)//if sessionStorage contain something
-    {
-      let balance = Number(sessionStorage.getItem('Balance')).toFixed(2);
-      
-      this.setState({Balance:balance});
-    }
-    else{
-      //do nothing
-    }
+  // componentDidMount is called before first render. We should put all backend calls to load data here.
+  componentDidMount = ()=>{
+    // Load budget data from backend.
+    this.loadBudgetData()
+    this.loadSaveData()
+    this.loadNeedData()
+    this.loadWantData()
+    // TODO: Set savings, needs, want amounts based on percents from the budget data.
+    // TODO: Load 
   }
 
   /********************************** */
@@ -120,19 +226,9 @@ class App extends React.Component{
     this.addfunction(); //call add function to do addition input value to budget balance
     var value = document.getElementById("amt1").innerHTML;
     this.setState({Balance:value}) //update balance value
-    sessionStorage.setItem('Balance',value.toString());//sessionStorage example
-    var needamt = document.getElementById("needamt").innerHTML;
-    var needp = document.getElementById("need-percent").innerHTML;
-    this.setState({Need_Amount:needamt}) //update need amount value
-    this.setState({Need_Percent:needp}) //update need percent value
-    var wantamt = document.getElementById("wantamt").innerHTML;
-    var wantp = document.getElementById("want-percent").innerHTML;
-    this.setState({Want_Amount:wantamt}) //update want amount value
-    this.setState({Want_Percent:wantp}) //update want percent value
-    var savingamt = document.getElementById("savingamt").innerHTML;
-    axios.post("http://localhost:4990/savings",
+    axios.post("http://localhost:4990/budget",
     {
-      amount: savingamt
+      amount: value
      },
     {
        headers: {
@@ -142,7 +238,57 @@ class App extends React.Component{
      ).then(() => {
      console.log("IT WORKED");
    });
+
+    sessionStorage.setItem('Balance',value.toString());//sessionStorage example
+    var needamt = document.getElementById("needamt").innerHTML;
+    var needp = document.getElementById("need-percent").innerHTML;
+    axios.post("http://localhost:4990/needs",
+    {
+      amount: needamt,
+      percent: needp
+     },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
+    this.setState({Need_Amount:needamt}) //update need amount value
+    this.setState({Need_Percent:needp}) //update need percent value
+    var wantamt = document.getElementById("wantamt").innerHTML;
+    var wantp = document.getElementById("want-percent").innerHTML;
+    axios.post("http://localhost:4990/wants",
+    {
+      amount: wantamt,
+      percent: wantp
+     },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
+    this.setState({Want_Amount:wantamt}) //update want amount value
+    this.setState({Want_Percent:wantp}) //update want percent value
+    var savingamt = document.getElementById("savingamt").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML;
+    axios.post("http://localhost:4990/savings",
+    {
+      amount: savingamt,
+      percent: savingp
+     },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
     this.setState({Saving_Amount:savingamt}) //update saving amount value
     this.setState({Saving_Percent:savingp}) //update saving percent value
   }
@@ -226,9 +372,11 @@ class App extends React.Component{
   savingenter= ()=>{ //saving box enter function
     this.savingsfunction();
     let savingamt = document.getElementById("savingamt").innerHTML;
+    var savingp = document.getElementById("saving-percent").innerHTML;
     axios.post("http://localhost:4990/savings",
     {
-      amount: savingamt
+      amount: savingamt,
+      percent: savingp
      },
     {
        headers: {
@@ -238,7 +386,6 @@ class App extends React.Component{
      ).then(() => {
      console.log("IT WORKED");
    });
-    var savingp = document.getElementById("saving-percent").innerHTML;
     this.setState({Saving_Amount:savingamt})
     this.setState({Saving_Percent:savingp})
   }
@@ -507,7 +654,7 @@ document.getElementById("saving-percent").innerHTML=percent;
       copy_array = [...this.state.wantList_Items, newObject];
       this.setState({wantList_Items: copy_array, Want_Remaining: (this.state.Want_Remaining - this.state.input_Price).toFixed(2)})
       //add to wants api, the variable names for wants table are "itemname" and "price"
-      axios.post("http://localhost:4990/wants",
+      axios.post("http://localhost:4990/want_list",
        {
          itemname: this.state.input_Name, 
          price: this.state.input_Price
@@ -532,7 +679,7 @@ document.getElementById("saving-percent").innerHTML=percent;
       copy_array = [...this.state.needList_Items, newObject];
       this.setState({needList_Items: copy_array, Need_Remaining: (this.state.Need_Remaining - this.state.input_Price).toFixed(2)})
       //add to needs api, the variable names for needs table are "itemname" and "price"
-      axios.post("http://localhost:4990/needs", 
+      axios.post("http://localhost:4990/need_list", 
       {
         itemname: this.state.input_Name,
         price: this.state.input_Price
@@ -621,21 +768,18 @@ document.getElementById("saving-percent").innerHTML=percent;
           var x = copy_array[i].Price;//get the price of remove item
           copy_array.splice(i,1);
           var remain = this.state.Need_Remaining;
-          this.setState({NeedList_Items: copy_array, Need_Remaining: (Number(remain) + Number(x))});
-          axios.delete("http://localhost:4990/needs/${e.target.id}",  // cannot work yet
+          this.setState({NeedList_Items: copy_array, Need_Remaining: (Number(remain) + Number(x))});   
+          axios.delete("http://localhost:4990/needs/${id}", 
           {
             headers: {
               accessToken: localStorage.getItem("accessToken"), // only the person who logged in can delete item from databases
             },
-          }
-          ).then(() => {
-                console.log("IT WORKED");
-              });
-          
+          }).then(() => {
+            console.log("IT WORKED");
+        });  
         }
       }
-    }
-    
+   }
   }
 
   //function clean all the list items for a list in planning page

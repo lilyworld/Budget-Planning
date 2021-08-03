@@ -1,15 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
-    const Wants = sequelize.define("Wants", {
-        itemname: {
+    const Need_amount = sequelize.define("Need_amount", {
+        amount:{
             type: DataTypes.STRING,
             allowNull: false,
         },
-        price:{
+
+        percent:{
             type: DataTypes.STRING,
             allowNull: false,
         },
 
     });
-    
-    return Wants;
+
+    return Need_amount;
 };

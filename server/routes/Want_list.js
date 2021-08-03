@@ -1,23 +1,25 @@
 const express = require("express");
 const router = express.Router();
-const {Wants} = require("../models");
+const {Want_list} = require("../models");
 const { validateToken } = require("../middlewares/AuthMiddleware");
 
 router.get('/', async (req, res) => {
-    const listOfWants = await Wants.findAll();
+    const listOfWants = await Want_list.findAll();
     res.json(listOfWants);
 });
 
 /**ADD ITEMS **/
 router.post("/", validateToken, async (req,res) => {
     const wants = req.body;
-    await Wants.create(wants);
+    const UserUsername = req.user.username;
+    wants.UserUsername = UserUsername;
+    await Want_list.create(wants);
     res.json(wants);
 })
 
 /** DELETE SPECIFIC ITEM */
 router.delete('/:id', validateToken, function(req, res, next) {
-    Wants.destroy({
+    Want_list.destroy({
       where: {
         id: req.params.id
       }

@@ -962,7 +962,7 @@ document.getElementById("saving-percent").innerHTML=percent;
                   <button onClick={this.savingdelete} id="bt">Reset</button>
                   <button onClick={this.savingenter} id="bt">Enter</button>
                   </p>
-                  <h2>Budget Available:<span id="counter">0</span>%</h2>
+                  <h2>Budget Available:<span id="counter">{this.state.Budget_Available}</span>%</h2>
                   <button onClick={this.changePage} id="bt1">Go to Planning</button>
                   <div className = "MyDoughnut">
                   <Doughnut data={{

@@ -6,6 +6,7 @@ import Planning_Component from './components/Planning_Component';
 import {Bar, Doughnut} from "react-chartjs-2";
 import Navigation from "./components/Navigation";
 import axios from "axios";
+import HistoryPage from './components/HistoryPage';
 
 class App extends React.Component{
   constructor(Props){
@@ -974,6 +975,34 @@ document.getElementById("saving-percent").innerHTML=percent;
     this.setState({monthSelect:0}); // set the select month to January as default 
   }
 
+  PickMonth=(e) => {                    //use for determine which month the user select 
+    const selectedmonth = e.target.value;
+    if(selectedmonth ==="Jan"){
+      this.setState({monthSelect:0})
+    }else if(selectedmonth ==="Feb"){
+      this.setState({monthSelect:1})
+    }else if(selectedmonth ==="Mar"){
+      this.setState({monthSelect:2})
+    }else if(selectedmonth ==="Apr"){
+      this.setState({monthSelect:3})
+    }else if(selectedmonth ==="May"){
+      this.setState({monthSelect:4})
+    }else if(selectedmonth ==="Jun"){
+      this.setState({monthSelect:5})
+    }else if(selectedmonth ==="Jul"){
+      this.setState({monthSelect:6})
+    }else if(selectedmonth ==="Aug"){
+      this.setState({monthSelect:7})
+    }else if(selectedmonth ==="Sep"){
+      this.setState({monthSelect:8})
+    }else if(selectedmonth ==="Oct"){
+      this.setState({monthSelect:9})
+    }else if(selectedmonth ==="Nov"){
+      this.setState({monthSelect:10})
+    }else if(selectedmonth ==="Dec"){
+      this.setState({monthSelect:11})
+    }
+  }
 
   /**************************************************************************** */
 
@@ -1113,103 +1142,12 @@ document.getElementById("saving-percent").innerHTML=percent;
                                               resetItems = {this.resetItems}//for wantList, needList
                                               />;
     }else if(this.state.display===true && this.state.Hdisplay===true){
-      display_Component = <div className="HApp">
-        <div className="historyHeader">
-        <h1>History Page</h1>
-        <h3 id="current_date">Current Date:{month}/{day}/{year}</h3>
-        
-        </div>
-        <div className="bar">
-        <Bar data={this.state.chartData}
-        
-        options={{
-                 scales:{
-            y:{
-              title:{
-                display:true,
-                text:"Expenses"
-              }
-            },
-            x:{
-              title:{
-                display:true,
-                text:"Months"
-              }
-            }
-          },
-          animation: {duration:0}//animation disable
-        }}
-        />
-        </div>
-      <br/>
-        <div className = "historyPie">
-                  <Doughnut data={{
-                  labels:["Total spending", "Total saving", "Remaining budget"],
-                   datasets:[{
-                   label:"Needs",
-                   data:[this.state.historyData[this.state.monthSelect].total_spending, this.state.historyData[this.state.monthSelect].total_saving, this.state.historyData[this.state.monthSelect].Remaining_budget],//interestingly, the JSX expression in here do not need to wrapped by {}
-                   backgroundColor:["rgba(62,237,231,0.9)","rgba(255,179,167,0.9)", "rgba(164,226,198,0.9)"]
-                    }]
-                    }}
-
-                    options={{
-                    maintainAspectRatio:false,
-                    animation: {duration:0}//animation disable
-                     }}
-                    />  
-                  </div>
-        <h3 id="stat">Statistics</h3>
-        <label for="month">Choose a month:</label>
-        <select id="month" name="month"
-        onChange={(e) => {                    //use for determine which month the user select 
-          const selectedmonth = e.target.value;
-          if(selectedmonth ==="Jan"){
-            this.setState({monthSelect:0})
-          }else if(selectedmonth ==="Feb"){
-            this.setState({monthSelect:1})
-          }else if(selectedmonth ==="Mar"){
-            this.setState({monthSelect:2})
-          }else if(selectedmonth ==="Apr"){
-            this.setState({monthSelect:3})
-          }else if(selectedmonth ==="May"){
-            this.setState({monthSelect:4})
-          }else if(selectedmonth ==="Jun"){
-            this.setState({monthSelect:5})
-          }else if(selectedmonth ==="Jul"){
-            this.setState({monthSelect:6})
-          }else if(selectedmonth ==="Aug"){
-            this.setState({monthSelect:7})
-          }else if(selectedmonth ==="Sep"){
-            this.setState({monthSelect:8})
-          }else if(selectedmonth ==="Oct"){
-            this.setState({monthSelect:9})
-          }else if(selectedmonth ==="Nov"){
-            this.setState({monthSelect:10})
-          }else if(selectedmonth ==="Dec"){
-            this.setState({monthSelect:11})
-          }
-        }}
-        >
-          <option value="Jan">Jan</option>
-          <option value="Feb">Feb</option>
-          <option value="Mar">Mar</option>
-          <option value="Apr">Apr</option>
-          <option value="May">May</option>
-          <option value="Jun">Jun</option>
-          <option value="Jul">Jul</option>
-          <option value="Aug">Aug</option>
-          <option value="Sep">Sep</option>
-          <option value="Oct">Oct</option>
-          <option value="Nov">Nov</option>
-          <option value="Dec">Dec</option>
-        </select>
-        <div className="HistoryBar">
-        <h4>Total spending:${this.state.historyData[this.state.monthSelect].total_spending}</h4>
-        <h4>Total saving:${this.state.historyData[this.state.monthSelect].total_saving}</h4>
-        <h4>The remaining budget:${this.state.historyData[this.state.monthSelect].Remaining_budget}</h4>
-      <button onClick={this.HisChange} id="bt1">Go Back</button>
-      </div>
-      </div>
+      display_Component =<HistoryPage chartData={this.state.chartData}
+                                       historyData={this.state.historyData}
+                                       monthSelect={this.state.monthSelect}
+                                       PickMonth={this.PickMonth}
+                                       HisChange={this.HisChange}
+                                       />
     }
     return (
         <div>

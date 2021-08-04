@@ -22,6 +22,10 @@ const needamRouter = require("./routes/Need_amount");
 app.use("/needs", needamRouter);
 const wantamRouter = require("./routes/Want_amount");
 app.use("/wants", wantamRouter);
+const needremainRouter = require("./routes/Nremain");
+app.use("/need_remain", needremainRouter);
+const wantremainRouter = require("./routes/Wremain");
+app.use("/want_remain", wantremainRouter);
 
 db.sequelize.sync().then(() => {
     app.listen(4990, () => {

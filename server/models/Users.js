@@ -40,6 +40,14 @@ module.exports = (sequelize, DataTypes) => {
         Users.hasMany(models.Need_amount, {
             onDelete: "cascade",
         });
+
+        Users.hasMany(models.Nremain, {
+            onDelete: "cascade",
+          });
+
+        Users.hasMany(models.Wremain, {
+            onDelete: "cascade",
+        });
       };
     return Users;
 };

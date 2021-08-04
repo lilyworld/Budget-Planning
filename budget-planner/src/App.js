@@ -210,6 +210,31 @@ class App extends React.Component{
         })
   }
   
+  // loadNeedRemainData = () => {
+  //   this.setState({loading: true})
+  //   if (localStorage.getItem("accessToken") === "") {
+  //     this.setState({loading: false})
+  //     return
+  //   }
+  //   const headers = {
+  //        accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+  //   }
+  //   return axios.get("http://localhost:4990/need_remain", {headers: headers}).then((result) => {
+  //         if (result === {}) {
+  //           return
+  //         }
+  //         let needs = result.data[result.data.length-1]
+  //         this.setState({
+  //           Need_Remaining: needs.amount,
+  //         })
+  //         console.log(needs)
+  //       }).catch((reason) => {
+  //         console.error("ERROR in loadData in componentDidMount")
+  //         console.error(reason)
+  //       }).finally(()=>{
+  //         this.setState({loading: false})
+  //       })
+  // }
   // componentDidMount is called before first render. We should put all backend calls to load data here.
   componentDidMount = ()=>{
     // Load budget data from backend.
@@ -217,6 +242,7 @@ class App extends React.Component{
     this.loadSaveData()
     this.loadNeedData()
     this.loadWantData()
+    // this.loadNeedRemainData()
     // TODO: Set savings, needs, want amounts based on percents from the budget data.
     // TODO: Load 
   }
@@ -765,6 +791,20 @@ document.getElementById("saving-percent").innerHTML=percent;
         ).then(() => {
         console.log("IT WORKED");
       });
+
+      //post new remain amount of wants to Wremain table, want_remain api
+      axios.post("http://localhost:4990/want_remain",
+      {
+        amount: this.state.Want_Remaining - this.state.input_Price
+      },
+      {
+        headers: {
+          accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+        },
+      }
+      ).then(() => {
+          console.log("IT WORKED");
+      });
     }
     else if(this.state.selectType == "Need")
     {
@@ -791,6 +831,19 @@ document.getElementById("saving-percent").innerHTML=percent;
             console.log("IT WORKED");
           });
       
+    //post new remain amount of needs to Nremain table, need_remain api
+      axios.post("http://localhost:4990/need_remain",
+      {
+        amount: this.state.Need_Remaining - this.state.input_Price
+      },
+      {
+        headers: {
+          accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+        },
+      }
+      ).then(() => {
+          console.log("IT WORKED");
+      });
     }
     this.resetInput();
   }

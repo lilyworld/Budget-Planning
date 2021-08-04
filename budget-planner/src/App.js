@@ -517,8 +517,12 @@ class App extends React.Component{
     this.planfunction();
     var savingamt = document.getElementById("savingamt").innerHTML;
     var savingp = document.getElementById("saving-percent").innerHTML;
+    var balance = document.getElementById("amt1").innerHTML;
         //var counter = document.getElementById("counter").innerHTML; 
    // this.setState({Budget_Available:counter});//update budget available value
+   if(balance<=0){
+     alert("Budget Balance cannot be zero")
+   }else{
     this.setState({Saving_Amount:savingamt})
     this.setState({Saving_Percent:savingp})
     var value = !this.state.display;
@@ -528,9 +532,11 @@ class App extends React.Component{
     var W_amt = this.state.Want_Amount;
     this.setState({Need_Remaining: N_amt, Want_Remaining: W_amt, needList_Items: [], wantList_Items:[]}) // set need list and want list to empty if change page back to home
   }
+}
   PlanchangePage = ()=>{
     var value = !this.state.display;
-    this.setState({display:value}) 
+    this.setState({display:value}) ;
+    this.setState({monthBudget:0});
   }
 
   //Add helper function

@@ -276,31 +276,59 @@ class App extends React.Component{
           this.setState({loading: false})
         })
   }
-  // loadNeedRemainData = () => {
-  //   this.setState({loading: true})
-  //   if (localStorage.getItem("accessToken") === "") {
-  //     this.setState({loading: false})
-  //     return
-  //   }
-  //   const headers = {
-  //        accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
-  //   }
-  //   return axios.get("http://localhost:4990/need_remain", {headers: headers}).then((result) => {
-  //         if (result === {}) {
-  //           return
-  //         }
-  //         let needs = result.data[result.data.length-1]
-  //         this.setState({
-  //           Need_Remaining: needs.amount,
-  //         })
-  //         console.log(needs)
-  //       }).catch((reason) => {
-  //         console.error("ERROR in loadData in componentDidMount")
-  //         console.error(reason)
-  //       }).finally(()=>{
-  //         this.setState({loading: false})
-  //       })
-  // }
+
+  loadNeedRemainData = () => {
+    this.setState({loading: true})
+    if (localStorage.getItem("accessToken") === "") {
+      this.setState({loading: false})
+      return
+    }
+    const headers = {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+    }
+    return axios.get("http://localhost:4990/need_remain", {headers: headers}).then((result) => {
+          if (result === {}) {
+            return
+          }
+          let needs = result.data[result.data.length-1]
+          this.setState({
+            Need_Remaining: needs.amount,
+          })
+          console.log(needs)
+        }).catch((reason) => {
+          console.error("ERROR in loadData in componentDidMount")
+          console.error(reason)
+        }).finally(()=>{
+          this.setState({loading: false})
+        })
+  }
+
+  loadWantRemainData = () => {
+    this.setState({loading: true})
+    if (localStorage.getItem("accessToken") === "") {
+      this.setState({loading: false})
+      return
+    }
+    const headers = {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+    }
+    return axios.get("http://localhost:4990/want_remain", {headers: headers}).then((result) => {
+          if (result === {}) {
+            return
+          }
+          let wants = result.data[result.data.length-1]
+          this.setState({
+            Want_Remaining: wants.amount,
+          })
+          console.log(wants)
+        }).catch((reason) => {
+          console.error("ERROR in loadData in componentDidMount")
+          console.error(reason)
+        }).finally(()=>{
+          this.setState({loading: false})
+        })
+  }
+
   // componentDidMount is called before first render. We should put all backend calls to load data here.
   componentDidMount = ()=>{
     // Load budget data from backend.
@@ -310,7 +338,8 @@ class App extends React.Component{
     this.loadNeedListData()
     this.loadWantData()
     this.loadWantListData()
-    // this.loadNeedRemainData()
+    this.loadNeedRemainData()
+    this.loadWantRemainData()
     // TODO: Set savings, needs, want amounts based on percents from the budget data.
     // TODO: Load 
   }
@@ -597,7 +626,7 @@ class App extends React.Component{
 
     var N_amt = this.state.Need_Amount;
     var W_amt = this.state.Want_Amount;
-    this.setState({Need_Remaining: N_amt, Want_Remaining: W_amt})
+    // this.setState({Need_Remaining: N_amt, Want_Remaining: W_amt})
   }
 }
   PlanchangePage = ()=>{

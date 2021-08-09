@@ -288,7 +288,9 @@ class App extends React.Component{
     }
     return axios.get("http://localhost:4990/need_remain", {headers: headers}).then((result) => {
           if (result === {}) {
-            return
+            this.setState({
+                  Need_Remaining: this.state.Need_Amount
+                })
           }
           let needs = result.data[result.data.length-1]
           this.setState({
@@ -314,7 +316,9 @@ class App extends React.Component{
     }
     return axios.get("http://localhost:4990/want_remain", {headers: headers}).then((result) => {
           if (result === {}) {
-            return
+            this.setState({
+                Want_Remaining: this.state.Want_Amount
+              })
           }
           let wants = result.data[result.data.length-1]
           this.setState({
@@ -1027,7 +1031,7 @@ document.getElementById("saving-percent").innerHTML=percent;
         }).catch((err) => {
           console.log(err)
           alert(err);
-        });  
+        }); 
         }
       }
     }

@@ -1076,9 +1076,9 @@ document.getElementById("saving-percent").innerHTML=percent;
   /**************************** ************************************************* */
   //History Page
  HisChange = ()=>{
-   //if (localStorage.getItem("accessToken") == null) {
-     // alert("Please login to unlock more features (๑˃́ꇴ˂̀๑)")
-    //} else {
+   if (localStorage.getItem("accessToken") == null) {
+      alert("Please login to unlock more features (๑˃́ꇴ˂̀๑)")
+    } else {
     var d = new Date();
     var n = d.getMonth();
     var value = !this.state.Hdisplay;
@@ -1100,7 +1100,7 @@ document.getElementById("saving-percent").innerHTML=percent;
     data2[n].Remaining_budget=remain_budget; //set remaining budget value on the current month
     this.setState({historyData:data2}); //update the statistics data with the new data inserted 
     this.setState({monthSelect:0}); // set the select month to January as default 
-   // }
+    }
  }
 
   PickMonth=(e) => {                    //use for determine which month the user select 

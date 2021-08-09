@@ -3,9 +3,19 @@ const router = express.Router();
 const {Want_list} = require("../models");
 const { validateToken } = require("../middlewares/AuthMiddleware");
 
-router.get('/', async (req, res) => {
-    const listOfWants = await Want_list.findAll();
-    res.json(listOfWants);
+router.get('/', validateToken, async (req, res) => {
+     // TODO: Retrieve rows by user to get the actual corresponding value.
+     try {
+      const wants = await Want_list.findAll({
+        where: {
+          UserUsername: req.user.username,
+        },
+      }); // setting budget amount = all the stuff in the budget table
+      res.json(wants);
+    } catch (err) {
+      console.log(err)
+      res.json({})
+    }
 });
 
 /**ADD ITEMS **/
@@ -18,12 +28,13 @@ router.post("/", validateToken, async (req,res) => {
 })
 
 /** DELETE SPECIFIC ITEM */
-router.delete('/:id', validateToken, function(req, res, next) {
-    Want_list.destroy({
-      where: {
-        id: req.params.id
-      }
-    })
+router.delete('/:itemname', function(req, res, next) {
+  const itemname = req.params.itemname
+  Want_list.destroy({
+    where: {
+      "itemname": itemname,
+    }
+  })
       .then(() => res.status(200).json("Deleted a item!"))
       .catch(err => next(err));
   });

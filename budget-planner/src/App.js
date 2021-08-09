@@ -184,6 +184,39 @@ class App extends React.Component{
         })
   }
 
+  loadNeedListData = () => {
+    this.setState({loading: true})
+    if (localStorage.getItem("accessToken") === "") {
+      this.setState({loading: false})
+      return
+    }
+    const headers = {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+    }
+    return axios.get("http://localhost:4990/need_list", {headers: headers}).then((result) => {
+          if (result === {}) {
+            return
+          }
+          console.log(result.data)
+          let needListItems = result.data.map((item) => {
+            let newItem = {
+              Name: item.itemname,
+              Price: item.price,
+            }
+            return newItem;
+          })
+          console.log('needWantList %o', needListItems)
+          this.setState({
+            needList_Items: needListItems
+          })
+        }).catch((reason) => {
+          console.error("ERROR in loadData in componentDidMount")
+          console.error(reason)
+        }).finally(()=>{
+          this.setState({loading: false})
+        })
+  }
+
   loadWantData = () => {
     this.setState({loading: true})
     if (localStorage.getItem("accessToken") === "") {
@@ -211,6 +244,38 @@ class App extends React.Component{
         })
   }
   
+  loadWantListData = () => {
+    this.setState({loading: true})
+    if (localStorage.getItem("accessToken") === "") {
+      this.setState({loading: false})
+      return
+    }
+    const headers = {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+    }
+    return axios.get("http://localhost:4990/want_list", {headers: headers}).then((result) => {
+          if (result === {}) {
+            return
+          }
+          console.log(result.data)
+          let wantListItems = result.data.map((item) => {
+            let newItem = {
+              Name: item.itemname,
+              Price: item.price,
+            }
+            return newItem;
+          })
+          console.log('loadWantList %o', wantListItems)
+          this.setState({
+            wantList_Items: wantListItems
+          })
+        }).catch((reason) => {
+          console.error("ERROR in loadData in componentDidMount")
+          console.error(reason)
+        }).finally(()=>{
+          this.setState({loading: false})
+        })
+  }
   // loadNeedRemainData = () => {
   //   this.setState({loading: true})
   //   if (localStorage.getItem("accessToken") === "") {
@@ -242,7 +307,9 @@ class App extends React.Component{
     this.loadBudgetData()
     this.loadSaveData()
     this.loadNeedData()
+    this.loadNeedListData()
     this.loadWantData()
+    this.loadWantListData()
     // this.loadNeedRemainData()
     // TODO: Set savings, needs, want amounts based on percents from the budget data.
     // TODO: Load 
@@ -530,7 +597,7 @@ class App extends React.Component{
 
     var N_amt = this.state.Need_Amount;
     var W_amt = this.state.Want_Amount;
-    this.setState({Need_Remaining: N_amt, Want_Remaining: W_amt, needList_Items: [], wantList_Items:[]}) // set need list and want list to empty if change page back to home
+    this.setState({Need_Remaining: N_amt, Want_Remaining: W_amt})
   }
 }
   PlanchangePage = ()=>{
@@ -745,7 +812,7 @@ document.getElementById("saving-percent").innerHTML=percent;
     var duplicate_index_W = this.checkDuplicate(newObject.Name, 0);// return -1 if no duplicate
     var duplicate_index_N = this.checkDuplicate(newObject.Name, 1);// return -1 if no duplicate 
 
-    //follwing will reset input field if over butget amount
+    //follwing will reset input field if over budget amount
     if(this.state.selectType =="Want" && duplicate_index_W!= -1)
     {
       if(this.state.Want_Remaining - this.state.input_Price < 0)//check if the prices over the budgets
@@ -902,6 +969,7 @@ document.getElementById("saving-percent").innerHTML=percent;
     var Object_Name = e.target.id;
     var ClassName = e.target.className;
     var copy_array;
+    console.log("delete item: Object Name: %s, ClassName: %s", Object_Name, ClassName)
     if(ClassName == "Want")
     {
       copy_array = this.state.wantList_Items;
@@ -912,11 +980,22 @@ document.getElementById("saving-percent").innerHTML=percent;
           var x = copy_array[i].Price;//get the price of remove item
           copy_array.splice(i,1);
           var remain = this.state.Want_Remaining;
-          this.setState({wantList_Items: copy_array, Want_Remaining: (Number(remain) + Number(x))})
-          return;
+          this.setState({wantList_Items: copy_array, Want_Remaining: (Number(remain) + Number(x))});
+          axios.delete(`http://localhost:4990/want_list/${Object_Name}`, 
+          {
+            headers: {
+              accessToken: localStorage.getItem("accessToken"), // only the person who logged in can delete item from databases
+            },
+          }).then(() => {
+            console.log("IT WORKED");
+        }).catch((err) => {
+          console.log(err)
+          alert(err);
+        });  
         }
       }
     }
+    
     else if(ClassName == "Need"){
       copy_array = this.state.needList_Items;
       for(let i = 0; i < copy_array.length; i++)
@@ -927,13 +1006,16 @@ document.getElementById("saving-percent").innerHTML=percent;
           copy_array.splice(i,1);
           var remain = this.state.Need_Remaining;
           this.setState({NeedList_Items: copy_array, Need_Remaining: (Number(remain) + Number(x))});   
-          axios.delete("http://localhost:4990/needs/${id}", 
+          axios.delete(`http://localhost:4990/need_list/${Object_Name}`, 
           {
             headers: {
               accessToken: localStorage.getItem("accessToken"), // only the person who logged in can delete item from databases
             },
           }).then(() => {
             console.log("IT WORKED");
+        }).catch((err) => {
+          console.log(err)
+          alert(err);
         });  
         }
       }

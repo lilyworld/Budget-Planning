@@ -205,6 +205,8 @@ code {
 }
 .Want,
 .Need {
+  background-color: red;
+  color: white;
   position: absolute;
   right: 0px;
 }

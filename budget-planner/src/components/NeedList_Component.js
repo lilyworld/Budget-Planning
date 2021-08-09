@@ -13,8 +13,7 @@ function NeedList_Component(Props){
             </button></li>
     )}
     </ul>
-<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br/><br/><br/>
-    <button name= "reset_button" type = "reset" value = "Reset" id = "NeedList_Reset" onClick = {Props.resetItems} >Reset</button>
+
   </div>
 }
 

@@ -1231,7 +1231,7 @@ document.getElementById("saving-percent").innerHTML=percent;
                                               resetInput = {this.resetInput}//for inputBoxes
                                               add = {this.add}//for inputBoxes
                                               delete_item = {this.delete_item}//for wantList, needList
-                                              resetItems = {this.resetItems}//for wantList, needList
+                                              
                                               />;
     }else if(this.state.display===true && this.state.Hdisplay===true){
       display_Component =<HistoryPage chartData={this.state.chartData}

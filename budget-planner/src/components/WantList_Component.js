@@ -12,8 +12,7 @@ function WantList_Component(Props){
           </button> </li>
       )}
     </ul>
-    <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br/><br/><br/>
-    <button name= "reset_button" type = "reset" id = "WantList_Reset" onClick = {Props.resetItems}>Reset</button>
+ 
     </div>);
 }
 export default WantList_Component;

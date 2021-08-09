@@ -25,7 +25,7 @@ function Planning_Component(Props){
   want_Percent = {Props.want_Percent}
   wantList_Items = {Props.wantList_Items}
   delete_item = {Props.delete_item}
-  resetItems = {Props.resetItems}
+  
   />
 
   <NeedList_Component Need_Amount = {Props.Need_Amount}
@@ -33,7 +33,7 @@ function Planning_Component(Props){
   Need_Percent = {Props.Need_Percent}
   needList_Items = {Props.needList_Items}
   delete_item = {Props.delete_item}
-  resetItems = {Props.resetItems}
+
   />
 
   <SavingList Precent = {Props.Saving_Percent} Amount = {Props.Saving_Amount}/>

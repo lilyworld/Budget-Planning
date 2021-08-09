@@ -415,6 +415,7 @@ class App extends React.Component{
    });
     this.setState({Saving_Amount:savingamt}) //update saving amount value
     this.setState({Saving_Percent:savingp}) //update saving percent value
+    this.setState({Need_Remaining: needamt, Want_Remaining: wantamt})
    // var counter = document.getElementById("counter").innerHTML; 
     //this.setState({Budget_Available:counter});//update budget available value
   }
@@ -486,6 +487,7 @@ class App extends React.Component{
    });
     this.setState({Saving_Amount:savingamt}) //update saving amount value
     this.setState({Saving_Percent:savingp}) //update saving percent value
+    this.setState({Need_Remaining: needamt, Want_Remaining: wantamt})
       //  var counter = document.getElementById("counter").innerHTML; 
   //  this.setState({Budget_Available:counter});//update budget available value
   }
@@ -505,7 +507,8 @@ class App extends React.Component{
     this.setState({Saving_Amount:savingamt})
     this.setState({Need_Percent:needp})
     this.setState({Want_Percent:wantp})
-    this.setState({Saving_Percent:savingp})////////////////////////////////////////////
+    this.setState({Saving_Percent:savingp})
+    this.setState({Need_Remaining: needamt, Want_Remaining: wantamt})////////////////////////////////////////////
      //   var counter = document.getElementById("counter").innerHTML; 
   //  this.setState({Budget_Available:counter});//update budget available value
   }
@@ -516,6 +519,7 @@ class App extends React.Component{
     var needp = document.getElementById("need-percent").innerHTML;
     this.setState({Need_Amount:needamt})
     this.setState({Need_Percent:needp})
+    this.setState({Need_Remaining: needamt})
      //   var counter = document.getElementById("counter").innerHTML; 
    // this.setState({Budget_Available:counter});//update budget available value
   }
@@ -539,6 +543,7 @@ class App extends React.Component{
    });
     this.setState({Need_Amount:needamt})
     this.setState({Need_Percent:needp})
+    this.setState({Need_Remaining: needamt})
       //  var counter = document.getElementById("counter").innerHTML; 
   //  this.setState({Budget_Available:counter});//update budget available value
   }
@@ -549,6 +554,7 @@ class App extends React.Component{
     var wantp = document.getElementById("want-percent").innerHTML;
     this.setState({Want_Amount:wantamt})
     this.setState({Want_Percent:wantp})
+    this.setState({Want_Remaining: wantamt})
       //  var counter = document.getElementById("counter").innerHTML; 
   //  this.setState({Budget_Available:counter});//update budget available value
   }
@@ -572,6 +578,7 @@ class App extends React.Component{
    });
     this.setState({Want_Amount:wantamt})
     this.setState({Want_Percent:wantp})
+    this.setState({Want_Remaining: wantamt})
      //   var counter = document.getElementById("counter").innerHTML; 
    // this.setState({Budget_Available:counter});//update budget available value
   }

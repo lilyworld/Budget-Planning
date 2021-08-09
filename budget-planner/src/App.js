@@ -1076,11 +1076,11 @@ document.getElementById("saving-percent").innerHTML=percent;
   /**************************** ************************************************* */
   //History Page
  HisChange = ()=>{
-   if (localStorage.getItem("accessToken") == null) {
-      alert("Please login to unlock more features (๑˃́ꇴ˂̀๑)")
-    } else {
+   //if (localStorage.getItem("accessToken") == null) {
+     // alert("Please login to unlock more features (๑˃́ꇴ˂̀๑)")
+    //} else {
     var d = new Date();
-    var n = this.state.monthBudget;
+    var n = d.getMonth();
     var value = !this.state.Hdisplay;
     this.setState({Hdisplay:value}) //update the state object to change page
     var need_spend = this.state.Balance *(this.state.Need_Percent/100) - this.state.Need_Remaining;
@@ -1100,7 +1100,7 @@ document.getElementById("saving-percent").innerHTML=percent;
     data2[n].Remaining_budget=remain_budget; //set remaining budget value on the current month
     this.setState({historyData:data2}); //update the statistics data with the new data inserted 
     this.setState({monthSelect:0}); // set the select month to January as default 
-   }
+   // }
  }
 
   PickMonth=(e) => {                    //use for determine which month the user select 
@@ -1144,52 +1144,7 @@ document.getElementById("saving-percent").innerHTML=percent;
     {
       display_Component = display_Component =  <div  className = "App">
       <h1 >Budget Balance:$<span id="amt1">{this.state.Balance}</span></h1>
-      <div>
-      <label for="month">Choose a month to budget:</label>
-        <select id="month" name="month"
-        onChange={(e) => {                    //use for determine which month the user select 
-          const selectedmonth = e.target.value;
-          if(selectedmonth ==="Jan"){
-            this.setState({monthBudget:0})
-          }else if(selectedmonth ==="Feb"){
-            this.setState({monthBudget:1})
-          }else if(selectedmonth ==="Mar"){
-            this.setState({monthBudget:2})
-          }else if(selectedmonth ==="Apr"){
-            this.setState({monthBudget:3})
-          }else if(selectedmonth ==="May"){
-            this.setState({monthBudget:4})
-          }else if(selectedmonth ==="Jun"){
-            this.setState({monthBudget:5})
-          }else if(selectedmonth ==="Jul"){
-            this.setState({monthBudget:6})
-          }else if(selectedmonth ==="Aug"){
-            this.setState({monthBudget:7})
-          }else if(selectedmonth ==="Sep"){
-            this.setState({monthBudget:8})
-          }else if(selectedmonth ==="Oct"){
-            this.setState({monthBudget:9})
-          }else if(selectedmonth ==="Nov"){
-            this.setState({monthBudget:10})
-          }else if(selectedmonth ==="Dec"){
-            this.setState({monthBudget  :11})
-          }
-        }}
-        >
-          <option value="Jan">Jan</option>
-          <option value="Feb">Feb</option>
-          <option value="Mar">Mar</option>
-          <option value="Apr">Apr</option>
-          <option value="May">May</option>
-          <option value="Jun">Jun</option>
-          <option value="Jul">Jul</option>
-          <option value="Aug">Aug</option>
-          <option value="Sep">Sep</option>
-          <option value="Oct">Oct</option>
-          <option value="Nov">Nov</option>
-          <option value="Dec">Dec</option>
-        </select>
-        </div>
+      
       <button onClick={this.minusamt} id="minus1">-</button>
       <input type="number" id="input1" placeholder="Enter Budget Amount" min="0"></input>
       <button onClick={this.addamt} id="add1">+</button>

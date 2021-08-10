@@ -255,7 +255,7 @@ class App extends React.Component{
     }
     return axios.get("http://localhost:4990/want_list", {headers: headers}).then((result) => {
           if (result === {}) {
-            return
+            return 
           }
           console.log(result.data)
           let wantListItems = result.data.map((item) => {
@@ -288,9 +288,7 @@ class App extends React.Component{
     }
     return axios.get("http://localhost:4990/need_remain", {headers: headers}).then((result) => {
           if (result === {}) {
-            this.setState({
-                  Need_Remaining: this.state.Need_Amount
-                })
+              return 
           }
           let needs = result.data[result.data.length-1]
           this.setState({
@@ -315,10 +313,9 @@ class App extends React.Component{
          accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
     }
     return axios.get("http://localhost:4990/want_remain", {headers: headers}).then((result) => {
+      // for new user, there is no remainning amount
           if (result === {}) {
-            this.setState({
-                Want_Remaining: this.state.Want_Amount
-              })
+            return 
           }
           let wants = result.data[result.data.length-1]
           this.setState({
@@ -353,11 +350,9 @@ class App extends React.Component{
   addamt = ()=>{
     this.addfunction(); //call add function to do addition input value to budget balance
     var value = document.getElementById("amt1").innerHTML;
+    var input = document.getElementById("input1").value;
     this.setState({Balance:value}) //update balance value
-    axios.post("http://localhost:4990/budget",
-    {
-      amount: value
-     },
+    axios.post("http://localhost:4990/budget",{ amount: value },
     {
        headers: {
          accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
@@ -420,6 +415,35 @@ class App extends React.Component{
     this.setState({Saving_Amount:savingamt}) //update saving amount value
     this.setState({Saving_Percent:savingp}) //update saving percent value
     this.setState({Need_Remaining: needamt, Want_Remaining: wantamt})
+    axios.post("http://localhost:4990/need_remain", 
+    { 
+      amount: Number(input * needp/100) + Number(this.state.Need_Remaining),
+      percent: needp
+
+    },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
+
+   axios.post("http://localhost:4990/want_remain", 
+    { 
+      amount: Number(input * wantp/100) + Number(this.state.Want_Remaining),
+      percent: wantp
+
+    },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
    // var counter = document.getElementById("counter").innerHTML; 
     //this.setState({Budget_Available:counter});//update budget available value
   }
@@ -492,6 +516,7 @@ class App extends React.Component{
     this.setState({Saving_Amount:savingamt}) //update saving amount value
     this.setState({Saving_Percent:savingp}) //update saving percent value
     this.setState({Need_Remaining: needamt, Want_Remaining: wantamt})
+    
       //  var counter = document.getElementById("counter").innerHTML; 
   //  this.setState({Budget_Available:counter});//update budget available value
   }
@@ -656,7 +681,7 @@ class App extends React.Component{
     else{
     let z = (x-0)+(y-0); // z = input value + budget balance value
     document.getElementById("amt1").innerHTML=z.toFixed(2); //set budget balance value with z
-    document.getElementById("input1").value=""; //then reset every other inputs and budget percentages to zero when you add a new value for budget balance
+    // document.getElementById("input1").value=""; //then reset every other inputs and budget percentages to zero when you add a new value for budget balance
     let need = z*0.50;
     let want = z*0.30;
     let saving = z*0.20;
@@ -682,7 +707,7 @@ minusfunction(){
     }else{
     let z = y-x;
     document.getElementById("amt1").innerHTML=z.toFixed(2);
-    document.getElementById("input1").value="";
+    // document.getElementById("input1").value="";
     let need = z*0.50;
     let want = z*0.30;
     let saving = z*0.20;
@@ -909,7 +934,8 @@ document.getElementById("saving-percent").innerHTML=percent;
       //post new remain amount of wants to Wremain table, want_remain api
       axios.post("http://localhost:4990/want_remain",
       {
-        amount: this.state.Want_Remaining - this.state.input_Price
+        amount: this.state.Want_Remaining - this.state.input_Price,
+        percent: this.state.Want_Percent
       },
       {
         headers: {
@@ -948,7 +974,8 @@ document.getElementById("saving-percent").innerHTML=percent;
     //post new remain amount of needs to Nremain table, need_remain api
       axios.post("http://localhost:4990/need_remain",
       {
-        amount: this.state.Need_Remaining - this.state.input_Price
+        amount: this.state.Need_Remaining - this.state.input_Price,
+        percent: this.state.Need_Percent
       },
       {
         headers: {
@@ -1032,6 +1059,21 @@ document.getElementById("saving-percent").innerHTML=percent;
           console.log(err)
           alert(err);
         }); 
+
+        axios.post("http://localhost:4990/want_remain", 
+        { 
+          amount: (Number(remain) + Number(x)),
+          percent: this.state.Want_Percent
+
+        },
+        {
+          headers: {
+            accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+          },
+        }
+        ).then(() => {
+        console.log("IT WORKED");
+      });
         }
       }
     }
@@ -1057,6 +1099,21 @@ document.getElementById("saving-percent").innerHTML=percent;
           console.log(err)
           alert(err);
         });  
+
+        axios.post("http://localhost:4990/need_remain", 
+        { 
+          amount: (Number(remain) + Number(x)),
+          percent: this.state.Need_Percent
+
+        },
+        {
+          headers: {
+            accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+          },
+        }
+        ).then(() => {
+        console.log("IT WORKED");
+      });
         }
       }
    }

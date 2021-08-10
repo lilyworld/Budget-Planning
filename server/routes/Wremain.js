@@ -22,7 +22,8 @@ router.post("/", validateToken, async (req,res) => {
     const want = req.body;
     const rowData = {
       UserUsername: req.user.username, // get username from access token,
-      amount: want.amount
+      amount: want.amount,
+      percent: want.percent 
     }
     console.log(rowData)
     await Wremain.upsert(rowData);     // "upsert" inserts if it doesn't exist, otherwise updates.

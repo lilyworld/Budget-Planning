@@ -450,6 +450,7 @@ class App extends React.Component{
 
   minusamt = ()=>{
     this.minusfunction(); //call minus function to subtract budget balance by iinput value
+    var input = document.getElementById("input1").value
     var value = document.getElementById("amt1").innerHTML;
     this.setState({Balance:value}) //update balance value
     axios.post("http://localhost:4990/budget",
@@ -516,6 +517,35 @@ class App extends React.Component{
     this.setState({Saving_Amount:savingamt}) //update saving amount value
     this.setState({Saving_Percent:savingp}) //update saving percent value
     this.setState({Need_Remaining: needamt, Want_Remaining: wantamt})
+    axios.post("http://localhost:4990/need_remain", 
+    { 
+      amount: Number(this.state.Need_Remaining) - Number(input * needp/100),
+      percent: needp
+
+    },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
+
+   axios.post("http://localhost:4990/want_remain", 
+    { 
+      amount: Number(this.state.Want_Remaining) - Number(input * wantp/100),
+      percent: wantp
+
+    },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
     
       //  var counter = document.getElementById("counter").innerHTML; 
   //  this.setState({Budget_Available:counter});//update budget available value
@@ -537,7 +567,8 @@ class App extends React.Component{
     this.setState({Need_Percent:needp})
     this.setState({Want_Percent:wantp})
     this.setState({Saving_Percent:savingp})
-    this.setState({Need_Remaining: needamt, Want_Remaining: wantamt})////////////////////////////////////////////
+    this.setState({Need_Remaining: needamt, Want_Remaining: wantamt})
+    this.setState({needList_Items:[], wantList_Items:[]})////////////////////////////////////////////
      //   var counter = document.getElementById("counter").innerHTML; 
   //  this.setState({Budget_Available:counter});//update budget available value
   }

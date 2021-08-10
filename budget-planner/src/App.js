@@ -1006,8 +1006,8 @@ document.getElementById("saving-percent").innerHTML=percent;
   }
   //function that delete items in list in planning page
   delete_item = (e)=>{
-    var Object_Name = e.target.id;
-    var ClassName = e.target.className;
+    var Object_Name = e.currentTarget.id;
+    var ClassName = e.currentTarget.className;
     var copy_array;
     console.log("delete item: Object Name: %s, ClassName: %s", Object_Name, ClassName)
     if(ClassName == "Want")

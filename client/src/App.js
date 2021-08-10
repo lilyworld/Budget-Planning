@@ -601,6 +601,21 @@ class App extends React.Component{
      ).then(() => {
      console.log("IT WORKED");
    });
+    
+    axios.post("http://localhost:4990/need_remain", 
+    { 
+      amount: needamt,
+      percent: needp
+
+    },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
     this.setState({Need_Amount:needamt})
     this.setState({Need_Percent:needp})
     this.setState({Need_Remaining: needamt})
@@ -628,6 +643,21 @@ class App extends React.Component{
       amount: wantamt,
       percent: wantp
      },
+    {
+       headers: {
+         accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
+       },
+     }
+     ).then(() => {
+     console.log("IT WORKED");
+   });
+    
+    axios.post("http://localhost:4990/want_remain", 
+    { 
+      amount: wantamt,
+      percent: wantp
+
+    },
     {
        headers: {
          accessToken: localStorage.getItem("accessToken"),  // new saving amount will only be added to database when user is logged in
@@ -1241,7 +1271,8 @@ document.getElementById("saving-percent").innerHTML=percent;
       <input type="number" id="input1" placeholder="Enter Budget Amount" min="0"></input>
       <button onClick={this.addamt} id="add1">+</button>
       <br></br>
-      <button onClick={this.clearamt} id="clear1">Clear</button>
+      <br></br>
+      <br></br>
       <br></br>
       <p id="p1">Needs
                   <br></br>

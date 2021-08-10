@@ -5,6 +5,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
 
+        percent:{
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+
     });
 
     return Wremain;

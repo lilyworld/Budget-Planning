@@ -27,7 +27,7 @@ function InputBoxes_Component(Props){
             <option value = "Need" id = "NeedRadio" name = "Item Type">Need</option>
         </select>
         <button className = "ADDInputButton" id = "AddInput_Add_to_list" onClick = {Props.add}>Add to list </button>
-        <button className = "ADDInputButton" id = "AddInput_Reset" onClick = {Props.resetInput}>Reset </button>
+    
     </div>);
 }
 

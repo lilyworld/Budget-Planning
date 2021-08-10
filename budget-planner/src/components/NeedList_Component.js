@@ -1,4 +1,6 @@
 import React,{Component} from "react";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faTrash} from '@fortawesome/free-solid-svg-icons'
 
 
 function NeedList_Component(Props){
@@ -10,7 +12,7 @@ function NeedList_Component(Props){
     {Props.needList_Items.map(
         (Item)=> <li key = {Item.Name}> <span id="IN">{Item.Name}:</span> ${Item.Price} 
             <button type = "button" id = {Item.Name} className = "Need" onClick = {Props.delete_item}>
-            {icon}
+            <FontAwesomeIcon icon = {faTrash} className = "myIcons"/>
             </button></li>
     )}
     </ul>
